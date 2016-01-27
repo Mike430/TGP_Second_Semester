@@ -32,10 +32,9 @@ bool HelloWorld::init()
     }
     
     _rootNode = CSLoader::createNode("0_Main_Menu.csb");
-
     addChild(_rootNode);
 
-	_beginButton = (ui::Button*)_rootNode->getChildByName("BEGIN");
+	_beginButton = (cocos2d::ui::Button*)_rootNode->getChildByName("Begin_Button");
 	_beginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BeginButtonPressed, this));
 
     return true;
