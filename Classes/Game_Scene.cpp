@@ -67,7 +67,7 @@ void Game_Scene::update(float deltaTime)
 	else
 		_score -= deltaTime;
 
-	string textDisplay = "Score: " + to_string((int) _score + 0.5f);
+	string textDisplay = "Score: " + to_string((int) (_score + 0.5f));
 	_scoreLabel->setText(textDisplay);
 }
 

@@ -32,7 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_Element" ActionTag="583558799" Tag="10" IconVisible="False" LeftMargin="10.0000" RightMargin="1050.0000" TopMargin="9.5000" BottomMargin="749.5000" FontSize="36" LabelText="Game_Scene" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Text_Element_0" ActionTag="583558799" Tag="10" IconVisible="False" LeftMargin="10.0000" RightMargin="1050.0000" TopMargin="9.5000" BottomMargin="749.5000" FontSize="36" LabelText="Game_Scene" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="220.0000" Y="41.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="120.0000" Y="770.0000" />
@@ -43,7 +43,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_Element_0" ActionTag="-231997153" Tag="15" IconVisible="False" LeftMargin="13.0000" RightMargin="1093.0000" TopMargin="64.5000" BottomMargin="694.5000" FontSize="36" LabelText="Score: 000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Text_Element_1" ActionTag="-231997153" Tag="15" IconVisible="False" LeftMargin="13.0000" RightMargin="1093.0000" TopMargin="64.5000" BottomMargin="694.5000" FontSize="36" LabelText="Score: 000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="174.0000" Y="41.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="13.0000" Y="715.0000" />
