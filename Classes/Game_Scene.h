@@ -5,6 +5,7 @@
 //INCLUDES
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "Score_Scene.h"
 #include "ui/CocosGUI.h"
 #include <string.h>
 #include "SimpleAudioEngine.h"

@@ -77,6 +77,8 @@ void Game_Scene::update(float deltaTime)
 //==============================================================================
 void Game_Scene::EndButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
+	cocos2d::Scene* scoreScene = Score_Scene::createScene();
+	cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
 }
 
 bool Game_Scene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)

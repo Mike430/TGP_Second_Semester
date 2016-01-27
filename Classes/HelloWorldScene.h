@@ -1,9 +1,17 @@
 #ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
-
+//=========================================//
+//INCLUDES
 #include "cocos2d.h"
+#include "cocostudio/CocoStudio.h"
 #include "Game_Scene.h"
+#include "ui/CocosGUI.h"
+#include <string.h>
+#include "SimpleAudioEngine.h"
 
+using namespace std;
+
+//=========================================//
 class HelloWorld : public cocos2d::Layer
 {
 private:

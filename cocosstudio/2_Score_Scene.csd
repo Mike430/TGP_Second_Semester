@@ -17,7 +17,7 @@
             <FileData Type="Normal" Path="Sprites/HelloWorld.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Begin_Button" ActionTag="342092180" Tag="9" IconVisible="False" LeftMargin="540.0000" RightMargin="540.0000" TopMargin="650.0000" BottomMargin="90.0000" TouchEnable="True" FontSize="36" ButtonText="Play Again!" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="Play_Again" ActionTag="342092180" Tag="9" IconVisible="False" LeftMargin="540.0000" RightMargin="540.0000" TopMargin="650.0000" BottomMargin="90.0000" TouchEnable="True" FontSize="36" ButtonText="Play Again!" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="200.0000" Y="60.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="640.0000" Y="120.0000" />
@@ -32,7 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_Element" ActionTag="583558799" Tag="10" IconVisible="False" LeftMargin="10.5000" RightMargin="1054.5000" TopMargin="9.5000" BottomMargin="749.5000" FontSize="36" LabelText="Score_Scene" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Text_Element_0" ActionTag="583558799" Tag="10" IconVisible="False" LeftMargin="10.5000" RightMargin="1054.5000" TopMargin="9.5000" BottomMargin="749.5000" FontSize="36" LabelText="Score_Scene" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="215.0000" Y="41.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="118.0000" Y="770.0000" />
@@ -43,7 +43,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Begin_Button_0" ActionTag="499927844" Tag="20" IconVisible="False" LeftMargin="460.0000" RightMargin="460.0000" TopMargin="723.0000" BottomMargin="17.0000" TouchEnable="True" FontSize="36" ButtonText="Return To Main Menu" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="Main_Menu" ActionTag="499927844" Tag="20" IconVisible="False" LeftMargin="460.0000" RightMargin="460.0000" TopMargin="723.0000" BottomMargin="17.0000" TouchEnable="True" FontSize="36" ButtonText="Return To Main Menu" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="360.0000" Y="60.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="640.0000" Y="47.0000" />
@@ -58,7 +58,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_Element_0" ActionTag="1711341091" Tag="21" IconVisible="False" LeftMargin="113.0000" RightMargin="933.0000" TopMargin="139.0000" BottomMargin="579.0000" FontSize="36" LabelText="Player 1 is the:&#xA;WINNER" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Text_Element_1" ActionTag="1711341091" Tag="21" IconVisible="False" LeftMargin="113.0000" RightMargin="933.0000" TopMargin="139.0000" BottomMargin="579.0000" FontSize="36" LabelText="Player 1 is the:&#xA;WINNER" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="234.0000" Y="82.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="230.0000" Y="620.0000" />
@@ -69,7 +69,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_Element_1" ActionTag="674808892" Tag="22" IconVisible="False" LeftMargin="933.0000" RightMargin="113.0000" TopMargin="139.0000" BottomMargin="579.0000" FontSize="36" LabelText="Player 2 is the:&#xA;LOSER!" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Text_Element_2" ActionTag="674808892" Tag="22" IconVisible="False" LeftMargin="933.0000" RightMargin="113.0000" TopMargin="139.0000" BottomMargin="579.0000" FontSize="36" LabelText="Player 2 is the:&#xA;LOSER!" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="234.0000" Y="82.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1050.0000" Y="620.0000" />
