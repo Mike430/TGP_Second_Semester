@@ -45,11 +45,11 @@
           </AbstractNodeData>
           <AbstractNodeData Name="Text_Element_0" ActionTag="-231997153" Tag="15" IconVisible="False" LeftMargin="13.0000" RightMargin="1093.0000" TopMargin="64.5000" BottomMargin="694.5000" FontSize="36" LabelText="Score: 000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="174.0000" Y="41.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="100.0000" Y="715.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="13.0000" Y="715.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="53" G="53" B="53" />
-            <PrePosition X="0.0781" Y="0.8938" />
+            <PrePosition X="0.0102" Y="0.8938" />
             <PreSize X="0.1359" Y="0.0512" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

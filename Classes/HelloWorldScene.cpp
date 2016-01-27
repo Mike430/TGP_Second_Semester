@@ -31,9 +31,18 @@ bool HelloWorld::init()
         return false;
     }
     
-    auto rootNode = CSLoader::createNode("0_Main_Menu.csb");
+    _rootNode = CSLoader::createNode("0_Main_Menu.csb");
 
-    addChild(rootNode);
+    addChild(_rootNode);
+
+	_beginButton = (ui::Button*)_rootNode->getChildByName("BEGIN");
+	_beginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BeginButtonPressed, this));
 
     return true;
+}
+
+void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	Scene* mainMenu = Game_Scene::createScene();
+	CCDirector::getInstance()->replaceScene(mainMenu);
 }
