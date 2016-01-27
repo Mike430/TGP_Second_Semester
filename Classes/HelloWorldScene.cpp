@@ -31,7 +31,7 @@ bool HelloWorld::init()
         return false;
     }
     
-    auto rootNode = CSLoader::createNode("MainScene.csb");
+    auto rootNode = CSLoader::createNode("0_Main_Menu.csb");
 
     addChild(rootNode);
 
