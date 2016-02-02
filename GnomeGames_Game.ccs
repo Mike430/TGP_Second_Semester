@@ -1,15 +1,24 @@
 <Solution>
-  <PropertyGroup Name="GnomeGames_Game" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="GNOMEG~1" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
         <Folder Name="GameObjects" />
         <Folder Name="Sprites">
           <Image Name="HelloWorld.png" />
+          <Image Name="1Ball.png" />
+          <Image Name="2PlayerUnTouched.png" />
+          <Image Name="3BallDispencer.png" />
+          <Image Name="3PlayerTouched.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
         <Project Name="0_Main_Menu.csd" Type="Scene" />
+        <Project Name="BallDispenced.csd" Type="Node" />
+        <Project Name="Ball.csd" Type="Node" />
+        <Project Name="PlayerLeft.csd" Type="Node" />
+        <Project Name="PlayerRight.csd" Type="Node" />
+        <Folder Name="NewFolder" />
       </RootFolder>
     </Group>
   </SolutionFolder>
