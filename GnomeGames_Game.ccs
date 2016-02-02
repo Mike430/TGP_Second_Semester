@@ -3,7 +3,6 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Folder Name="GameObjects" />
         <Folder Name="Sprites">
           <Image Name="HelloWorld.png" />
           <Image Name="1Ball.png" />
@@ -18,7 +17,6 @@
         <Project Name="Ball.csd" Type="Node" />
         <Project Name="PlayerLeft.csd" Type="Node" />
         <Project Name="PlayerRight.csd" Type="Node" />
-        <Folder Name="NewFolder" />
       </RootFolder>
     </Group>
   </SolutionFolder>
