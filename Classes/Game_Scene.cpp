@@ -29,6 +29,17 @@ bool Game_Scene::init()
 	_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
+	//Setup Game Elements
+	_testBall1 = Ball::create();
+	_testBall1->Setup(200.0f, 600.0f, 20.0f);
+	_rootNode->addChild(_testBall1);
+	_testBall2 = Ball::create();
+	_testBall2->Setup(500.0f, 500.0f, 10.0f);
+	_rootNode->addChild(_testBall2);
+	_testBall3 = Ball::create();
+	_testBall3->Setup(800.0f, 400.0f, 10.0f);
+	_rootNode->addChild(_testBall3);
+
 	//leftPlayer = Player::create();
 	//_rootNode->addChild(leftPlayer);
 	//leftPlayer->setPosition(100, 150);
