@@ -9,8 +9,10 @@
 #include "ui/CocosGUI.h"
 #include <string.h>
 #include "SimpleAudioEngine.h"
+#include "GameManager.h"
 
 using namespace std;
+using namespace cocos2d;
 
 //=========================================//
 class Game_Scene : public cocos2d::Layer
@@ -20,9 +22,6 @@ private:
 	//Cocos2d UI
 	cocos2d::ui::Button* _endButton;
 	cocos2d::ui::Text* _scoreLabel;
-	// Gameplay Elements (replace with GameManager Class)
-	float _score;
-	bool _increment;
 public:
 	// Initialisers
 	//==============================================================================

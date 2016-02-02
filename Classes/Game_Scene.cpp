@@ -29,6 +29,10 @@ bool Game_Scene::init()
 	_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
+	//leftPlayer = Player::create();
+	//_rootNode->addChild(leftPlayer);
+	//leftPlayer->setPosition(100, 150);
+
 	// Random Generator
 	srand(time(NULL));
 
@@ -40,9 +44,8 @@ bool Game_Scene::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(Game_Scene::onTouchMoved, this);
 	touchListener->onTouchCancelled = CC_CALLBACK_2(Game_Scene::onTouchCancelled, this);
 
-	// Gameplay (NEED TO IMPLEMENT GAMEMANAGER)
-	_score = 0;
-	_increment = true;
+	// Gameplay
+	GameManager::getInstance()->init(_rootNode);
 
 	// Calls the game loop
 	this->scheduleUpdate();
@@ -56,18 +59,7 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
-	if (_score >= 1000)
-		_increment = false;
-	
-	if (_score < 0)
-		_increment = true;
-
-	if (_increment)
-		_score += deltaTime;
-	else
-		_score -= deltaTime;
-
-	string textDisplay = "Score: " + to_string((int) (_score + 0.5f));
+	string textDisplay = "Score: " + to_string((int) (1337));
 	_scoreLabel->setText(textDisplay);
 }
 
