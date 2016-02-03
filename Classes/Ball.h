@@ -11,6 +11,7 @@ private:
 	float _inflect;
 	float _yVector;
 	float _xVector;
+	float _gravity;
 	float _terminalVel;
 	cocos2d::Node* _rootNode;
 	cocos2d::Sprite* _sprite;

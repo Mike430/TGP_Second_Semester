@@ -31,6 +31,7 @@ void Ball::Setup(float x, float y, float gravity)
 	_yVector = 500.0f;
 	_xVector = (rand() % 10 + 0) * 10;
 	_terminalVel = -3000.0f;
+	_gravity = 10;
 }
 
 //
@@ -39,14 +40,7 @@ float Ball::GravityEffect(float position, float deltaTime)
 	
 	if (_yVector > _terminalVel)// if ball is above terminal velocity
 	{
-		if (_yVector > _inflect)// if going up
-			_yVector = _yVector * 0.95;// decelerate
-
-		if (_yVector < -_inflect)// if going down
-			_yVector = _yVector * 1.05;// accelerate
-
-		if (_yVector <= _inflect && _yVector >= -_inflect)// if going very slow
-			_yVector = -_inflect + -0.5;// get on with it
+		_yVector -= _gravity;
 	}
 	else
 		_yVector = _terminalVel;
