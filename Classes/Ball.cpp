@@ -25,8 +25,8 @@ bool Ball::init()
 
 void Ball::Setup(float x, float y, float gravity)
 {
-	_rootNode->setPositionX(x);
-	_rootNode->setPositionY(y);
+	setPositionX(x);
+	setPositionY(y);
 	_inflect = 20.0f;
 	_yVector = 500.0f;
 	_xVector = (rand() % 10 + 0) * 10;
@@ -53,11 +53,17 @@ float Ball::GravityEffect(float position, float deltaTime)
 //
 void Ball::update(float deltaTime)
 {
-	float yPos = _rootNode->getPositionY();
+	float yPos = getPositionY();
 	yPos = GravityEffect(yPos, deltaTime);
-	_rootNode->setPositionY(yPos);
+	setPositionY(yPos);
 
-	float xPos = _rootNode->getPositionX();
+	float xPos = getPositionX();
 	xPos += _xVector * deltaTime;
-	_rootNode->setPositionX(xPos);
+	setPositionX(xPos);
+}
+
+void Ball::Hit(Vec2 velocity)
+{
+	_xVector = 500.0f * (velocity.x > 0 ? 1 : -1);
+	_yVector = 350.0f;
 }
