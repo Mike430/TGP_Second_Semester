@@ -10,16 +10,19 @@ BallManager::~BallManager()
 {
 }
 
+void BallManager::AddBall(Ball* ball)
+{
+	_balls.push_back(ball);
+}
+
 void BallManager::CreateBall()
 {
-	Ball* newBall = new Ball();
+	Ball* newBall = Ball::create();
 	_balls.push_back(newBall);
 }
 
 void BallManager::DestroyBall(int index)
 {
-	delete _balls.at(index);
-	_balls.at(index) = nullptr;
-	
+	_balls[index]->getParent()->removeChild(_balls[index]);
 	_balls.erase(_balls.begin() + index);
 }

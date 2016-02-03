@@ -18,6 +18,7 @@ public:
 	BallManager();
 	~BallManager();
 
+	void AddBall(Ball* ball);
 	void CreateBall();
 	void DestroyBall(int index);
 	int GetNumberOfBalls() const { return _balls.size(); };
