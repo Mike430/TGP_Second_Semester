@@ -15,13 +15,25 @@ private:
 	float _xVector;
 	float _gravity;
 	float _terminalVel;
+
 	Node* _rootNode;
 	Sprite* _sprite;
+
+	//Variables for ball dispencer
+	int _wayPointIndex;
+	Vec2 _dispencerPosition;// position
+	bool _advancing;// stops tampering when advancing to next way point.
+	bool _contained;// if true, no gravity
 public:
 	virtual bool init();
 	static Ball* create();
-	void Setup(float x, float y, float gravity);
+	void Setup(float x, float y, float gravity, Vec2 next);
 
+	// Dispencer Methods
+	int GetWayPointIndex() const { return _wayPointIndex; }
+	void MoveToNext(Vec2 next, int wayPointIndex);
+
+	// Game Methods
 	float GravityEffect(float position, float deltaTime);
 	void Hit(Vec2 velocity);
 

@@ -23,18 +23,26 @@ bool Ball::init()
 	return true;
 }
 
-void Ball::Setup(float x, float y, float gravity)
+void Ball::Setup(float x, float y, float gravity, Vec2 next)
 {
 	setPositionX(x);
 	setPositionY(y);
+
+	// Dispencer Variables
+	_wayPointIndex = 0;
+	_dispencerPosition = next;
+	_advancing = false;
+	_contained = true;
+
+	// Gameplay Variables
 	_inflect = 20.0f;
 	_yVector = 500.0f;
 	_xVector = (rand() % 10 + 0) * 10;
 	_terminalVel = -3000.0f;
-	_gravity = 10;
+	_gravity = gravity;
 }
 
-//
+// Gameplay Methods
 float Ball::GravityEffect(float position, float deltaTime)
 {
 	
@@ -50,20 +58,39 @@ float Ball::GravityEffect(float position, float deltaTime)
 	return position += newYVector;
 }
 
-//
-void Ball::update(float deltaTime)
-{
-	float yPos = getPositionY();
-	yPos = GravityEffect(yPos, deltaTime);
-	setPositionY(yPos);
-
-	float xPos = getPositionX();
-	xPos += _xVector * deltaTime;
-	setPositionX(xPos);
-}
-
 void Ball::Hit(Vec2 velocity)
 {
 	_xVector = 500.0f * (velocity.x > 0 ? 1 : -1);
 	_yVector = 350.0f;
 }
+
+// Dispencer methods
+void Ball::MoveToNext(Vec2 next, int wayPointIndex)
+{
+	_dispencerPosition = next;
+	_wayPointIndex = wayPointIndex;
+}
+
+void Ball::update(float deltaTime)
+{
+	if (!_contained)// not in dispencer then gameplay logic
+	{
+		float yPos = getPositionY();
+		yPos = GravityEffect(yPos, deltaTime);
+		setPositionY(yPos);
+
+		float xPos = getPositionX();
+		xPos += _xVector * deltaTime;
+		setPositionX(xPos);
+	}
+	else
+	{
+		if (this->getPosition() != _dispencerPosition && !_advancing)
+		{
+			_advancing = true;
+			MoveTo* moveVec = MoveTo::create(1.0f, _dispencerPosition);
+			_rootNode->runAction(moveVec);
+		}
+	}
+}
+
