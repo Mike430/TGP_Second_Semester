@@ -10,6 +10,7 @@
 #include <string.h>
 #include "SimpleAudioEngine.h"
 #include "GameManager.h"
+#include "Player.h"
 #include "Ball.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ private:
 	cocos2d::ui::Button* _endButton;
 	cocos2d::ui::Text* _scoreLabel;
 
+	vector<Player*> _players;
 	Ball* _testBall1;
 	Ball* _testBall2;
 	Ball* _testBall3;
