@@ -1,21 +1,9 @@
 #include "Player.h"
 
-Player::Player(const string csbFile, const Vec2 position)
-{
-	Node* player = CSLoader::createNode(csbFile);
-	//sprite->setPhysicsBody(PhysicsBody::createBox(sprite->getBoundingBox().size));
-	addChild(player);
-	setPosition(position);
-}
-
-Player::~Player()
-{
-}
-
 Player* Player::create(const string csbFile, const Vec2 position)
 {
-	Player* player = new Player(csbFile, position);
-	if (!player->init())
+	Player* player = new Player();
+	if (!player->init(csbFile, position))
 	{
 		CC_SAFE_DELETE(player);
 		return nullptr;
@@ -25,12 +13,20 @@ Player* Player::create(const string csbFile, const Vec2 position)
 	return player;
 }
 
-bool Player::init()
+bool Player::init(const string csbFile, const Vec2 position)
 {
 	if (!Node::init())
 	{
 		return false;
 	}
+
+	_rootNode = CSLoader::createNode(csbFile);
+	//sprite->setPhysicsBody(PhysicsBody::createBox(sprite->getBoundingBox().size));
+	addChild(_rootNode);
+	setPosition(position);
+
+	_swingButton = _rootNode->getChildByName<Button*>("Fire_Button");
+	_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 
 	this->scheduleUpdate();
 
@@ -40,4 +36,9 @@ bool Player::init()
 void Player::update(float delta)
 {
 	
+}
+
+void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	//vector<Ball>& balls = 
 }
