@@ -13,9 +13,7 @@ public:
 	GameManager();
 	~GameManager();
 	static GameManager* getInstance();
-	void init(Node* rootNode);
 private:
-	static GameManager* instance;
-	vector<Player*> players;
+	static GameManager* _instance;
 };
 

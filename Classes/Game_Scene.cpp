@@ -39,10 +39,16 @@ bool Game_Scene::init()
 	_testBall3 = Ball::create();
 	_testBall3->Setup(800.0f, 400.0f, 10.0f);
 	_rootNode->addChild(_testBall3);
-
-	//leftPlayer = Player::create();
-	//_rootNode->addChild(leftPlayer);
-	//leftPlayer->setPosition(100, 150);
+	//Players
+	const string path = "res/";
+	const float y = 250;
+	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
+	const float relativeX = 500;
+	for (const auto& p : vector<pair<string, Vec2>>{ { "PlayerLeft.csb", { -1, 0 } }, { "PlayerRight.csb", { 1, 0 } } })
+	{
+		_players.push_back(Player::create(path + p.first, Vec2(centerX + relativeX * p.second.x, y)));
+		_rootNode->addChild(_players.back());
+	}
 
 	// Random Generator
 	srand(time(NULL));
@@ -54,9 +60,6 @@ bool Game_Scene::init()
 	touchListener->onTouchEnded = CC_CALLBACK_2(Game_Scene::onTouchEnded, this);
 	touchListener->onTouchMoved = CC_CALLBACK_2(Game_Scene::onTouchMoved, this);
 	touchListener->onTouchCancelled = CC_CALLBACK_2(Game_Scene::onTouchCancelled, this);
-
-	// Gameplay
-	GameManager::getInstance()->init(_rootNode);
 
 	// Calls the game loop
 	this->scheduleUpdate();
