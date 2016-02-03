@@ -29,13 +29,10 @@ private:
 
 	vector<Player*> _players;
 
-	Ball* _testBall1;
-	Ball* _testBall2;
-	Ball* _testBall3;
-
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
 	BallManager* _ballManager;
+	float _gravity = 10.0f;
 public:
 	// Initialisers
 	//==============================================================================

@@ -29,6 +29,8 @@ bool Game_Scene::init()
 	_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
+	_ballManager = new BallManager();
+
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
 	_leftDispencer->Setup(false, 320, 725);
@@ -38,17 +40,6 @@ bool Game_Scene::init()
 	_rightDispencer->Setup(true, 960, 725);
 	_rootNode->addChild(_rightDispencer);
 
-	//Setup Game Elements
-	_testBall1 = Ball::create();
-	_testBall1->Setup(200.0f, 600.0f, 20.0f);
-	_rootNode->addChild(_testBall1);
-	_testBall2 = Ball::create();
-	_testBall2->Setup(500.0f, 500.0f, 10.0f);
-	_rootNode->addChild(_testBall2);
-	_testBall3 = Ball::create();
-	_testBall3->Setup(800.0f, 400.0f, 10.0f);
-	_rootNode->addChild(_testBall3);
-
 	//Players
 	const string path = "res/";
 	const float y = 250;
@@ -56,8 +47,10 @@ bool Game_Scene::init()
 	const float relativeX = 500;
 	for (const auto& p : vector<pair<string, Vec2>>{ { "PlayerLeft.csb", { -1, 0 } }, { "PlayerRight.csb", { 1, 0 } } })
 	{
-		_players.push_back(Player::create(path + p.first, Vec2(centerX + relativeX * p.second.x, y)));
-		_rootNode->addChild(_players.back());
+		Player& player = *Player::create(path + p.first, _ballManager);
+		player.setPosition(Vec2(centerX + relativeX * p.second.x, y));
+		_players.push_back(&player);
+		_rootNode->addChild(&player);
 	}
 
 	// Random Generator
@@ -83,6 +76,13 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
+	if (rand_0_1() < 0.01)
+	{
+		Ball& ball = *Ball::create();
+		ball.Setup(150, 400, _gravity);
+		_rootNode->addChild(&ball);
+		_ballManager->AddBall(&ball);
+	}
 	string textDisplay = "Score: " + to_string((int) (1337));
 	_scoreLabel->setText(textDisplay);
 }
