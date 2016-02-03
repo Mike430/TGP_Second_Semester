@@ -29,6 +29,15 @@ bool Game_Scene::init()
 	_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
+	//BallDispencers
+	_leftDispencer = BallDispencer::create();
+	_leftDispencer->Setup(false, 320, 725);
+	_rootNode->addChild(_leftDispencer);
+
+	_rightDispencer = BallDispencer::create();
+	_rightDispencer->Setup(true, 960, 725);
+	_rootNode->addChild(_rightDispencer);
+
 	//Setup Game Elements
 	_testBall1 = Ball::create();
 	_testBall1->Setup(200.0f, 600.0f, 20.0f);
@@ -39,6 +48,7 @@ bool Game_Scene::init()
 	_testBall3 = Ball::create();
 	_testBall3->Setup(800.0f, 400.0f, 10.0f);
 	_rootNode->addChild(_testBall3);
+
 	//Players
 	const string path = "res/";
 	const float y = 250;

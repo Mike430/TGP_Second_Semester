@@ -12,6 +12,8 @@
 #include "GameManager.h"
 #include "Player.h"
 #include "Ball.h"
+#include "BallDispencer.h"
+#include "BallManager.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -26,9 +28,14 @@ private:
 	cocos2d::ui::Text* _scoreLabel;
 
 	vector<Player*> _players;
+
 	Ball* _testBall1;
 	Ball* _testBall2;
 	Ball* _testBall3;
+
+	BallDispencer* _leftDispencer;
+	BallDispencer* _rightDispencer;
+	BallManager* _ballManager;
 public:
 	// Initialisers
 	//==============================================================================

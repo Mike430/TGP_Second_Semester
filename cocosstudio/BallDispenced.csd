@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="BallDispencer" Type="Node" ID="29a9047a-b4d3-4cb9-93a9-6417cf2a8e33" Version="2.3.3.0" />
+  <PropertyGroup Name="BallDispenced" Type="Node" ID="29a9047a-b4d3-4cb9-93a9-6417cf2a8e33" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />

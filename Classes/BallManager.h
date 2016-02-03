@@ -21,5 +21,6 @@ public:
 	void CreateBall();
 	void DestroyBall(int index);
 	int GetNumberOfBalls() const { return _balls.size(); };
+	Ball* GetBallAtIndex(int index) const { return _balls.at(index); }
 };
 #endif // __BALL_MANAGER_H__
