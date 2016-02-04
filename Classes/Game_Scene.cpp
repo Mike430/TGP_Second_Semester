@@ -105,6 +105,7 @@ void Game_Scene::update(float deltaTime)
 
 			BallDispencer* dispencer = (temp ? _leftDispencer : _rightDispencer);
 			dispencer->AddBall();
+			break;
 		}
 	}
 	// test if ball is outside and delete but also get leftOrRight bool - call ball manager (pointer to ball call ball's->getLeftOrRight)

@@ -36,7 +36,7 @@ void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
 
 	// Gameplay Variables
 	_inflect = 20.0f;
-	_yVector = 500.0f;
+	_yVector = 0.0f;
 	_xVector = (rand() % 10 + 0) * 10;
 	_terminalVel = -3000.0f;
 	_gravity = gravity;

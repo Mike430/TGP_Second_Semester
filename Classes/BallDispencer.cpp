@@ -39,12 +39,12 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manag
 		size *= -1;
 		_sprite->setScaleX(size);
 
-		/*for (int i = 0; i < 15; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			float pos = _nodes[i]->getPositionX();
 			pos *= -1;
 			_nodes[i]->setPositionX(pos);
-		}*/
+		}
 	}
 
 	this->setPositionX(x);
@@ -56,7 +56,7 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manag
 void BallDispencer::AddBall()
 {
 	Ball* tempBall = _ballManager->CreateBall(_rootNode);
-	tempBall->Setup(_nodes[14 - _containedBalls.size()]->getPosition(), 10.0f, _nodes[14 - _containedBalls.size()]->getPosition(), (this->getPositionX() > 0));
+	tempBall->Setup(_nodes[14 - _containedBalls.size()]->getPosition(), 10.0f, _nodes[14 - _containedBalls.size()]->getPosition(), (this->getPositionX() > 500));
 	_containedBalls.push_back(tempBall);
 }
 
