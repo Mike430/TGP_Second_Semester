@@ -37,7 +37,6 @@ void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
 	// Gameplay Variables
 	_inflect = 20.0f;
 	_yVector = 0.0f;
-	_xVector = (rand() % 10 + 0) * 10;
 	_terminalVel = -3000.0f;
 	_gravity = gravity;
 }
@@ -94,7 +93,7 @@ void Ball::update(float deltaTime)
 		if (this->getPosition() != _dispencerPosition && !_advancing)
 		{
 			_advancing = true;
-			MoveTo* moveVec = MoveTo::create(1.0f, _dispencerPosition);
+			MoveTo* moveVec = MoveTo::create(0.25f, _dispencerPosition);
 			this->runAction(moveVec);
 		}
 		if (this->getPosition() == _dispencerPosition)
