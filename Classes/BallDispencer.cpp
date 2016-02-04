@@ -70,7 +70,7 @@ void BallDispencer::DropBall()
 	//_rootNode->removeChild(toDrop);
 	//getParent()->addChild(toDrop);
 	toDrop->setParent(getParent());
-	toDrop->setPosition(posRelativeToWorld);
+	//toDrop->setPosition(posRelativeToWorld);
 	toDrop->Drop();
 	_containedBalls.erase(_containedBalls.begin());
 	//move up next balls
