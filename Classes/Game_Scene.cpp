@@ -38,10 +38,10 @@ bool Game_Scene::init()
 	_rootNode->addChild(_leftDispencer);
 	for (int i = 0; i < 15; i++) _leftDispencer->AddBall();
 
-	//_rightDispencer = BallDispencer::create();
-	//_rightDispencer->Setup(true, 960, 725, _ballManager);
-	//_rootNode->addChild(_rightDispencer);
-	//for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
+	_rightDispencer = BallDispencer::create();
+	_rightDispencer->Setup(true, 960, 725, _ballManager);
+	_rootNode->addChild(_rightDispencer);
+	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
 
 	//Players
 	const string path = "res/";
