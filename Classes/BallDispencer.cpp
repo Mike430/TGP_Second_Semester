@@ -17,13 +17,16 @@ bool BallDispencer::init()
 	_rootNode = cocos2d::CSLoader::createNode("BallDispencer.csb");
 	this->addChild(_rootNode);
 	_sprite = (cocos2d::Sprite*)_rootNode->getChildByName("Sprite_1");
+	_spawnTimer = 0.0f;
+	this->scheduleUpdate();
 
 	for (int i = 0; i < 15; i++)// load all of the way points
 	{
 		int number = i + 1;
 		string newString = "Node_" + to_string(number);
 		_nodes[i] = (cocos2d::Node*)_rootNode->getChildByName(newString);
-		//this->addChild(_nodes[i]);
+		_nodes[i]->setPosition(_rootNode->convertToWorldSpace(_nodes[i]->getPosition()));
+		//_rootNode->addChild(_nodes[i]);
 	}
 
 	return true;
@@ -36,16 +39,16 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manag
 		size *= -1;
 		_sprite->setScaleX(size);
 
-		for (int i = 0; i < 15; i++)
+		/*for (int i = 0; i < 15; i++)
 		{
 			float pos = _nodes[i]->getPositionX();
 			pos *= -1;
 			_nodes[i]->setPositionX(pos);
-		}
+		}*/
 	}
 
-	_sprite->setPositionX(x);
-	_sprite->setPositionY(y);
+	this->setPositionX(x);
+	this->setPositionY(y);
 
 	_ballManager = manager;
 }
@@ -53,16 +56,20 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manag
 void BallDispencer::AddBall()
 {
 	Ball* tempBall = _ballManager->CreateBall(_rootNode);
-	tempBall->Setup(_nodes[0]->getPosition(), 10.0f, _nodes[14 - _containedBalls.size()]->getPosition());
+	tempBall->Setup(_nodes[14 - _containedBalls.size()]->getPosition(), 10.0f, _nodes[14 - _containedBalls.size()]->getPosition(), (this->getPositionX() > 0));
 	_containedBalls.push_back(tempBall);
 }
 
 void BallDispencer::DropBall()
 {
 	Ball* toDrop = _containedBalls.front();
+	Vec2 posRelativeToDispencer = toDrop->getPosition();
+	Vec2 posRelativeToWorld = this->convertToWorldSpace(posRelativeToDispencer);
 	//remove as child, set as child of parent(scene)
 	_rootNode->removeChild(toDrop);
 	getParent()->addChild(toDrop);
+	toDrop->setParent(getParent());
+	toDrop->setPosition(posRelativeToWorld);
 	toDrop->Drop();
 	_containedBalls.erase(_containedBalls.begin());
 	//move up next balls

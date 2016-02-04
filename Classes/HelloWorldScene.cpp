@@ -34,6 +34,8 @@ bool HelloWorld::init()
     _rootNode = CSLoader::createNode("0_Main_Menu.csb");
     addChild(_rootNode);
 
+	_gameScene = nullptr;
+
 	_beginButton = (cocos2d::ui::Button*)_rootNode->getChildByName("Begin_Button");
 	_beginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BeginButtonPressed, this));
 
@@ -42,6 +44,9 @@ bool HelloWorld::init()
 
 void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	Scene* mainMenu = Game_Scene::createScene();
-	CCDirector::getInstance()->replaceScene(mainMenu);
+	if (_gameScene == nullptr)
+	{
+		_gameScene = Game_Scene::createScene();
+		CCDirector::getInstance()->replaceScene(_gameScene);
+	}
 }

@@ -23,7 +23,7 @@ bool Ball::init()
 	return true;
 }
 
-void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next)
+void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
 {
 	setPosition(startPoint);
 
@@ -32,6 +32,7 @@ void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next)
 	_dispencerPosition = next;
 	_advancing = false;
 	_contained = true;
+	_leftOrRight = leftOrRight;
 
 	// Gameplay Variables
 	_inflect = 20.0f;

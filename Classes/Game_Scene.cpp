@@ -95,10 +95,10 @@ void Game_Scene::update(float deltaTime)
 	{
 		Ball* subject = _ballManager->GetBallAtIndex(i);
 
-		if (subject->getPositionX() > _windowSize.x ||
+		if ((subject->getPositionX() > _windowSize.x ||
 			subject->getPositionX() < 0 ||
 			subject->getPositionY() > _windowSize.y ||
-			subject->getPositionY() < 0)
+			subject->getPositionY() < 0) && !subject->GetContained())
 		{
 			bool temp = subject->GetLeftOrRight();
 			_ballManager->DestroyBall(i);

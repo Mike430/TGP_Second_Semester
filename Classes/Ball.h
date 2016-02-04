@@ -28,7 +28,7 @@ private:
 public:
 	virtual bool init();
 	static Ball* create();
-	void Setup(Vec2 startPoint, float gravity, Vec2 next);
+	void Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight);
 
 	// Dispencer Methods
 	int GetWayPointIndex() const { return _wayPointIndex; }
@@ -39,6 +39,9 @@ public:
 	float GravityEffect(float position, float deltaTime);
 	void Hit(Vec2 velocity);
 	bool GetLeftOrRight() const { return _leftOrRight; }
+
+	//general
+	bool GetContained() const { return _contained; }
 
 	void update(float deltaTime);
 };
