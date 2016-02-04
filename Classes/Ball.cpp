@@ -95,7 +95,7 @@ void Ball::update(float deltaTime)
 		{
 			_advancing = true;
 			MoveTo* moveVec = MoveTo::create(1.0f, _dispencerPosition);
-			_rootNode->runAction(moveVec);
+			this->runAction(moveVec);
 		}
 		if (this->getPosition() == _dispencerPosition)
 		{

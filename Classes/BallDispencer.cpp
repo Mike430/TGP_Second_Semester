@@ -26,7 +26,7 @@ bool BallDispencer::init()
 		int number = i + 1;
 		string newString = "Node_" + to_string(number);
 		_nodes[i] = (cocos2d::Node*)_rootNode->getChildByName(newString);
-		_nodes[i]->setPosition(_rootNode->convertToWorldSpace(_nodes[i]->getPosition()));
+		//_nodes[i]->setPosition(_rootNode->convertToWorldSpace(_nodes[i]->getPosition()));
 		//_rootNode->addChild(_nodes[i]);
 	}
 
