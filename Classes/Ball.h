@@ -10,6 +10,7 @@ using namespace cocos2d;
 class Ball : public Node
 {
 private:
+	bool _leftOrRight;
 	float _inflect;
 	float _yVector;
 	float _xVector;
@@ -36,6 +37,7 @@ public:
 	// Game Methods
 	float GravityEffect(float position, float deltaTime);
 	void Hit(Vec2 velocity);
+	bool GetLeftOrRight() const { return _leftOrRight; }
 
 	void update(float deltaTime);
 };

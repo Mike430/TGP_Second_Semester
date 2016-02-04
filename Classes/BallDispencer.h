@@ -19,7 +19,5 @@ public:
 	static BallDispencer* create();
 	bool init();
 	void Setup(bool leftOrRight, float x, float y);
-
-	void GetNextWaypoint(cocos2d::Node* position, int* index);
 };
 #endif // __BALL_DISPENCER_H__

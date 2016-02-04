@@ -47,8 +47,3 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y)
 	_sprite->setPositionX(x);
 	_sprite->setPositionY(y);
 }
-
-void BallDispencer::GetNextWaypoint(cocos2d::Node* position, int* index)
-{
-
-}

@@ -85,6 +85,11 @@ void Game_Scene::update(float deltaTime)
 	}*/
 	string textDisplay = "Score: " + to_string((int) (1337));
 	_scoreLabel->setText(textDisplay);
+
+	// test if ball is outside and delete but also get leftOrRight bool - call ball manager (pointer to ball call ball's->getLeftOrRight)
+	// if ball deleted, tell left or right ball dispencer to make new one - ball disoencer calls ball manager
+	// 
+	// if ball intersects target, get leftorRight var from ball and add to player score
 }
 
 
