@@ -80,16 +80,8 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
-	/*if (rand_0_1() < 0.01)
-	{
-		Ball& ball = *Ball::create();
-		ball.Setup(150, 400, );
-		_rootNode->addChild(&ball);
-		_ballManager->AddBall(&ball);
-	}*/
 	string textDisplay = "Score: " + to_string((int) (1337));
 	_scoreLabel->setText(textDisplay);
-
 
 	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 	{

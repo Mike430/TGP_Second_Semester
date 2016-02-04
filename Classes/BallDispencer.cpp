@@ -16,6 +16,7 @@ bool BallDispencer::init()
 
 	_rootNode = cocos2d::CSLoader::createNode("BallDispencer.csb");
 	this->addChild(_rootNode);
+
 	_sprite = (cocos2d::Sprite*)_rootNode->getChildByName("Sprite_1");
 	_spawnTimer = 0.0f;
 	this->scheduleUpdate();
