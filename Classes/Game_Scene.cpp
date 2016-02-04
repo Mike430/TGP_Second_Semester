@@ -45,9 +45,9 @@ bool Game_Scene::init()
 
 	//Players
 	const string path = "res/";
-	const float y = 250;
+	const float y = 110;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
-	const float relativeX = 500;
+	const float relativeX = 570;
 
 	for (const auto& p : vector<pair<string, Vec2>>{ { "PlayerLeft.csb", { -1, 0 } }, { "PlayerRight.csb", { 1, 0 } } })
 	{
