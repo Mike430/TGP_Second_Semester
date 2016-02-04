@@ -13,6 +13,7 @@ BallManager::~BallManager()
 Ball* BallManager::CreateBall(cocos2d::Node* parent)
 {
 	Ball* newBall = Ball::create();
+	parent->addChild(newBall);
 	_balls.push_back(newBall);
 	return newBall;
 }

@@ -19,6 +19,7 @@ bool BallDispencer::init()
 	_sprite = (cocos2d::Sprite*)_rootNode->getChildByName("Sprite_1");
 	_spawnTimer = 0.0f;
 	this->scheduleUpdate();
+	_sprite->setVisible(false);
 
 	for (int i = 0; i < 15; i++)// load all of the way points
 	{

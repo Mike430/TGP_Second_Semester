@@ -67,6 +67,7 @@ void Ball::Hit(Vec2 velocity)
 // Dispencer methods
 void Ball::MoveToNext(Vec2 next, int wayPointIndex)
 {
+	_advancing = false;
 	_dispencerPosition = next;
 	_wayPointIndex = wayPointIndex;
 }
