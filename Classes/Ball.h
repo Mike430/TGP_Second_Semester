@@ -28,11 +28,12 @@ private:
 public:
 	virtual bool init();
 	static Ball* create();
-	void Setup(float x, float y, float gravity, Vec2 next);
+	void Setup(Vec2 startPoint, float gravity, Vec2 next);
 
 	// Dispencer Methods
 	int GetWayPointIndex() const { return _wayPointIndex; }
 	void MoveToNext(Vec2 next, int wayPointIndex);
+	void Drop();
 
 	// Game Methods
 	float GravityEffect(float position, float deltaTime);

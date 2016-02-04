@@ -23,10 +23,9 @@ bool Ball::init()
 	return true;
 }
 
-void Ball::Setup(float x, float y, float gravity, Vec2 next)
+void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next)
 {
-	setPositionX(x);
-	setPositionY(y);
+	setPosition(startPoint);
 
 	// Dispencer Variables
 	_wayPointIndex = 0;
@@ -71,6 +70,11 @@ void Ball::MoveToNext(Vec2 next, int wayPointIndex)
 	_wayPointIndex = wayPointIndex;
 }
 
+void Ball::Drop()
+{
+	_contained = false;
+}
+
 void Ball::update(float deltaTime)
 {
 	if (!_contained)// not in dispencer then gameplay logic
@@ -90,6 +94,10 @@ void Ball::update(float deltaTime)
 			_advancing = true;
 			MoveTo* moveVec = MoveTo::create(1.0f, _dispencerPosition);
 			_rootNode->runAction(moveVec);
+		}
+		if (this->getPosition() == _dispencerPosition)
+		{
+			_advancing = false;
 		}
 	}
 }

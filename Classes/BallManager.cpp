@@ -10,15 +10,11 @@ BallManager::~BallManager()
 {
 }
 
-void BallManager::AddBall(Ball* ball)
-{
-	_balls.push_back(ball);
-}
-
-void BallManager::CreateBall()
+Ball* BallManager::CreateBall(cocos2d::Node* parent)
 {
 	Ball* newBall = Ball::create();
 	_balls.push_back(newBall);
+	return newBall;
 }
 
 void BallManager::DestroyBall(int index)

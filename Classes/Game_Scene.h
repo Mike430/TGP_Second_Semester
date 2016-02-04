@@ -27,6 +27,9 @@ private:
 	cocos2d::ui::Button* _endButton;
 	cocos2d::ui::Text* _scoreLabel;
 
+	Vec2 _windowSize;
+	//Rect _windowSpace;
+
 	vector<Player*> _players;
 
 	BallDispencer* _leftDispencer;

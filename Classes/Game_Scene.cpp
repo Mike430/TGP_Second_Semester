@@ -25,6 +25,7 @@ bool Game_Scene::init()
 	// Scene Setter
 	_rootNode = cocos2d::CSLoader::createNode("1_Game_Scene.csb");
 	this->addChild(_rootNode);
+	_windowSize = CCDirector::getInstance()->getVisibleSize();
 	// Get Scene Elelments
 	_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
@@ -33,18 +34,21 @@ bool Game_Scene::init()
 
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
-	_leftDispencer->Setup(false, 320, 725);
+	_leftDispencer->Setup(false, 320, 725, _ballManager);
 	_rootNode->addChild(_leftDispencer);
+	for (int i = 0; i < 15; i++) _leftDispencer->AddBall();
 
 	_rightDispencer = BallDispencer::create();
-	_rightDispencer->Setup(true, 960, 725);
+	_rightDispencer->Setup(true, 960, 725, _ballManager);
 	_rootNode->addChild(_rightDispencer);
+	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
 
 	//Players
 	const string path = "res/";
 	const float y = 250;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
 	const float relativeX = 500;
+
 	for (const auto& p : vector<pair<string, Vec2>>{ { "PlayerLeft.csb", { -1, 0 } }, { "PlayerRight.csb", { 1, 0 } } })
 	{
 		Player& player = *Player::create(path + p.first, _ballManager);
@@ -86,6 +90,23 @@ void Game_Scene::update(float deltaTime)
 	string textDisplay = "Score: " + to_string((int) (1337));
 	_scoreLabel->setText(textDisplay);
 
+
+	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	{
+		Ball* subject = _ballManager->GetBallAtIndex(i);
+
+		if (subject->getPositionX() > _windowSize.x ||
+			subject->getPositionX() < 0 ||
+			subject->getPositionY() > _windowSize.y ||
+			subject->getPositionY() < 0)
+		{
+			bool temp = subject->GetLeftOrRight();
+			_ballManager->DestroyBall(i);
+
+			BallDispencer* dispencer = (temp ? _leftDispencer : _rightDispencer);
+			dispencer->AddBall();
+		}
+	}
 	// test if ball is outside and delete but also get leftOrRight bool - call ball manager (pointer to ball call ball's->getLeftOrRight)
 	// if ball deleted, tell left or right ball dispencer to make new one - ball disoencer calls ball manager
 	// 

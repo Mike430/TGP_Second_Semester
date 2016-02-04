@@ -6,6 +6,7 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include <string>
+#include "BallManager.h"
 
 using namespace std;
 
@@ -15,9 +16,16 @@ private:
 	cocos2d::Node* _rootNode;
 	cocos2d::Sprite* _sprite;
 	cocos2d::Node* _nodes[15];
+
+	BallManager* _ballManager;
+	vector<Ball*> _containedBalls;
+	float _spawnTimer;
 public:
 	static BallDispencer* create();
 	bool init();
-	void Setup(bool leftOrRight, float x, float y);
+	void update(float deltaTime);
+	void Setup(bool leftOrRight, float x, float y, BallManager* manager);
+	void AddBall();
+	void DropBall();
 };
 #endif // __BALL_DISPENCER_H__

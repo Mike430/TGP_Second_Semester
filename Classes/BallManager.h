@@ -18,8 +18,7 @@ public:
 	BallManager();
 	~BallManager();
 
-	void AddBall(Ball* ball);
-	void CreateBall();
+	Ball* CreateBall(cocos2d::Node* parent);
 	void DestroyBall(int index);
 	int GetNumberOfBalls() const { return _balls.size(); };
 	Ball* GetBallAtIndex(int index) const { return _balls.at(index); }
