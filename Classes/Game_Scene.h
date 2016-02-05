@@ -31,9 +31,13 @@ private:
 	//Rect _windowSpace;
 
 	vector<Player*> _players;
+	Player* _leftPlayer;
+	Player* _rightPlayer;
 
+	vector<BallDispencer*> _ballDispencers;
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
+
 	BallManager* _ballManager;
 	float _gravity = 10.0f;
 public:

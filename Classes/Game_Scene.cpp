@@ -38,26 +38,28 @@ bool Game_Scene::init()
 	_rootNode->addChild(_leftDispencer);
 	_leftDispencer->setZOrder(1);
 	for (int i = 0; i < 15; i++) _leftDispencer->AddBall();
+	_ballDispencers.push_back(_leftDispencer);
 
 	_rightDispencer = BallDispencer::create();
 	_rightDispencer->Setup(true, 960, 725, _ballManager);
 	_rootNode->addChild(_rightDispencer);
 	_rightDispencer->setZOrder(1);
 	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
+	_ballDispencers.push_back(_rightDispencer);
 
 	//Players
 	const string path = "res/";
 	const float y = 200;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
 	const float relativeX = 570;
-
-	for (const auto& p : vector<pair<string, Vec2>>{ { "PlayerLeft.csb", { -1, 0 } }, { "PlayerRight.csb", { 1, 0 } } })
-	{
-		Player& player = *Player::create(path + p.first, _ballManager);
-		player.setPosition(Vec2(centerX + relativeX * p.second.x, y));
-		_players.push_back(&player);
-		_rootNode->addChild(&player);
-	}
+	_leftPlayer = Player::create(path + "PlayerLeft.csb", _ballManager, _leftDispencer);
+	_leftPlayer->setPosition(Vec2(centerX + relativeX * -1, y));
+	_rootNode->addChild(_leftPlayer);
+	_players.push_back(_leftPlayer);
+	_rightPlayer = Player::create(path + "PlayerRight.csb", _ballManager, _rightDispencer);
+	_rightPlayer->setPosition(Vec2(centerX + relativeX * 1, y));
+	_rootNode->addChild(_rightPlayer);
+	_players.push_back(_rightPlayer);
 
 	// Random Generator
 	srand(time(NULL));
@@ -82,9 +84,9 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
-	string textDisplay = "Score: " + to_string((int) (1337));
+	string textDisplay = "Score: " + to_string((int)(1337));
 	_scoreLabel->setText(textDisplay);
-
+	// test if ball is outside and delete
 	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 	{
 		Ball* subject = _ballManager->GetBallAtIndex(i);
@@ -99,10 +101,43 @@ void Game_Scene::update(float deltaTime)
 			break;
 		}
 	}
-	// test if ball is outside and delete but also get leftOrRight bool - call ball manager (pointer to ball call ball's->getLeftOrRight)
-	// if ball deleted, tell left or right ball dispencer to make new one - ball disoencer calls ball manager
-	// 
 	// if ball intersects target, get leftorRight var from ball and add to player score
+	
+	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	{
+		Ball* ball = _ballManager->GetBallAtIndex(i);
+		if (!ball->GetContained())
+		{
+			Rect ballBB = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
+			ballBB.origin = ball->convertToWorldSpace(ballBB.origin);
+			Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer; //only check opposite player
+			Rect playerBB = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
+			playerBB.origin = player->convertToWorldSpace(playerBB.origin);
+			if (playerBB.intersectsRect(ballBB))
+			{
+				_ballManager->DestroyBall(i);
+				Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
+				otherPlayer->addScore(10);
+				//seesaw
+				float time = 1;
+				Vec2 dPos = Vec2(0, 30);
+				player->runAction(MoveBy::create(time, -dPos));
+				otherPlayer->runAction(MoveBy::create(time, dPos));
+				// win/lose check
+				int leftScore, rightScore;
+				leftScore = _leftPlayer->getScore();
+				rightScore = _rightPlayer->getScore();
+				int deltaScore = abs(leftScore - rightScore);
+				if (deltaScore >= 50)
+				{
+					//someone is pretty close to the bottom of the screen
+					cocos2d::Scene* scoreScene = Score_Scene::createScene(leftScore, rightScore);
+					cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
+				}
+				break;
+			}
+		}
+	}
 }
 
 
@@ -111,8 +146,7 @@ void Game_Scene::update(float deltaTime)
 //==============================================================================
 void Game_Scene::EndButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	cocos2d::Scene* scoreScene = Score_Scene::createScene();
-	cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
+	
 }
 
 bool Game_Scene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
