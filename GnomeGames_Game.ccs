@@ -10,6 +10,7 @@
           <Image Name="3PlayerTouched.png" />
           <Image Name="3BallDispencer_back.png" />
           <Image Name="3BallDispencer_front.png" />
+          <Image Name="render2.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
