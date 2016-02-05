@@ -7,8 +7,9 @@
           <Image Name="HelloWorld.png" />
           <Image Name="1Ball.png" />
           <Image Name="2PlayerUnTouched.png" />
-          <Image Name="3BallDispencer.png" />
           <Image Name="3PlayerTouched.png" />
+          <Image Name="3BallDispencer_back.png" />
+          <Image Name="3BallDispencer_front.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
