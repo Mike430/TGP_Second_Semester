@@ -45,7 +45,7 @@ bool Game_Scene::init()
 
 	//Players
 	const string path = "res/";
-	const float y = 110;
+	const float y = 200;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
 	const float relativeX = 570;
 

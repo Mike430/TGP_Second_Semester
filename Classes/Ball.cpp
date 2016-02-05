@@ -61,8 +61,12 @@ float Ball::GravityEffect(float position, float deltaTime)
 void Ball::Hit(Vec2 velocity)
 {
 	if (_contained) return;
-	_xVector = 500.0f * (velocity.x > 0 ? 1 : -1);
-	_yVector = 350.0f;
+	_xVector = velocity.x;
+	_yVector = velocity.y;
+	if (_leftOrRight)
+	{
+		_xVector *= -1;
+	}
 }
 
 // Dispencer methods
