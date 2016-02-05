@@ -17,9 +17,12 @@ bool BallDispencer::init()
 	_rootNode = cocos2d::CSLoader::createNode("BallDispencer.csb");
 	this->addChild(_rootNode);
 
-	_sprite = (cocos2d::Sprite*)_rootNode->getChildByName("Sprite_1");
-	_spawnTimer = 0.0f;
-	this->scheduleUpdate();
+	_backSprite = (cocos2d::Sprite*)_rootNode->getChildByName("Sprite_1");
+	_frontSprite = (cocos2d::Sprite*)_rootNode->getChildByName("Sprite_2");
+	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Score_Label");
+
+	_frontSprite->setZOrder(1);
+	_scoreLabel->setZOrder(2);
 
 	for (int i = 0; i < 15; i++)// load all of the way points
 	{
@@ -30,15 +33,23 @@ bool BallDispencer::init()
 		//_rootNode->addChild(_nodes[i]);
 	}
 
+	_spawnTimer = 0.0f;
+	this->scheduleUpdate();
+
 	return true;
 }
 
 void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manager)
 {
 	if (leftOrRight){
-		float size = _sprite->getScaleX();
+		float size = _backSprite->getScaleX();
 		size *= -1;
-		_sprite->setScaleX(size);
+		_backSprite->setScaleX(size);
+		_frontSprite->setScaleX(size);
+
+		float scorePos = _scoreLabel->getPositionX();
+		scorePos *= -1;
+		_scoreLabel->setPositionX(scorePos);
 
 		for (int i = 0; i < 15; i++)
 		{
@@ -72,6 +83,7 @@ void BallDispencer::DropBall()
 	toDrop->setPosition(posRelativeToWorld);
 	toDrop->release();
 	toDrop->Drop();
+	toDrop->setZOrder(0);
 	_containedBalls.erase(_containedBalls.begin());
 	//move up next balls
 	for (int i = 0; i < _containedBalls.size(); i++)
@@ -85,6 +97,8 @@ void BallDispencer::DropBall()
 void BallDispencer::update(float deltaTime)
 {
 	_spawnTimer += deltaTime;
+	_scoreLabel->setText(">" + to_string(_spawnTimer));
+
 	if (_spawnTimer >= 2)
 	{
 		_spawnTimer = 0;

@@ -5,6 +5,7 @@
 //INCLUDES
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
 #include <string>
 #include "BallManager.h"
 
@@ -14,7 +15,9 @@ class BallDispencer : public cocos2d::Node
 {
 private:
 	cocos2d::Node* _rootNode;
-	cocos2d::Sprite* _sprite;
+	cocos2d::Sprite* _backSprite;
+	cocos2d::Sprite* _frontSprite;
+	cocos2d::ui::Text* _scoreLabel;
 	cocos2d::Node* _nodes[15];
 
 	BallManager* _ballManager;

@@ -36,11 +36,13 @@ bool Game_Scene::init()
 	_leftDispencer = BallDispencer::create();
 	_leftDispencer->Setup(false, 320, 725, _ballManager);
 	_rootNode->addChild(_leftDispencer);
+	_leftDispencer->setZOrder(1);
 	for (int i = 0; i < 15; i++) _leftDispencer->AddBall();
 
 	_rightDispencer = BallDispencer::create();
 	_rightDispencer->Setup(true, 960, 725, _ballManager);
 	_rootNode->addChild(_rightDispencer);
+	_rightDispencer->setZOrder(1);
 	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
 
 	//Players
