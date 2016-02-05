@@ -97,11 +97,15 @@ void BallDispencer::DropBall()
 void BallDispencer::update(float deltaTime)
 {
 	_spawnTimer += deltaTime;
-	_scoreLabel->setText(">" + to_string(_spawnTimer));
 
 	if (_spawnTimer >= 2)
 	{
 		_spawnTimer = 0;
 		DropBall();
 	}
+}
+
+void BallDispencer::DisplayScore(int score)
+{
+	_scoreLabel->setText(">" + to_string(score));
 }

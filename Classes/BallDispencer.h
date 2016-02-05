@@ -30,5 +30,6 @@ public:
 	void Setup(bool leftOrRight, float x, float y, BallManager* manager);
 	void AddBall();
 	void DropBall();
+	void DisplayScore(int score);
 };
 #endif // __BALL_DISPENCER_H__
