@@ -94,9 +94,6 @@ void Game_Scene::update(float deltaTime)
 		{
 			bool temp = !subject->GetLeftOrRight();
 			_ballManager->DestroyBall(i);
-
-			BallDispencer* dispencer = (temp ? _leftDispencer : _rightDispencer);
-			dispencer->AddBall();
 			break;
 		}
 	}

@@ -78,6 +78,8 @@ void BallDispencer::DropBall()
 	{
 		_containedBalls[i]->MoveToNext(_nodes[14 - i]->getPosition(), 14 - i);
 	}
+
+	AddBall();
 }
 
 void BallDispencer::update(float deltaTime)
