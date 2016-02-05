@@ -41,15 +41,18 @@ void Player::update(float delta)
 
 void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	if (type == ui::Widget::TouchEventType::BEGAN)
 	{
-		Ball& ball = *_ballManager->GetBallAtIndex(i);
-		Vec2 ppos = this->convertToWorldSpace(Vec2());
-		Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
-		Vec2 toBall = bpos - ppos;
-		if (toBall.lengthSquared() < 1000 * 1000)
+		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
-			ball.Hit(toBall);
+			Ball& ball = *_ballManager->GetBallAtIndex(i);
+			Vec2 ppos = this->convertToWorldSpace(Vec2());
+			Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
+			Vec2 toBall = bpos - ppos;
+			if (toBall.lengthSquared() < 1000 * 1000)
+			{
+				ball.Hit(toBall);
+			}
 		}
 	}
 }
