@@ -44,9 +44,9 @@ void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType
 	for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 	{
 		Ball& ball = *_ballManager->GetBallAtIndex(i);
-		Vec2 ppos = getPosition();
-		Vec2 bpos = ball.getPosition();
-		Vec2 toBall = ball.getPosition() - getPosition();
+		Vec2 ppos = this->convertToWorldSpace(Vec2());
+		Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
+		Vec2 toBall = bpos - ppos;
 		if (toBall.lengthSquared() < 1000 * 1000)
 		{
 			ball.Hit(toBall);
