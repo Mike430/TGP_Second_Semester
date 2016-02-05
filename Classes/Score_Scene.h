@@ -19,12 +19,16 @@ private:
 	cocos2d::Node* _rootNode;
 	cocos2d::ui::Button* _playAgainButton;
 	cocos2d::ui::Button* _mainMenuButton;
+	int _leftScore, _rightScore;
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
-	static cocos2d::Scene* createScene();
+	static cocos2d::Scene* createScene(int leftScore, int rightScore);
+	void setScores(int leftScore, int rightScore);
 
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-	virtual bool init();
+	virtual bool init() override;
+
+	virtual void update(float deltaTime) override;
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Score_Scene);
