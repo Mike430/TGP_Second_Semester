@@ -66,7 +66,11 @@ void BallDispencer::DropBall()
 	Ball* toDrop = _containedBalls.front();
 	Vec2 posRelativeToDispencer = toDrop->getPosition();
 	Vec2 posRelativeToWorld = this->convertToWorldSpace(posRelativeToDispencer);
-	toDrop->setParent(getParent());
+	toDrop->retain();
+	toDrop->removeFromParentAndCleanup(false);
+	getParent()->addChild(toDrop);
+	toDrop->setPosition(posRelativeToWorld);
+	toDrop->release();
 	toDrop->Drop();
 	_containedBalls.erase(_containedBalls.begin());
 	//move up next balls

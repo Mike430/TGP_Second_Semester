@@ -37,6 +37,7 @@ void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
 	// Gameplay Variables
 	_inflect = 20.0f;
 	_yVector = 0.0f;
+	_xVector = 0.0f;
 	_terminalVel = -3000.0f;
 	_gravity = gravity;
 }
@@ -59,6 +60,7 @@ float Ball::GravityEffect(float position, float deltaTime)
 
 void Ball::Hit(Vec2 velocity)
 {
+	if (_contained) return;
 	_xVector = 500.0f * (velocity.x > 0 ? 1 : -1);
 	_yVector = 350.0f;
 }
@@ -74,6 +76,8 @@ void Ball::MoveToNext(Vec2 next, int wayPointIndex)
 void Ball::Drop()
 {
 	_contained = false;
+	_yVector = 0.0f;
+	_xVector = 0.0f;
 }
 
 void Ball::update(float deltaTime)
