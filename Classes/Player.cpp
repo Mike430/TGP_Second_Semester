@@ -1,9 +1,9 @@
 #include "Player.h"
 
-Player* Player::create(const string csbFile, BallManager* ballManager)
+Player* Player::create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer)
 {
 	Player* player = new Player();
-	if (!player->init(csbFile, ballManager))
+	if (!player->init(csbFile, ballManager, ballDispencer))
 	{
 		CC_SAFE_DELETE(player);
 		return nullptr;
@@ -13,7 +13,7 @@ Player* Player::create(const string csbFile, BallManager* ballManager)
 	return player;
 }
 
-bool Player::init(const string csbFile, BallManager* ballManager)
+bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer)
 {
 	if (!Node::init())
 	{
@@ -28,6 +28,8 @@ bool Player::init(const string csbFile, BallManager* ballManager)
 	_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 
 	_ballManager = ballManager;
+	_ballDispencer = ballDispencer;
+	_score = 0;
 
 	this->scheduleUpdate();
 
@@ -36,7 +38,7 @@ bool Player::init(const string csbFile, BallManager* ballManager)
 
 void Player::update(float delta)
 {
-	
+	_ballDispencer->DisplayScore(_score);
 }
 
 void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -61,4 +63,14 @@ void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType
 			}
 		}
 	}
+}
+
+void Player::addScore(int points)
+{
+	_score += points;
+}
+
+int Player::getScore()
+{
+	return _score;
 }
