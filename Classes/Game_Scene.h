@@ -38,7 +38,6 @@ private:
 	BallDispencer* _rightDispencer;
 
 	BallManager* _ballManager;
-	float _gravity = 10.0f;
 	float _countDown;
 	bool _paused;
 public:

@@ -27,7 +27,7 @@ bool BallDispencer::init()
 	for (int i = 0; i < 15; i++)// load all of the way points
 	{
 		int number = i + 1;
-		string newString = "Node_" + to_string(number);
+		string newString = "Node_" + StringUtils::format("%d", number);
 		_nodes[i] = (cocos2d::Node*)_rootNode->getChildByName(newString);
 		//_nodes[i]->setPosition(_rootNode->convertToWorldSpace(_nodes[i]->getPosition()));
 		//_rootNode->addChild(_nodes[i]);
@@ -107,5 +107,6 @@ void BallDispencer::update(float deltaTime)
 
 void BallDispencer::DisplayScore(int score)
 {
-	_scoreLabel->setText( to_string(score));
+	//_scoreLabel->setText( to_string(score));
+	_scoreLabel->setText(StringUtils::format("%d", score));
 }

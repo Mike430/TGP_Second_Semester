@@ -91,8 +91,8 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
-	string textDisplay = "Score: " + to_string((int)(1337));
-	_scoreLabel->setText(textDisplay);
+	//string textDisplay = "Score: " + to_string((int)(1337));
+	//_scoreLabel->setText(textDisplay);
 
 	if (_countDown <= 0 && !_paused)
 	{
