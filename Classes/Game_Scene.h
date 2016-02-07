@@ -14,6 +14,7 @@
 #include "Ball.h"
 #include "BallDispencer.h"
 #include "BallManager.h"
+#include "Target.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -36,6 +37,7 @@ private:
 	vector<BallDispencer*> _ballDispencers;
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
+	Target* _targets[8];
 
 	BallManager* _ballManager;
 	float _countDown;

@@ -27,7 +27,6 @@ bool Game_Scene::init()
 	this->addChild(_rootNode);
 	_windowSize = CCDirector::getInstance()->getVisibleSize();
 	// Get Scene Elelments
-	//_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
 	_ballManager = new BallManager();
@@ -75,6 +74,12 @@ bool Game_Scene::init()
 	touchListener->onTouchEnded = CC_CALLBACK_2(Game_Scene::onTouchEnded, this);
 	touchListener->onTouchMoved = CC_CALLBACK_2(Game_Scene::onTouchMoved, this);
 	touchListener->onTouchCancelled = CC_CALLBACK_2(Game_Scene::onTouchCancelled, this);
+
+	for (int i = 0; i < 8; i++)
+	{
+		_targets[i] = Target::create();
+		_rootNode->addChild(_targets[i]);
+	}
 
 	_countDown = 3.0f;
 	_paused = false;
@@ -198,6 +203,8 @@ void Game_Scene::EndGame(int player1Score, int player2Score)
 	cocos2d::Scene* scoreScene = Score_Scene::createScene(player1Score, player2Score);
 	cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
 }
+
+
 
 // Callbacks
 //==============================================================================
