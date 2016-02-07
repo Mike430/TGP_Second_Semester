@@ -123,14 +123,18 @@ void Game_Scene::update(float deltaTime)
 			Ball* ball = _ballManager->GetBallAtIndex(i);
 			if (!ball->GetContained())
 			{
-				Rect ballBB = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
-				ballBB.origin = ball->convertToWorldSpace(ballBB.origin);
-				Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer; //only check opposite player
+				// make a hit box to represent the ball
+				Rect ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
+				ballRect.origin = ball->convertToWorldSpace(ballRect.origin);
+				
+				// Get the ball owner's opposing player
+				Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
 
-				Rect playerBB = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
-				playerBB.origin = player->convertToWorldSpace(playerBB.origin);
+				// make a hit box to represent the opponent
+				Rect playerRect = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
+				playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
-				if (playerBB.intersectsRect(ballBB))
+				if (playerRect.intersectsRect(ballRect))
 				{
 					ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 					_ballManager->DestroyBall(i);
