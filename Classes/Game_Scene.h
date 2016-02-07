@@ -23,6 +23,7 @@ using namespace cocos2d;
 class Game_Scene : public cocos2d::Layer
 {
 private:
+	static const int _numbOfTargets = 5;
 	cocos2d::Node* _rootNode;
 	//Cocos2d UI
 	//Button* _endButton;
@@ -37,11 +38,17 @@ private:
 	vector<BallDispencer*> _ballDispencers;
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
-	Target* _targets[8];
+	Target* _targets[_numbOfTargets];
 
 	BallManager* _ballManager;
 	float _countDown;
 	bool _paused;
+
+	bool TestCollisionWithPlayer(Ball* ball, int ballIndex);
+	bool TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex);
+	void TestIfBallIsOut(Ball* ball, int ballIndex);
+	void SeeSaw(Player* winningPlayer, Player* loosingPlayer);
+	void EndGame(int player1Score, int player2Score);
 public:
 	// Initialisers
 	//==============================================================================
@@ -58,12 +65,6 @@ public:
 	// Game Methods
 	//==============================================================================
 	void update(float deltaTime);
-	
-	bool TestCollisionWithPlayer(Ball* ball, int ballIndex);
-	bool TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex);
-	void TestIfBallIsOut(Ball* ball, int ballIndex);
-
-	void EndGame(int player1Score, int player2Score);
 
 	// Callbacks
 	//==============================================================================

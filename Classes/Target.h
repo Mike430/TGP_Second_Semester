@@ -12,19 +12,19 @@ class Target : public Node
 {
 private:
 	// Positioning
-	const int _minX = 250.0f;
-	const int _maxX = 1030.0f;
+	const int _minX = 400.0f;
+	const int _maxX = 500.0f;
 	const int _minY = 100.0f;
-	const int _maxY = 550.0f;
+	const int _maxY = 200.0f;
 
 	// Timing (Time in miliseconds)
-	const int _maxTimeVisible = 7000;
-	const int _minTimeVisible = 5000;
+	const int _maxTimeVisible = 4000;
+	const int _minTimeVisible = 3000;
 	const int _maxTimeInvisible = 3000;
 	const int _minTimeInvisible = 500;
 	const int _range = 20, _rareProb = 18;
 	bool _active;
-	bool _rareOrCommon;
+	bool _commonOrRare;
 
 	float _timeTilChange;
 	float _currentTime;
@@ -36,12 +36,15 @@ private:
 	void SetNextTimePeriod(bool visibleOrNot);
 	void SetNextState();
 	void SetNextPosition();
+	void ResetTarget();
 public:
 	static Target* create();
 	bool init();
 
 	void update(float deltaTime);
+	void Hit();
 
 	bool GetActive() const { return _active; }
+	bool GetScarcity()const{ return _commonOrRare; }
 };
 #endif

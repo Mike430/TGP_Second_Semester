@@ -75,9 +75,10 @@ bool Game_Scene::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(Game_Scene::onTouchMoved, this);
 	touchListener->onTouchCancelled = CC_CALLBACK_2(Game_Scene::onTouchCancelled, this);
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < _numbOfTargets; i++)
 	{
 		_targets[i] = Target::create();
+		_targets[i]->setZOrder(2);
 		_rootNode->addChild(_targets[i]);
 	}
 
@@ -109,6 +110,12 @@ void Game_Scene::update(float deltaTime)
 			if (!ball->GetContained())
 			{
 				TestIfBallIsOut(ball, i);
+
+				for (int j = 0; j < _numbOfTargets; j++)
+				{
+					if (_targets[j]->GetActive())
+						TestCollisionWithTargets(ball, i, j);
+				}
 
 				if (TestCollisionWithPlayer(ball, i))
 				{
@@ -154,11 +161,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 		Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
 		otherPlayer->addScore(10);
 
-		//seesaw
-		float time = 0.1;
-		Vec2 dPos = Vec2(0, 18);
-		player->runAction(MoveBy::create(time, -dPos));
-		otherPlayer->runAction(MoveBy::create(time, dPos));
+		SeeSaw(otherPlayer, player);
 
 		// win/lose check
 		int leftScore, rightScore;
@@ -178,6 +181,31 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 
 bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex)
 {
+	Rect targetRect;
+	//targetRect = _targets[targetIndex]->getChildByName("common_Sprite")->getBoundingBox();
+	targetRect = _targets[targetIndex]->getChildren().at(0)->getChildByName("common_Sprite")->getBoundingBox();
+
+	Rect ballRect;
+	ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
+
+	if (targetRect.intersectsRect(ballRect))
+	{
+		int score;
+		score = _targets[targetIndex]->GetScarcity() ? 5 : 20;
+		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
+
+		// Get the ball's owner
+		Player* playerWin = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
+		// Get the opposition
+		Player* playerLose = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
+
+		SeeSaw(playerWin, playerLose);
+
+		_ballManager->DestroyBall(ballIndex);
+		_targets[targetIndex]->Hit();
+
+	}
+
 	return true;
 }
 
@@ -196,6 +224,14 @@ void Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
 		bool temp = !ball->GetLeftOrRight();
 		_ballManager->DestroyBall(ballIndex);
 	}
+}
+
+void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer)
+{
+	float time = 0.1;
+	Vec2 dPos = Vec2(0, 18);
+	winningPlayer->runAction(MoveBy::create(time, dPos));
+	loosingPlayer->runAction(MoveBy::create(time, -dPos));
 }
 
 void Game_Scene::EndGame(int player1Score, int player2Score)

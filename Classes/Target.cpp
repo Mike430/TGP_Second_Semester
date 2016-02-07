@@ -21,9 +21,7 @@ bool Target::init()
 
 	_commonSPR = (cocos2d::Sprite*)_rootNode->getChildByName("common_Sprite");
 	_rareSPR = (cocos2d::Sprite*)_rootNode->getChildByName("rare_Sprite");
-	SetNextState();
-	SetNextTimePeriod(_rareOrCommon);
-	SetNextPosition();
+	ResetTarget();
 	_currentTime = 0.0f;
 	_active = false;
 
@@ -52,9 +50,9 @@ void Target::SetNextState()
 	determiner = rand() % _range + 0;
 
 	if (determiner >= _rareProb)
-		_rareOrCommon = true;
+		_commonOrRare = true;
 	else
-		_rareOrCommon = false;
+		_commonOrRare = false;
 }
 
 void Target::SetNextPosition()
@@ -65,28 +63,34 @@ void Target::SetNextPosition()
 	this->setPosition(nextPos);
 }
 
+void Target::ResetTarget()
+{
+	_active = false;
+	_rareSPR->setVisible(false);
+	_commonSPR->setVisible(false);
+
+	SetNextTimePeriod(false);// time invisible
+	SetNextState();// what you will be when you reappear
+	SetNextPosition();// where you will be when you reappear
+}
+
 //Public Methods
 //==============================================================================
 void Target::update(float deltaTime)
 {
 	if (_currentTime >= _timeTilChange)
 	{
+		_currentTime = 0.0f;
 		if (_active)
 		{
-			_active = false;
-			_rareSPR->setVisible(false);
-			_commonSPR->setVisible(false);
-
-			SetNextTimePeriod(false);
-			SetNextState();
-			SetNextPosition();
+			ResetTarget();
 		}
 		else
 		{
 			_active = true;
-			SetNextTimePeriod(true);
+			SetNextTimePeriod(true);// Duration for being active
 
-			if (_rareOrCommon)
+			if (_commonOrRare)
 				_rareSPR->setVisible(true);
 			else
 				_commonSPR->setVisible(true);
@@ -94,4 +98,9 @@ void Target::update(float deltaTime)
 	}
 	else
 		_currentTime += deltaTime;
+}
+
+void Target::Hit()
+{
+	ResetTarget();
 }
