@@ -58,7 +58,7 @@ void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType
 				float dy = toBall.y / r; // -1 -> 1
 				dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
 				dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
-				Vec2 hitDir = ccpLerp(Vec2(1200, -250), Vec2(1200, 550), dy); // lerp between mim/max hit strength
+				Vec2 hitDir = ccpLerp(Vec2(1500, -250), Vec2(1500, 550), dy); // lerp between mim/max hit strength
 				ball.Hit(hitDir);
 			}
 		}

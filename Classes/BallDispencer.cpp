@@ -68,7 +68,7 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manag
 void BallDispencer::AddBall()
 {
 	Ball* tempBall = _ballManager->CreateBall(_rootNode);
-	tempBall->Setup(_nodes[14 - _containedBalls.size()]->getPosition(), 10.0f, _nodes[14 - _containedBalls.size()]->getPosition(), (this->getPositionX() > 500));
+	tempBall->Setup(_nodes[14 - _containedBalls.size()]->getPosition(), 15.0f, _nodes[14 - _containedBalls.size()]->getPosition(), (this->getPositionX() > 500));
 	_containedBalls.push_back(tempBall);
 }
 
@@ -96,16 +96,16 @@ void BallDispencer::DropBall()
 
 void BallDispencer::update(float deltaTime)
 {
-	_spawnTimer += deltaTime;
+	/*_spawnTimer += deltaTime;
 
 	if (_spawnTimer >= 2)
 	{
 		_spawnTimer = 0;
 		DropBall();
-	}
+	}*/
 }
 
 void BallDispencer::DisplayScore(int score)
 {
-	_scoreLabel->setText(">" + to_string(score));
+	_scoreLabel->setText( to_string(score));
 }

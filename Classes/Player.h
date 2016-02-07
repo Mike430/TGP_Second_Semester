@@ -13,11 +13,13 @@ using namespace std;
 class Player : public Node
 {
 private:
-	cocos2d::Node* _rootNode;
+	Node* _rootNode;
 	Button* _swingButton;
 	BallManager* _ballManager;
 	BallDispencer* _ballDispencer;
+
 	int _score;
+
 	void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 public:
 	virtual bool init(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer);

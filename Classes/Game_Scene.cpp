@@ -47,15 +47,19 @@ bool Game_Scene::init()
 	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
 	_ballDispencers.push_back(_rightDispencer);
 
-	//Players
+	// For all Players
 	const string path = "res/";
-	const float y = 200;
+	const float y = 300;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
 	const float relativeX = 570;
+
+	// Left Player
 	_leftPlayer = Player::create(path + "PlayerLeft.csb", _ballManager, _leftDispencer);
 	_leftPlayer->setPosition(Vec2(centerX + relativeX * -1, y));
 	_rootNode->addChild(_leftPlayer);
 	_players.push_back(_leftPlayer);
+
+	// Right Player
 	_rightPlayer = Player::create(path + "PlayerRight.csb", _ballManager, _rightDispencer);
 	_rightPlayer->setPosition(Vec2(centerX + relativeX * 1, y));
 	_rootNode->addChild(_rightPlayer);
@@ -72,6 +76,9 @@ bool Game_Scene::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(Game_Scene::onTouchMoved, this);
 	touchListener->onTouchCancelled = CC_CALLBACK_2(Game_Scene::onTouchCancelled, this);
 
+	_countDown = 3.0f;
+	_paused = false;
+
 	// Calls the game loop
 	this->scheduleUpdate();
 	// INIT ENDS IN RETURN TRUE
@@ -86,56 +93,81 @@ void Game_Scene::update(float deltaTime)
 {
 	string textDisplay = "Score: " + to_string((int)(1337));
 	_scoreLabel->setText(textDisplay);
-	// test if ball is outside and delete
-	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
-	{
-		Ball* subject = _ballManager->GetBallAtIndex(i);
 
-		if ((subject->getPositionX() > _windowSize.x ||
-			subject->getPositionX() < 0 ||
-			subject->getPositionY() > _windowSize.y ||
-			subject->getPositionY() < 0) && !subject->GetContained())
-		{
-			bool temp = !subject->GetLeftOrRight();
-			_ballManager->DestroyBall(i);
-			break;
-		}
-	}
-	// if ball intersects target, get leftorRight var from ball and add to player score
-	
-	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	if (_countDown <= 0 && !_paused)
 	{
-		Ball* ball = _ballManager->GetBallAtIndex(i);
-		if (!ball->GetContained())
+		// test if ball is outside and delete
+		for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
-			Rect ballBB = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
-			ballBB.origin = ball->convertToWorldSpace(ballBB.origin);
-			Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer; //only check opposite player
-			Rect playerBB = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
-			playerBB.origin = player->convertToWorldSpace(playerBB.origin);
-			if (playerBB.intersectsRect(ballBB))
+			Ball* subject = _ballManager->GetBallAtIndex(i);
+
+			if ((subject->getPositionX() > _windowSize.x ||
+				subject->getPositionX() < 0 ||
+				subject->getPositionY() > _windowSize.y ||
+				subject->getPositionY() < 0) && !subject->GetContained())
 			{
+				if (subject->GetLeftOrRight())
+					_rightDispencer->DropBall();
+				else
+					_leftDispencer->DropBall();
+
+				bool temp = !subject->GetLeftOrRight();
 				_ballManager->DestroyBall(i);
-				Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
-				otherPlayer->addScore(10);
-				//seesaw
-				float time = 1;
-				Vec2 dPos = Vec2(0, 30);
-				player->runAction(MoveBy::create(time, -dPos));
-				otherPlayer->runAction(MoveBy::create(time, dPos));
-				// win/lose check
-				int leftScore, rightScore;
-				leftScore = _leftPlayer->getScore();
-				rightScore = _rightPlayer->getScore();
-				int deltaScore = abs(leftScore - rightScore);
-				if (deltaScore >= 50)
-				{
-					//someone is pretty close to the bottom of the screen
-					cocos2d::Scene* scoreScene = Score_Scene::createScene(leftScore, rightScore);
-					cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
-				}
 				break;
 			}
+		}
+		// if ball intersects target, get leftorRight var from ball and add to player score
+
+		for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+		{
+			Ball* ball = _ballManager->GetBallAtIndex(i);
+			if (!ball->GetContained())
+			{
+				Rect ballBB = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
+				ballBB.origin = ball->convertToWorldSpace(ballBB.origin);
+				Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer; //only check opposite player
+
+				Rect playerBB = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
+				playerBB.origin = player->convertToWorldSpace(playerBB.origin);
+
+				if (playerBB.intersectsRect(ballBB))
+				{
+					ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
+					_ballManager->DestroyBall(i);
+					Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
+					otherPlayer->addScore(10);
+
+					//seesaw
+					float time = 0.1;
+					Vec2 dPos = Vec2(0, 18);
+					player->runAction(MoveBy::create(time, -dPos));
+					otherPlayer->runAction(MoveBy::create(time, dPos));
+
+					// win/lose check
+					int leftScore, rightScore;
+					leftScore = _leftPlayer->getScore();
+					rightScore = _rightPlayer->getScore();
+					int deltaScore = abs(leftScore - rightScore);
+
+					if (deltaScore >= 100)
+					{
+						//someone is pretty close to the bottom of the screen
+						cocos2d::Scene* scoreScene = Score_Scene::createScene(leftScore, rightScore);
+						cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
+					}
+					break;
+				}
+			}
+		}
+	}
+	else
+	{
+		_countDown -= deltaTime;
+
+		if (_countDown <= 0)
+		{
+			_rightDispencer->DropBall();
+			_leftDispencer->DropBall();
 		}
 	}
 }

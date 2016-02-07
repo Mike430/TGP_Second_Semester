@@ -28,7 +28,6 @@ private:
 	cocos2d::ui::Text* _scoreLabel;
 
 	Vec2 _windowSize;
-	//Rect _windowSpace;
 
 	vector<Player*> _players;
 	Player* _leftPlayer;
@@ -40,6 +39,8 @@ private:
 
 	BallManager* _ballManager;
 	float _gravity = 10.0f;
+	float _countDown;
+	bool _paused;
 public:
 	// Initialisers
 	//==============================================================================
