@@ -25,44 +25,72 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 	addChild(_rootNode);
 
 	_swingButton = _rootNode->getChildByName<Button*>("Fire_Button");
+	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
+	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
+	_dazedSPR->setVisible(false);
+
 	_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 
 	_ballManager = ballManager;
 	_ballDispencer = ballDispencer;
 	_score = 0;
+	_dazedState = false;
 
 	this->scheduleUpdate();
 
 	return true;
 }
 
-void Player::update(float delta)
+void Player::update(float deltaTime)
 {
 	_ballDispencer->DisplayScore(_score);
+	if (_dazedState)
+	{
+		_timeOut += deltaTime;
+		if (_timeOut >= _recoveryTime)
+		{
+			_dazedState = false;
+			_swingButton->setVisible(true);
+			_normalSPR->setVisible(true);
+			_dazedSPR->setVisible(false);
+		}
+	}
 }
 
 void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (type == ui::Widget::TouchEventType::BEGAN)
+	if (!_dazedState)
 	{
-		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+		if (type == ui::Widget::TouchEventType::BEGAN)
 		{
-			Ball& ball = *_ballManager->GetBallAtIndex(i);
-			Vec2 ppos = this->convertToWorldSpace(Vec2());
-			Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
-			Vec2 toBall = bpos - ppos;
-			float r = 100;
-			if (toBall.length() < r)
+			for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 			{
-				float difficulty = 0.1f; // 0=easy, 1=hard
-				float dy = toBall.y / r; // -1 -> 1
-				dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
-				dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
-				Vec2 hitDir = ccpLerp(Vec2(1500, -250), Vec2(1500, 550), dy); // lerp between mim/max hit strength
-				ball.Hit(hitDir);
+				Ball& ball = *_ballManager->GetBallAtIndex(i);
+				Vec2 ppos = this->convertToWorldSpace(Vec2());
+				Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
+				Vec2 toBall = bpos - ppos;
+				float r = 100;
+				if (toBall.length() < r)
+				{
+					float difficulty = 0.1f; // 0=easy, 1=hard
+					float dy = toBall.y / r; // -1 -> 1
+					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
+					dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
+					Vec2 hitDir = ccpLerp(Vec2(1500, -250), Vec2(1500, 550), dy); // lerp between mim/max hit strength
+					ball.Hit(hitDir);
+				}
 			}
 		}
 	}
+}
+
+void Player::PlayerHit()
+{
+	_timeOut = 0.0f;
+	_dazedState = true;
+	_swingButton->setVisible(false);
+	_normalSPR->setVisible(false);
+	_dazedSPR->setVisible(true);
 }
 
 void Player::addScore(int points)

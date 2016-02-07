@@ -51,7 +51,7 @@ bool Game_Scene::init()
 	const string path = "res/";
 	const float y = 300;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
-	const float relativeX = 570;
+	const float relativeX = 530;
 
 	// Left Player
 	_leftPlayer = Player::create(path + "PlayerLeft.csb", _ballManager, _leftDispencer);
@@ -143,6 +143,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 
 	if (playerRect.intersectsRect(ballRect))
 	{
+		player->PlayerHit();
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 		_ballManager->DestroyBall(ballIndex);
 		Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;

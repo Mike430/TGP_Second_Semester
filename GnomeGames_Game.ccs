@@ -12,6 +12,8 @@
           <Image Name="3BallDispencer_front.png" />
           <Image Name="render2.png" />
           <Image Name="Render.png" />
+          <Image Name="common.png" />
+          <Image Name="rare.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -20,6 +22,7 @@
         <Project Name="Ball.csd" Type="Node" />
         <Project Name="PlayerLeft.csd" Type="Node" />
         <Project Name="PlayerRight.csd" Type="Node" />
+        <Project Name="Targets.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
