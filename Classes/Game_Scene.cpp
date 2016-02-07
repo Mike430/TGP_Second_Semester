@@ -27,7 +27,7 @@ bool Game_Scene::init()
 	this->addChild(_rootNode);
 	_windowSize = CCDirector::getInstance()->getVisibleSize();
 	// Get Scene Elelments
-	_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
+	//_endButton = (cocos2d::ui::Button*)_rootNode->getChildByName("End_Button");
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
 	_ballManager = new BallManager();
@@ -69,7 +69,7 @@ bool Game_Scene::init()
 	srand(time(NULL));
 
 	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
-	_endButton->addTouchEventListener(CC_CALLBACK_2(Game_Scene::EndButtonPressed, this));
+	//_endButton->addTouchEventListener(CC_CALLBACK_2(Game_Scene::EndButtonPressed, this));
 	// Assign the event methods to the event listener (known as callbacks)
 	touchListener->onTouchBegan = CC_CALLBACK_2(Game_Scene::onTouchBegan, this);
 	touchListener->onTouchEnded = CC_CALLBACK_2(Game_Scene::onTouchEnded, this);
@@ -96,69 +96,21 @@ void Game_Scene::update(float deltaTime)
 
 	if (_countDown <= 0 && !_paused)
 	{
-		// test if ball is outside and delete
-		for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
-		{
-			Ball* subject = _ballManager->GetBallAtIndex(i);
-
-			if ((subject->getPositionX() > _windowSize.x ||
-				subject->getPositionX() < 0 ||
-				subject->getPositionY() > _windowSize.y ||
-				subject->getPositionY() < 0) && !subject->GetContained())
-			{
-				if (subject->GetLeftOrRight())
-					_rightDispencer->DropBall();
-				else
-					_leftDispencer->DropBall();
-
-				bool temp = !subject->GetLeftOrRight();
-				_ballManager->DestroyBall(i);
-				break;
-			}
-		}
 		// if ball intersects target, get leftorRight var from ball and add to player score
-
 		for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
 			Ball* ball = _ballManager->GetBallAtIndex(i);
+
 			if (!ball->GetContained())
 			{
-				// make a hit box to represent the ball
-				Rect ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
-				ballRect.origin = ball->convertToWorldSpace(ballRect.origin);
-				
-				// Get the ball owner's opposing player
-				Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
+				TestIfBallIsOut(ball, i);
 
-				// make a hit box to represent the opponent
-				Rect playerRect = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
-				playerRect.origin = player->convertToWorldSpace(playerRect.origin);
-
-				if (playerRect.intersectsRect(ballRect))
+				if (TestCollisionWithPlayer(ball, i))
 				{
-					ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
-					_ballManager->DestroyBall(i);
-					Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
-					otherPlayer->addScore(10);
+					int leftScore = _leftPlayer->getScore();
+					int rightScore = _rightPlayer->getScore();
 
-					//seesaw
-					float time = 0.1;
-					Vec2 dPos = Vec2(0, 18);
-					player->runAction(MoveBy::create(time, -dPos));
-					otherPlayer->runAction(MoveBy::create(time, dPos));
-
-					// win/lose check
-					int leftScore, rightScore;
-					leftScore = _leftPlayer->getScore();
-					rightScore = _rightPlayer->getScore();
-					int deltaScore = abs(leftScore - rightScore);
-
-					if (deltaScore >= 100)
-					{
-						//someone is pretty close to the bottom of the screen
-						cocos2d::Scene* scoreScene = Score_Scene::createScene(leftScore, rightScore);
-						cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
-					}
+					EndGame(leftScore, rightScore);
 					break;
 				}
 			}
@@ -176,14 +128,82 @@ void Game_Scene::update(float deltaTime)
 	}
 }
 
+bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
+{
+	// make a hit box to represent the ball
+	Rect ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
+	ballRect.origin = ball->convertToWorldSpace(ballRect.origin);
 
+	// Get the ball owner's opposing player
+	Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
+
+	// make a hit box to represent the opponent
+	Rect playerRect = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
+	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
+
+	if (playerRect.intersectsRect(ballRect))
+	{
+		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
+		_ballManager->DestroyBall(ballIndex);
+		Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
+		otherPlayer->addScore(10);
+
+		//seesaw
+		float time = 0.1;
+		Vec2 dPos = Vec2(0, 18);
+		player->runAction(MoveBy::create(time, -dPos));
+		otherPlayer->runAction(MoveBy::create(time, dPos));
+
+		// win/lose check
+		int leftScore, rightScore;
+		leftScore = _leftPlayer->getScore();
+		rightScore = _rightPlayer->getScore();
+		int deltaScore = abs(leftScore - rightScore);
+
+		if (deltaScore >= 100)
+			return true;
+		else
+			return false;
+
+	}
+	else
+		return false;
+}
+
+bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex)
+{
+	return true;
+}
+
+void Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
+{
+	if ((ball->getPositionX() > _windowSize.x ||
+		ball->getPositionX() < 0 ||
+		ball->getPositionY() > _windowSize.y ||
+		ball->getPositionY() < 0) && !ball->GetContained())
+	{
+		if (ball->GetLeftOrRight())
+			_rightDispencer->DropBall();
+		else
+			_leftDispencer->DropBall();
+
+		bool temp = !ball->GetLeftOrRight();
+		_ballManager->DestroyBall(ballIndex);
+	}
+}
+
+void Game_Scene::EndGame(int player1Score, int player2Score)
+{
+	cocos2d::Scene* scoreScene = Score_Scene::createScene(player1Score, player2Score);
+	cocos2d::CCDirector::getInstance()->replaceScene(scoreScene);
+}
 
 // Callbacks
 //==============================================================================
-void Game_Scene::EndButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+/*void Game_Scene::EndButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	
-}
+}*/
 
 bool Game_Scene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {

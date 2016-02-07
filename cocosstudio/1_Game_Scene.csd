@@ -17,21 +17,6 @@
             <FileData Type="Normal" Path="Sprites/Render.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="End_Button" ActionTag="342092180" Tag="9" IconVisible="False" LeftMargin="490.0000" RightMargin="490.0000" TopMargin="650.0000" BottomMargin="90.0000" TouchEnable="True" FontSize="36" ButtonText="End The Game" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="300.0000" Y="60.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="640.0000" Y="120.0000" />
-            <Scale ScaleX="1.0400" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.1500" />
-            <PreSize X="0.2344" Y="0.0750" />
-            <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
-            <NormalFileData Type="Default" Path="Default/Button_Normal.png" Plist="" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
           <AbstractNodeData Name="Text_Element_0" ActionTag="583558799" Tag="10" IconVisible="False" LeftMargin="10.0000" RightMargin="1050.0000" TopMargin="9.5000" BottomMargin="749.5000" FontSize="36" LabelText="Game_Scene" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="220.0000" Y="41.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
