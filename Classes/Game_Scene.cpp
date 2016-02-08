@@ -111,11 +111,11 @@ void Game_Scene::update(float deltaTime)
 			{
 				TestIfBallIsOut(ball, i);
 
-				/*for (int j = 0; j < _numbOfTargets; j++)
+				for (int j = 0; j < _numbOfTargets; j++)
 				{
 					if (_targets[j]->GetActive())
 						TestCollisionWithTargets(ball, i, j);
-				}*/
+				}
 
 				if (TestCollisionWithPlayer(ball, i))
 				{
@@ -183,12 +183,15 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 {
 	Rect targetRect;
 	//targetRect = _targets[targetIndex]->getChildByName("common_Sprite")->getBoundingBox();
-	targetRect = _targets[targetIndex]->getChildren().at(0)->getChildByName("common_Sprite")->getBoundingBox();
+	//targetRect = _targets[targetIndex]->getChildren().at(0)->getChildByName("common_Sprite")->getBoundingBox();
+	targetRect = _targets[targetIndex]->GetCollision();
+	targetRect.origin = _targets[targetIndex]->convertToWorldSpace(targetRect.origin);
 
 	Rect ballRect;
 	ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
+	ballRect.origin = ball->convertToWorldSpace(ballRect.origin);
 
-	if (targetRect.intersectsRect(ballRect))
+	if (ballRect.intersectsRect(targetRect))
 	{
 		int score;
 		score = _targets[targetIndex]->GetScarcity() ? 5 : 20;

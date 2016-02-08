@@ -45,6 +45,7 @@ public:
 	void Hit();
 
 	bool GetActive() const { return _active; }
-	bool GetScarcity()const{ return _commonOrRare; }
+	bool GetScarcity() const { return _commonOrRare; }
+	Rect GetCollision() const { return _commonSPR->getBoundingBox(); }
 };
 #endif
