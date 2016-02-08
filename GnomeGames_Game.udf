@@ -3,7 +3,7 @@
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="VS" />
-        <IsLastPublish Value="True" />
+        <IsLastPublish Value="False" />
         <LastRunType Value="Windows" />
       </Value>
     </Item>
@@ -26,6 +26,16 @@
         <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="2_Score_Scene.csd" />
+          <FilePathData Path="1_Game_Scene.csd" />
+          <FilePathData Path="0_Main_Menu.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="2_Score_Scene.csd" />
       </Value>
     </Item>
   </Properties>

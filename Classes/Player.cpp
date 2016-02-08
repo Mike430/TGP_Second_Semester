@@ -86,7 +86,8 @@ void Player::SwingBat()
 				Vec2 ppos = this->convertToWorldSpace(Vec2());
 				Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
 				Vec2 toBall = bpos - ppos;
-				float r = 100;
+				//float r = 100;
+				float r = 150;
 				if (toBall.length() < r)
 				{
 					float difficulty = 0.1f; // 0=easy, 1=hard
