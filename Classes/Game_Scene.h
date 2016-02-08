@@ -23,7 +23,7 @@ using namespace cocos2d;
 class Game_Scene : public cocos2d::Layer
 {
 private:
-	static const int _numbOfTargets = 5;
+	static const int _numbOfTargets = 1;
 	cocos2d::Node* _rootNode;
 	//Cocos2d UI
 	//Button* _endButton;

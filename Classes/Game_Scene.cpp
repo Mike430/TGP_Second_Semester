@@ -78,7 +78,7 @@ bool Game_Scene::init()
 	for (int i = 0; i < _numbOfTargets; i++)
 	{
 		_targets[i] = Target::create();
-		_targets[i]->setZOrder(2);
+		_targets[i]->setZOrder(3);
 		_rootNode->addChild(_targets[i]);
 	}
 
@@ -111,11 +111,11 @@ void Game_Scene::update(float deltaTime)
 			{
 				TestIfBallIsOut(ball, i);
 
-				for (int j = 0; j < _numbOfTargets; j++)
+				/*for (int j = 0; j < _numbOfTargets; j++)
 				{
 					if (_targets[j]->GetActive())
 						TestCollisionWithTargets(ball, i, j);
-				}
+				}*/
 
 				if (TestCollisionWithPlayer(ball, i))
 				{
@@ -201,6 +201,7 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 
 		SeeSaw(playerWin, playerLose);
 
+		playerWin->addScore(score);
 		_ballManager->DestroyBall(ballIndex);
 		_targets[targetIndex]->Hit();
 
