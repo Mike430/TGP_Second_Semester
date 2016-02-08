@@ -25,6 +25,9 @@ private:
 	Vec2 _dispencerPosition;// position
 	bool _advancing;// stops tampering when advancing to next way point.
 	bool _contained;// if true, no gravity
+
+	//Variables for gameplay
+	bool _collidable;
 public:
 	virtual bool init();
 	static Ball* create();
@@ -41,7 +44,9 @@ public:
 	bool GetLeftOrRight() const { return _leftOrRight; }
 
 	//general
-	bool GetContained() const { return _contained; }
+	bool IsContained() const { return _contained; }
+	bool IsCollidable() const { return _collidable; }
+	void SetCollidable(bool state) { _collidable = state; }
 
 	void update(float deltaTime);
 };

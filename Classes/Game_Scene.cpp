@@ -107,7 +107,7 @@ void Game_Scene::update(float deltaTime)
 		{
 			Ball* ball = _ballManager->GetBallAtIndex(i);
 
-			if (!ball->GetContained())
+			if (!ball->IsContained() && ball->IsCollidable())
 			{
 				TestIfBallIsOut(ball, i);
 
@@ -157,7 +157,8 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 	if (playerRect.intersectsRect(ballRect)){
 		player->PlayerHit();
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
-		_ballManager->DestroyBall(ballIndex);
+		_ballManager->GetBallAtIndex(ballIndex)->SetCollidable(false);
+		//_ballManager->DestroyBall(ballIndex);
 	return true;
 	}
 	else
@@ -201,7 +202,7 @@ void Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
 	if ((ball->getPositionX() > _windowSize.x ||
 		ball->getPositionX() < 0 ||
 		ball->getPositionY() > _windowSize.y ||
-		ball->getPositionY() < 0) && !ball->GetContained())
+		ball->getPositionY() < 0) && !ball->IsContained())
 	{
 		if (ball->GetLeftOrRight())
 			_rightDispencer->DropBall();

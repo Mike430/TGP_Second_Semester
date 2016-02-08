@@ -32,6 +32,7 @@ void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
 	_dispencerPosition = next;
 	_advancing = false;
 	_contained = true;
+	_collidable = true;
 	_leftOrRight = leftOrRight;
 
 	// Gameplay Variables

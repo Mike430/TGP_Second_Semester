@@ -6,14 +6,14 @@
       <ObjectData Name="Scene" ctype="GameNodeObjectData">
         <Size X="1280.0000" Y="800.0000" />
         <Children>
-          <AbstractNodeData Name="Back_Drop" ActionTag="953446860" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" RightMargin="320.0000" TopMargin="160.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Back_Drop" ActionTag="953446860" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ctype="SpriteObjectData">
             <Size X="1280.0000" Y="800.0000" />
             <AnchorPoint />
             <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
-            <PreSize X="0.7500" Y="0.8000" />
+            <PreSize X="1.0000" Y="1.0000" />
             <FileData Type="Normal" Path="Sprites/render2.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
@@ -37,7 +37,7 @@
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="100.0000" Y="770.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="53" G="53" B="53" />
+            <CColor A="255" R="224" G="224" B="224" />
             <PrePosition X="0.0781" Y="0.9625" />
             <PreSize X="0.1422" Y="0.0512" />
             <OutlineColor A="255" R="255" G="0" B="0" />

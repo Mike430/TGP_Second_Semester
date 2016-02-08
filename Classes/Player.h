@@ -23,7 +23,7 @@ private:
 
 	int _score;
 	bool _dazedState;
-	const float _recoveryTime = 1.5f;
+	const float _recoveryTime = 0.5f;
 	float _timeOut;
 
 	void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
