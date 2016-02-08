@@ -117,16 +117,17 @@ void Game_Scene::update(float deltaTime)
 						TestCollisionWithTargets(ball, i, j);
 				}
 
-				if (TestCollisionWithPlayer(ball, i))
-				{
-					int leftScore = _leftPlayer->getScore();
-					int rightScore = _rightPlayer->getScore();
-
-					EndGame(leftScore, rightScore);
-					break;
-				}
+				TestCollisionWithPlayer(ball, i);
 			}
 		}
+		// win/lose check
+		int leftScore, rightScore;
+		leftScore = _leftPlayer->getScore();
+		rightScore = _rightPlayer->getScore();
+		int deltaScore = abs(leftScore - rightScore);
+
+		if (deltaScore >= 100)
+			EndGame(leftScore, rightScore);
 	}
 	else
 	{
@@ -153,27 +154,11 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 	Rect playerRect = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
 	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
-	if (playerRect.intersectsRect(ballRect))
-	{
+	if (playerRect.intersectsRect(ballRect)){
 		player->PlayerHit();
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 		_ballManager->DestroyBall(ballIndex);
-		Player* otherPlayer = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
-		otherPlayer->addScore(10);
-
-		SeeSaw(otherPlayer, player);
-
-		// win/lose check
-		int leftScore, rightScore;
-		leftScore = _leftPlayer->getScore();
-		rightScore = _rightPlayer->getScore();
-		int deltaScore = abs(leftScore - rightScore);
-
-		if (deltaScore >= 100)
-			return true;
-		else
-			return false;
-
+	return true;
 	}
 	else
 		return false;
@@ -182,8 +167,6 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex)
 {
 	Rect targetRect;
-	//targetRect = _targets[targetIndex]->getChildByName("common_Sprite")->getBoundingBox();
-	//targetRect = _targets[targetIndex]->getChildren().at(0)->getChildByName("common_Sprite")->getBoundingBox();
 	targetRect = _targets[targetIndex]->GetCollision();
 	targetRect.origin = _targets[targetIndex]->convertToWorldSpace(targetRect.origin);
 
@@ -194,7 +177,7 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 	if (ballRect.intersectsRect(targetRect))
 	{
 		int score;
-		score = _targets[targetIndex]->GetScarcity() ? 5 : 20;
+		score = _targets[targetIndex]->GetScarcity() ? 20 : 5;
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 
 		// Get the ball's owner
@@ -202,7 +185,7 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 		// Get the opposition
 		Player* playerLose = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
 
-		SeeSaw(playerWin, playerLose);
+		SeeSaw(playerWin, playerLose, _targets[targetIndex]->GetScarcity());
 
 		playerWin->addScore(score);
 		_ballManager->DestroyBall(ballIndex);
@@ -230,10 +213,16 @@ void Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
 	}
 }
 
-void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer)
+void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amount)
 {
 	float time = 0.1;
-	Vec2 dPos = Vec2(0, 18);
+	Vec2 dPos;
+
+	if (amount)
+		dPos = Vec2(0, 18);
+	else
+		dPos = Vec2(0, 9);
+
 	winningPlayer->runAction(MoveBy::create(time, dPos));
 	loosingPlayer->runAction(MoveBy::create(time, -dPos));
 }

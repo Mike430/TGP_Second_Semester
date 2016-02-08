@@ -12,10 +12,10 @@ class Target : public Node
 {
 private:
 	// Positioning
-	const int _minX = 400.0f;
-	const int _maxX = 500.0f;
+	const int _minX = 300.0f;
+	const int _maxX = 650.0f;// <-look into this, apparently the screen is only 1000 wide but we KNOW it's 1280
 	const int _minY = 100.0f;
-	const int _maxY = 200.0f;
+	const int _maxY = 500.0f;
 
 	// Timing (Time in miliseconds)
 	const int _maxTimeVisible = 4000;

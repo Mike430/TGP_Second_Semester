@@ -23,7 +23,7 @@ using namespace cocos2d;
 class Game_Scene : public cocos2d::Layer
 {
 private:
-	static const int _numbOfTargets = 1;
+	static const int _numbOfTargets = 5;
 	cocos2d::Node* _rootNode;
 	//Cocos2d UI
 	//Button* _endButton;
@@ -47,7 +47,7 @@ private:
 	bool TestCollisionWithPlayer(Ball* ball, int ballIndex);
 	bool TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex);
 	void TestIfBallIsOut(Ball* ball, int ballIndex);
-	void SeeSaw(Player* winningPlayer, Player* loosingPlayer);
+	void SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amount);
 	void EndGame(int player1Score, int player2Score);
 public:
 	// Initialisers
