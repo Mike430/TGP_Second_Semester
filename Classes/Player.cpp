@@ -25,11 +25,14 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 	addChild(_rootNode);
 
 	_swingButton = _rootNode->getChildByName<Button*>("Fire_Button");
+	// we do not want it but we might bring it back uder a different name, like use super powerful power of awesome button
+	_swingButton->setVisible(false);
+
 	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
 	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
 	_dazedSPR->setVisible(false);
 
-	_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
+	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 
 	_ballManager = ballManager;
 	_ballDispencer = ballDispencer;
@@ -50,22 +53,36 @@ void Player::update(float deltaTime)
 		if (_timeOut >= _recoveryTime)
 		{
 			_dazedState = false;
-			_swingButton->setVisible(true);
+			//_swingButton->setVisible(true);
 			_normalSPR->setVisible(true);
 			_dazedSPR->setVisible(false);
 		}
 	}
 }
 
-void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+/*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (!_dazedState)
 	{
 		if (type == ui::Widget::TouchEventType::BEGAN)
 		{
-			for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+			//Do super awesome undefined thing here future us
+		}
+	}
+}*/
+
+void Player::SwingBat()
+{
+	if (!_dazedState)
+	{
+		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+		{
+			Ball& ball = *_ballManager->GetBallAtIndex(i);
+
+			// don't test if ball belongs to other player
+			// not enough balls to justify it.
+			if (!ball.IsContained())
 			{
-				Ball& ball = *_ballManager->GetBallAtIndex(i);
 				Vec2 ppos = this->convertToWorldSpace(Vec2());
 				Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
 				Vec2 toBall = bpos - ppos;
@@ -84,11 +101,11 @@ void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType
 	}
 }
 
-void Player::PlayerHit()
+void Player::PlayerHitByBall()
 {
 	_timeOut = 0.0f;
 	_dazedState = true;
-	_swingButton->setVisible(false);
+	//_swingButton->setVisible(false);
 	_normalSPR->setVisible(false);
 	_dazedSPR->setVisible(true);
 }

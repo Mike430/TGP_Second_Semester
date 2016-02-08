@@ -26,12 +26,14 @@ private:
 	const float _recoveryTime = 0.5f;
 	float _timeOut;
 
-	void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+	//void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+	
 public:
 	virtual bool init(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer);
 	static Player* create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer);
 	void update(float deltaTime);
-	void PlayerHit();
+	void SwingBat();
+	void PlayerHitByBall();
 	void addScore(int points);
 	int getScore();
 };

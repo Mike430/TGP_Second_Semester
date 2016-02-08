@@ -75,6 +75,8 @@ bool Game_Scene::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(Game_Scene::onTouchMoved, this);
 	touchListener->onTouchCancelled = CC_CALLBACK_2(Game_Scene::onTouchCancelled, this);
 
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
 	for (int i = 0; i < _numbOfTargets; i++)
 	{
 		_targets[i] = Target::create();
@@ -155,7 +157,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
 	if (playerRect.intersectsRect(ballRect)){
-		player->PlayerHit();
+		player->PlayerHitByBall();
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 		_ballManager->GetBallAtIndex(ballIndex)->SetCollidable(false);
 		//_ballManager->DestroyBall(ballIndex);
@@ -245,6 +247,11 @@ void Game_Scene::EndGame(int player1Score, int player2Score)
 
 bool Game_Scene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	if (touch->getLocation().x > (_windowSize.x / 2))
+		_rightPlayer->SwingBat();
+	else
+		_leftPlayer->SwingBat();
+
 	return true;
 }
 
