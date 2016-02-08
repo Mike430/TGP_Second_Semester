@@ -66,6 +66,8 @@ public:
 	//==============================================================================
 	void update(float deltaTime);
 
+	void Hit();
+
 	// Callbacks
 	//==============================================================================
 	//void EndButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);

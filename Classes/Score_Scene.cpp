@@ -47,8 +47,20 @@ void Score_Scene::setScores(int leftScore, int rightScore)
 	_leftScore = leftScore;
 	_rightScore = rightScore;
 	bool leftWon = _leftScore > _rightScore;
-	_rootNode->getChildByName<Text*>("Text_Element_1")->setText("Player 1 Score: " + StringUtils::format("%d", _leftScore) + "\n" + (leftWon ? "WINNER" : ""));
-	_rootNode->getChildByName<Text*>("Text_Element_2")->setText("Player 2 Score: " + StringUtils::format("%d", _rightScore) + "\n" + (!leftWon ? "WINNER" : ""));
+	string playerOneWinState;
+	string playerTwoWinState;
+
+	if (leftWon){
+		playerOneWinState = "WINNER";
+		playerTwoWinState = "LOOSER";
+	}
+	else{
+		playerOneWinState = "LOOSER";
+		playerTwoWinState = "WINNER";
+	}
+
+	_rootNode->getChildByName<Text*>("Text_Element_1")->setText("Player 1 Score: " + StringUtils::format("%d", _leftScore) + "\n" + playerOneWinState);
+	_rootNode->getChildByName<Text*>("Text_Element_2")->setText("Player 2 Score: " + StringUtils::format("%d", _rightScore) + "\n" + playerTwoWinState);
 }
 
 void Score_Scene::update(float deltaTime)
