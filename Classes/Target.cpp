@@ -2,12 +2,12 @@
 
 // Initialisers
 //==============================================================================
-Target* Target::create()
-{
-	Target* newTarget = new Target();
-	newTarget->init();
-	return newTarget;
-}
+//Target* Target::create()
+//{
+//	Target* newTarget = new Target();
+//	newTarget->init();
+//	return newTarget;
+//}
 
 bool Target::init()
 {

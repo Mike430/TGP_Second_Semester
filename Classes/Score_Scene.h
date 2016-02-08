@@ -19,6 +19,10 @@ private:
 	cocos2d::Node* _rootNode;
 	cocos2d::ui::Button* _playAgainButton;
 	cocos2d::ui::Button* _mainMenuButton;
+
+	cocos2d::ui::Text* player1Text;
+	cocos2d::ui::Text* player2Text;
+
 	int _leftScore, _rightScore;
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer

@@ -35,14 +35,14 @@ bool Game_Scene::init()
 	_leftDispencer = BallDispencer::create();
 	_leftDispencer->Setup(false, 320, 725, _ballManager);
 	_rootNode->addChild(_leftDispencer);
-	_leftDispencer->setZOrder(1);
+	_leftDispencer->setLocalZOrder(1);
 	for (int i = 0; i < 15; i++) _leftDispencer->AddBall();
 	_ballDispencers.push_back(_leftDispencer);
 
 	_rightDispencer = BallDispencer::create();
 	_rightDispencer->Setup(true, 960, 725, _ballManager);
 	_rootNode->addChild(_rightDispencer);
-	_rightDispencer->setZOrder(1);
+	_rightDispencer->setLocalZOrder(1);
 	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
 	_ballDispencers.push_back(_rightDispencer);
 
@@ -78,7 +78,7 @@ bool Game_Scene::init()
 	for (int i = 0; i < _numbOfTargets; i++)
 	{
 		_targets[i] = Target::create();
-		_targets[i]->setZOrder(3);
+		_targets[i]->setLocalZOrder(3);
 		_rootNode->addChild(_targets[i]);
 	}
 

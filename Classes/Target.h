@@ -38,10 +38,11 @@ private:
 	void SetNextPosition();
 	void ResetTarget();
 public:
-	static Target* create();
-	bool init();
+	//static Target* create();
+	CREATE_FUNC(Target);
+	virtual bool init();
 
-	void update(float deltaTime);
+	virtual void update(float deltaTime);
 	void Hit();
 
 	bool GetActive() const { return _active; }
