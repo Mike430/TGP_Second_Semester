@@ -52,10 +52,10 @@ void Score_Scene::setScores(int leftScore, int rightScore)
 
 	if (leftWon){
 		playerOneWinState = "WINNER";
-		playerTwoWinState = "LOOSER";
+		playerTwoWinState = "";
 	}
 	else{
-		playerOneWinState = "LOOSER";
+		playerOneWinState = "";
 		playerTwoWinState = "WINNER";
 	}
 
