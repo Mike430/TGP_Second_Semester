@@ -111,15 +111,32 @@ void Game_Scene::update(float deltaTime)
 
 			if (!ball->IsContained() && ball->IsCollidable())
 			{
-				TestIfBallIsOut(ball, i);
+				if (TestIfBallIsOut(ball, i))
+				{
+					break;
+				}
 
+				bool targetCollision = false;
 				for (int j = 0; j < _numbOfTargets; j++)
 				{
 					if (_targets[j]->GetActive())
-						TestCollisionWithTargets(ball, i, j);
+					{
+						if (TestCollisionWithTargets(ball, i, j))
+						{
+							targetCollision = true;
+							break;
+						}
+					}
+				}
+				if (targetCollision)
+				{
+					break;
 				}
 
-				TestCollisionWithPlayer(ball, i);
+				if (TestCollisionWithPlayer(ball, i))
+				{
+					break;
+				}
 			}
 		}
 		// win/lose check
@@ -161,10 +178,9 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 		_ballManager->GetBallAtIndex(ballIndex)->SetCollidable(false);
 		//_ballManager->DestroyBall(ballIndex);
-	return true;
+		return true;
 	}
-	else
-		return false;
+	return false;
 }
 
 bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex)
@@ -180,7 +196,7 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 	if (ballRect.intersectsRect(targetRect))
 	{
 		int score;
-		score = _targets[targetIndex]->GetScarcity() ? 20 : 5;
+		score = _targets[targetIndex]->GetScarcity() ? 20 : 5;//target could return how many points its worth
 		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
 
 		// Get the ball's owner
@@ -194,12 +210,13 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 		_ballManager->DestroyBall(ballIndex);
 		_targets[targetIndex]->Hit();
 
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
-void Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
+bool Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
 {
 	if ((ball->getPositionX() > _windowSize.x ||
 		ball->getPositionX() < 0 ||
@@ -213,7 +230,9 @@ void Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
 
 		bool temp = !ball->GetLeftOrRight();
 		_ballManager->DestroyBall(ballIndex);
+		return true;
 	}
+	return false;
 }
 
 void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amount)
