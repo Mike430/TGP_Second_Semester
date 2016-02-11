@@ -109,33 +109,36 @@ void Game_Scene::update(float deltaTime)
 		{
 			Ball* ball = _ballManager->GetBallAtIndex(i);
 
-			if (!ball->IsContained() && ball->IsCollidable())
+			if (!ball->IsContained())
 			{
-				if (TestIfBallIsOut(ball, i))
+				if (TestIfBallIsOut(ball))
 				{
 					break;
 				}
 
-				bool targetCollision = false;
-				for (int j = 0; j < _numbOfTargets; j++)
+				if (ball->IsCollidable())
 				{
-					if (_targets[j]->GetActive())
+					bool targetCollision = false;
+					for (Target* target : _targets)
 					{
-						if (TestCollisionWithTargets(ball, i, j))
+						if (target->GetActive())
 						{
-							targetCollision = true;
-							break;
+							if (TestCollisionWithTarget(ball, target))
+							{
+								targetCollision = true;
+								break;
+							}
 						}
 					}
-				}
-				if (targetCollision)
-				{
-					break;
-				}
+					if (targetCollision)
+					{
+						break;
+					}
 
-				if (TestCollisionWithPlayer(ball, i))
-				{
-					break;
+					if (TestCollisionWithPlayer(ball))
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -160,7 +163,7 @@ void Game_Scene::update(float deltaTime)
 	}
 }
 
-bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
+bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 {
 	// make a hit box to represent the ball
 	Rect ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
@@ -175,19 +178,17 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball, int ballIndex)
 
 	if (playerRect.intersectsRect(ballRect)){
 		player->PlayerHitByBall();
-		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
-		_ballManager->GetBallAtIndex(ballIndex)->SetCollidable(false);
-		//_ballManager->DestroyBall(ballIndex);
+		ball->SetCollidable(false);
 		return true;
 	}
 	return false;
 }
 
-bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex)
+bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 {
 	Rect targetRect;
-	targetRect = _targets[targetIndex]->GetCollision();
-	targetRect.origin = _targets[targetIndex]->convertToWorldSpace(targetRect.origin);
+	targetRect = target->GetCollision();
+	targetRect.origin = target->convertToWorldSpace(targetRect.origin);
 
 	Rect ballRect;
 	ballRect = ball->getChildren().at(0)->getChildByName("Sprite_1")->getBoundingBox();
@@ -195,20 +196,19 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 
 	if (ballRect.intersectsRect(targetRect))
 	{
-		int score;
-		score = _targets[targetIndex]->GetScarcity() ? 20 : 5;//target could return how many points its worth
-		ball->GetLeftOrRight() ? _rightDispencer->DropBall() : _leftDispencer->DropBall();
+		int score = target->GetScarcity() ? 20 : 5;//target could return how many points its worth
 
 		// Get the ball's owner
 		Player* playerWin = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
 		// Get the opposition
 		Player* playerLose = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
 
-		SeeSaw(playerWin, playerLose, _targets[targetIndex]->GetScarcity());
-
+		SeeSaw(playerWin, playerLose, target->GetScarcity());
 		playerWin->addScore(score);
-		_ballManager->DestroyBall(ballIndex);
-		_targets[targetIndex]->Hit();
+
+		DestroyAndDropBall(ball);
+
+		target->Hit();
 
 		return true;
 	}
@@ -216,20 +216,14 @@ bool Game_Scene::TestCollisionWithTargets(Ball* ball, int ballIndex, int targetI
 	return false;
 }
 
-bool Game_Scene::TestIfBallIsOut(Ball* ball, int ballIndex)
+bool Game_Scene::TestIfBallIsOut(Ball* ball)
 {
-	if ((ball->getPositionX() > _windowSize.x ||
-		ball->getPositionX() < 0 ||
-		ball->getPositionY() > _windowSize.y ||
-		ball->getPositionY() < 0) && !ball->IsContained())
+	if ((ball->getPositionX() > _windowSize.x
+		|| ball->getPositionX() < 0
+		|| ball->getPositionY() > _windowSize.y
+		|| ball->getPositionY() < 0))
 	{
-		if (ball->GetLeftOrRight())
-			_rightDispencer->DropBall();
-		else
-			_leftDispencer->DropBall();
-
-		bool temp = !ball->GetLeftOrRight();
-		_ballManager->DestroyBall(ballIndex);
+		DestroyAndDropBall(ball);
 		return true;
 	}
 	return false;
@@ -247,6 +241,12 @@ void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amoun
 
 	winningPlayer->runAction(MoveBy::create(time, dPos));
 	loosingPlayer->runAction(MoveBy::create(time, -dPos));
+}
+
+void Game_Scene::DestroyAndDropBall(Ball* ball)
+{
+	(ball->GetLeftOrRight() ? _rightDispencer : _leftDispencer)->DropBall();
+	_ballManager->DestroyBall(ball);
 }
 
 void Game_Scene::EndGame(int player1Score, int player2Score)

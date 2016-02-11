@@ -20,6 +20,7 @@ public:
 
 	Ball* CreateBall(cocos2d::Node* parent);
 	void DestroyBall(int index);
+	void DestroyBall(Ball* ball);
 	int GetNumberOfBalls() const { return _balls.size(); };
 	Ball* GetBallAtIndex(int index) const { return _balls.at(index); }
 };

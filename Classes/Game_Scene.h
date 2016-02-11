@@ -44,10 +44,11 @@ private:
 	float _countDown;
 	bool _paused;
 
-	bool TestCollisionWithPlayer(Ball* ball, int ballIndex);
-	bool TestCollisionWithTargets(Ball* ball, int ballIndex, int targetIndex);
-	bool TestIfBallIsOut(Ball* ball, int ballIndex);
+	bool TestCollisionWithPlayer(Ball* ball);
+	bool TestCollisionWithTarget(Ball* ball, Target* target);
+	bool TestIfBallIsOut(Ball* ball);
 	void SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amount);
+	void DestroyAndDropBall(Ball* ball);
 	void EndGame(int player1Score, int player2Score);
 public:
 	// Initialisers
