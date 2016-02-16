@@ -1,7 +1,5 @@
 #include "Ball.h"
 
-bool Ball::zeroG = false;
-
 Ball* Ball::create()
 {
 	Ball* newBall = new Ball();

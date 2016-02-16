@@ -6,6 +6,7 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "Ball.h"
+#include "ZeroGravityBall.h"
 #include <vector>
 
 using namespace std;
