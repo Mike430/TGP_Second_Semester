@@ -29,7 +29,8 @@ protected:
 public:
 	virtual bool init();
 	static Ball* create();
-	virtual void Setup(Vec2 startPoint, Vec2 next, bool onRIght);
+	virtual void Setup(Vec2 startPoint, Vec2 next, bool onRight);
+	virtual ~Ball();
 
 	// Dispencer Methods
 	int GetWayPointIndex() const { return _wayPointIndex; }
@@ -46,7 +47,7 @@ public:
 	bool IsCollidable() const { return _collidable; }
 	void SetCollidable(bool state) { _collidable = state; }
 
-	void update(float deltaTime);
+	virtual void update(float deltaTime);
 	virtual void InGameUpdate(float deltaTime);
 	virtual void InDispencerUpdate(float deltaTime);
 };
