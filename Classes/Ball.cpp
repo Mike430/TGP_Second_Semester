@@ -1,11 +1,17 @@
 #include "Ball.h"
 
+bool Ball::zeroG = false;
 
 Ball* Ball::create()
 {
 	Ball* newBall = new Ball();
 	newBall->init();
 	return newBall;
+}
+
+Ball::~Ball()
+{
+
 }
 
 bool Ball::init()
