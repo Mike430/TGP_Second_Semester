@@ -39,7 +39,7 @@ public:
 
 	// Game Methods
 	float GravityEffect(float position, float deltaTime);
-	void Hit(Vec2 velocity);
+	virtual void Hit(Vec2 velocity);
 	bool IsOnRight() const { return _onRight; }
 
 	//general
