@@ -17,13 +17,13 @@ bool Ball::init()
 
 	this->_rootNode = cocos2d::CSLoader::createNode("Ball.csb");
 	this->addChild(_rootNode);
-	_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
+	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 	this->scheduleUpdate();
 
 	return true;
 }
 
-void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
+void Ball::Setup(Vec2 startPoint, Vec2 next, bool onRight)
 {
 	setPosition(startPoint);
 
@@ -33,40 +33,34 @@ void Ball::Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight)
 	_advancing = false;
 	_contained = true;
 	_collidable = true;
-	_leftOrRight = leftOrRight;
+	_onRight = onRight;
 
 	// Gameplay Variables
-	_inflect = 20.0f;
-	_yVector = 0.0f;
-	_xVector = 0.0f;
+	_velocity = Vec2(0, 0);
 	_terminalVel = -3000.0f;
-	_gravity = gravity;
+	_gravity = 15 * 60;//was 15 per frame at ~60fps, now framerate independant
 }
 
 // Gameplay Methods
 float Ball::GravityEffect(float position, float deltaTime)
 {
-	
-	if (_yVector > _terminalVel)// if ball is above terminal velocity
+	_velocity.y -= _gravity * deltaTime;
+	if (_velocity.y < _terminalVel)
 	{
-		_yVector -= _gravity;
+		_velocity.y = _terminalVel;
 	}
-	else
-		_yVector = _terminalVel;
+	float newYVector = _velocity.y * deltaTime;//adjust to framerate
 
-	float newYVector = _yVector * deltaTime;//adjust to framerate
-
-	return position += newYVector;
+	return position + newYVector;
 }
 
 void Ball::Hit(Vec2 velocity)
 {
 	if (_contained) return;
-	_xVector = velocity.x;
-	_yVector = velocity.y;
-	if (_leftOrRight)
+	_velocity = velocity;
+	if (_onRight)
 	{
-		_xVector *= -1;
+		_velocity.x *= -1;
 	}
 }
 
@@ -81,34 +75,42 @@ void Ball::MoveToNext(Vec2 next, int wayPointIndex)
 void Ball::Drop()
 {
 	_contained = false;
-	_yVector = 0.0f;
-	_xVector = 0.0f;
+	_velocity = Vec2(0, 0);
 }
 
 void Ball::update(float deltaTime)
 {
 	if (!_contained)// not in dispencer then gameplay logic
 	{
-		float yPos = getPositionY();
-		yPos = GravityEffect(yPos, deltaTime);
-		setPositionY(yPos);
-
-		float xPos = getPositionX();
-		xPos += _xVector * deltaTime;
-		setPositionX(xPos);
+		InGameUpdate(deltaTime);
 	}
 	else
 	{
-		if (this->getPosition() != _dispencerPosition && !_advancing)
-		{
-			_advancing = true;
-			MoveTo* moveVec = MoveTo::create(0.25f, _dispencerPosition);
-			this->runAction(moveVec);
-		}
-		if (this->getPosition() == _dispencerPosition)
-		{
-			_advancing = false;
-		}
+		InDispencerUpdate(deltaTime);
 	}
 }
 
+void Ball::InGameUpdate(float deltaTime)
+{
+	float yPos = getPositionY();
+	yPos = GravityEffect(yPos, deltaTime);
+	setPositionY(yPos);
+
+	float xPos = getPositionX();
+	xPos += _velocity.x * deltaTime;
+	setPositionX(xPos);
+}
+
+void Ball::InDispencerUpdate(float deltaTime)
+{
+	if (this->getPosition() != _dispencerPosition && !_advancing)
+	{
+		_advancing = true;
+		MoveTo* moveVec = MoveTo::create(0.25f, _dispencerPosition);
+		this->runAction(moveVec);
+	}
+	if (this->getPosition() == _dispencerPosition)
+	{
+		_advancing = false;
+	}
+}

@@ -170,7 +170,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 	ballRect.origin = ball->convertToWorldSpace(ballRect.origin);
 
 	// Get the ball owner's opposing player
-	Player* player = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
+	Player* player = ball->IsOnRight() ? _leftPlayer : _rightPlayer;
 
 	// make a hit box to represent the opponent
 	Rect playerRect = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
@@ -199,9 +199,9 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		int score = target->GetScarcity() ? 20 : 5;//target could return how many points its worth
 
 		// Get the ball's owner
-		Player* playerWin = ball->GetLeftOrRight() ? _rightPlayer : _leftPlayer;
+		Player* playerWin = ball->IsOnRight() ? _rightPlayer : _leftPlayer;
 		// Get the opposition
-		Player* playerLose = ball->GetLeftOrRight() ? _leftPlayer : _rightPlayer;
+		Player* playerLose = ball->IsOnRight() ? _leftPlayer : _rightPlayer;
 
 		SeeSaw(playerWin, playerLose, target->GetScarcity());
 		playerWin->addScore(score);
@@ -245,7 +245,7 @@ void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amoun
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
 {
-	(ball->GetLeftOrRight() ? _rightDispencer : _leftDispencer)->DropBall();
+	(ball->IsOnRight() ? _rightDispencer : _leftDispencer)->DropBall();
 	_ballManager->DestroyBall(ball);
 }
 

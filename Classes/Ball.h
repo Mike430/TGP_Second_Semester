@@ -10,16 +10,6 @@ using namespace cocos2d;
 class Ball : public Node
 {
 private:
-	bool _leftOrRight;
-	float _inflect;
-	float _yVector;
-	float _xVector;
-	float _gravity;
-	float _terminalVel;
-
-	Node* _rootNode;
-	Sprite* _sprite;
-
 	//Variables for ball dispencer
 	int _wayPointIndex;
 	Vec2 _dispencerPosition;// position
@@ -28,10 +18,18 @@ private:
 
 	//Variables for gameplay
 	bool _collidable;
+protected:
+	bool _onRight;
+	Vec2 _velocity;
+	float _gravity;
+	float _terminalVel;
+
+	Node* _rootNode;
+	//Sprite* _sprite;
 public:
 	virtual bool init();
 	static Ball* create();
-	void Setup(Vec2 startPoint, float gravity, Vec2 next, bool leftOrRight);
+	virtual void Setup(Vec2 startPoint, Vec2 next, bool onRIght);
 
 	// Dispencer Methods
 	int GetWayPointIndex() const { return _wayPointIndex; }
@@ -41,7 +39,7 @@ public:
 	// Game Methods
 	float GravityEffect(float position, float deltaTime);
 	void Hit(Vec2 velocity);
-	bool GetLeftOrRight() const { return _leftOrRight; }
+	bool IsOnRight() const { return _onRight; }
 
 	//general
 	bool IsContained() const { return _contained; }
@@ -49,5 +47,7 @@ public:
 	void SetCollidable(bool state) { _collidable = state; }
 
 	void update(float deltaTime);
+	virtual void InGameUpdate(float deltaTime);
+	virtual void InDispencerUpdate(float deltaTime);
 };
 #endif // __BALL_H__
