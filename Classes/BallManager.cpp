@@ -12,8 +12,9 @@ BallManager::~BallManager()
 
 Ball* BallManager::CreateBall(cocos2d::Node* parent)
 {
-	Ball* asdf = ZeroGravityBall::createZeroGravity(); // <-- ?
-	Ball* newBall = (Ball*)asdf;
+	//Ball* zerogravityBall = ZeroGravityBall::createZeroGravity();
+	Ball* normalBall = Ball::create();
+	Ball* newBall = (Ball*)normalBall;
 	parent->addChild(newBall);
 	_balls.push_back(newBall);
 	return newBall;
