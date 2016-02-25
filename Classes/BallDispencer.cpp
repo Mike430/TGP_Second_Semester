@@ -96,13 +96,15 @@ void BallDispencer::DropBall()
 
 void BallDispencer::update(float deltaTime)
 {
-	/*_spawnTimer += deltaTime;
-
-	if (_spawnTimer >= 2)
+	if (Settings::dropRate != -1)
 	{
-		_spawnTimer = 0;
-		DropBall();
-	}*/
+		_spawnTimer += deltaTime;
+		if (_spawnTimer >= (1.0f / Settings::dropRate))
+		{
+			_spawnTimer = 0;
+			DropBall();
+		}
+	}
 }
 
 void BallDispencer::DisplayScore(int score)

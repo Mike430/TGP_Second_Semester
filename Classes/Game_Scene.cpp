@@ -245,7 +245,10 @@ void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amoun
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
 {
-	(ball->IsOnRight() ? _rightDispencer : _leftDispencer)->DropBall();
+	if (Settings::dropRate == -1)
+	{
+		(ball->IsOnRight() ? _rightDispencer : _leftDispencer)->DropBall();
+	}
 	_ballManager->DestroyBall(ball);
 }
 
