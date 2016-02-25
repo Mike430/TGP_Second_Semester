@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
+#include "Settings.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -18,10 +19,10 @@ private:
 	const int _maxY = 500.0f;
 
 	// Timing (Time in miliseconds)
-	const int _maxTimeVisible = 4000;
-	const int _minTimeVisible = 3000;
-	const int _maxTimeInvisible = 3000;
-	const int _minTimeInvisible = 500;
+	const int _maxTimeVisible = Settings::targetMaxTimeVisible;
+	const int _minTimeVisible = Settings::targetMinTimeVisible;
+	const int _maxTimeInvisible = Settings::targetMaxTimeInvisible;
+	const int _minTimeInvisible = Settings::targetMinTimeInvisible;
 	const int _range = 20, _rareProb = 18;
 	bool _active;
 	bool _commonOrRare;
