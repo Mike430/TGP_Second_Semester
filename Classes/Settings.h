@@ -9,6 +9,6 @@ namespace Settings
 	const int targetMaxTimeVisible = 4000;
 	const int targetMinTimeInvisible = 500;
 	const int targetMaxTimeInvisible = 3000;
-	const float targetSizeCommon = 0;
-	const float targetSizeRare = targetSizeCommon;
+	const float targetSizeCommon = 1.0f;
+	const float targetSizeRare = 0.5f;
 }

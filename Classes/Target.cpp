@@ -46,10 +46,7 @@ void Target::SetNextTimePeriod(bool visibleOrNot)
 
 void Target::SetNextState()
 {
-	int determiner;
-	determiner = rand() % _range + 0;
-
-	if (determiner >= _rareProb)
+	if (rand_0_1() < (18.0 / 20.0))
 		_commonOrRare = true;
 	else
 		_commonOrRare = false;
@@ -61,6 +58,7 @@ void Target::SetNextPosition()
 	nextPos.x = rand() % _maxX + _minX;
 	nextPos.y = rand() % _maxY + _minY;
 	this->setPosition(nextPos);
+	this->setScale(_commonOrRare ? Settings::targetSizeCommon : Settings::targetSizeRare);
 }
 
 void Target::ResetTarget()
@@ -90,7 +88,7 @@ void Target::update(float deltaTime)
 			_active = true;
 			SetNextTimePeriod(true);// Duration for being active
 
-			if (_commonOrRare)
+			if (!_commonOrRare)
 				_rareSPR->setVisible(true);
 			else
 				_commonSPR->setVisible(true);

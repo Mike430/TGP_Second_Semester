@@ -196,7 +196,7 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 
 	if (ballRect.intersectsRect(targetRect))
 	{
-		int score = target->GetScarcity() ? 20 : 5;//target could return how many points its worth
+		int score = target->GetScarcity() ? 5 : 20;//target could return how many points its worth
 
 		// Get the ball's owner
 		Player* playerWin = ball->IsOnRight() ? _rightPlayer : _leftPlayer;
@@ -235,9 +235,9 @@ void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amoun
 	Vec2 dPos;
 
 	if (amount)
-		dPos = Vec2(0, 18);
-	else
 		dPos = Vec2(0, 9);
+	else
+		dPos = Vec2(0, 18);
 
 	winningPlayer->runAction(MoveBy::create(time, dPos));
 	loosingPlayer->runAction(MoveBy::create(time, -dPos));
