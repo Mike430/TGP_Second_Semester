@@ -5,6 +5,7 @@
 //INCLUDES
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "Settings.h"
 using namespace cocos2d;
 
 class Ball : public Node
