@@ -83,6 +83,9 @@
     <ClInclude Include="..\Classes\Target.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Settings.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\ZeroGravityBall.h">
       <Filter>src</Filter>
     </ClInclude>

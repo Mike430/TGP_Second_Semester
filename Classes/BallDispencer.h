@@ -8,6 +8,7 @@
 #include "ui/CocosGUI.h"
 #include <string>
 #include "BallManager.h"
+#include "Settings.h"
 
 using namespace std;
 

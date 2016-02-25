@@ -42,7 +42,7 @@ void Ball::Setup(Vec2 startPoint, Vec2 next, bool onRight)
 	// Gameplay Variables
 	_velocity = Vec2(0, 0);
 	_terminalVel = -3000.0f;
-	_gravity = 15 * 60;//was 15 per frame at ~60fps, now framerate independant
+	_gravity = Settings::gravity;
 }
 
 // Gameplay Methods
