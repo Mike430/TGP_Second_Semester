@@ -48,6 +48,9 @@
     <ClCompile Include="..\Classes\ZeroGravityBall.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RocketBall.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -87,6 +90,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ZeroGravityBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RocketBall.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

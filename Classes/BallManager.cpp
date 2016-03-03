@@ -1,10 +1,8 @@
 #include "BallManager.h"
 
-
 BallManager::BallManager()
 {
 }
-
 
 BallManager::~BallManager()
 {
@@ -12,9 +10,16 @@ BallManager::~BallManager()
 
 Ball* BallManager::CreateBall(cocos2d::Node* parent)
 {
-	//Ball* zerogravityBall = ZeroGravityBall::createZeroGravity();
-	Ball* normalBall = Ball::create();
-	Ball* newBall = (Ball*)normalBall;
+	Ball* newBall;
+	float rnd = rand_0_1();
+	if (rnd < 0.8)
+	{
+		newBall = Ball::create();
+	}
+	else
+	{
+		newBall = RocketBall::create();
+	}
 	parent->addChild(newBall);
 	_balls.push_back(newBall);
 	return newBall;

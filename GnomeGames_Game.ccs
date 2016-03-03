@@ -14,6 +14,7 @@
           <Image Name="Render.png" />
           <Image Name="common.png" />
           <Image Name="rare.png" />
+          <Image Name="RocketBall.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -23,6 +24,7 @@
         <Project Name="PlayerLeft.csd" Type="Node" />
         <Project Name="PlayerRight.csd" Type="Node" />
         <Project Name="Target.csd" Type="Node" />
+        <Project Name="RocketBall.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
