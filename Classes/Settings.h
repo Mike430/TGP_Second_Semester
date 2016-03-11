@@ -14,8 +14,8 @@ namespace Settings
 	const float targetSizeCommon = 1.0f;
 	const float targetSizeRare = 0.5f;
 	//Players
-	const float playerMinY = 100;
+	const float playerMinY = 150;
 	const float playerMaxY = 500;
-	const float playerRelativeStartY = 0.5f;//amount between min and max
+	const float playerStartY = 300;
 	const float playerRelativeStartX = 530;//distance from centre of screen
 }

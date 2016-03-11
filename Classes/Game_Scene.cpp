@@ -49,7 +49,7 @@ bool Game_Scene::init()
 	// For all Players
 	const string path = "res/";
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
-	Vec2 playerStartPos = Vec2(centerX, MathUtil::lerp(Settings::playerMinY, Settings::playerMaxY, Settings::playerRelativeStartY));
+	Vec2 playerStartPos = Vec2(centerX, Settings::playerStartY);
 
 	// Left Player
 	_leftPlayer = Player::create(path + "PlayerLeft.csb", _ballManager, _leftDispencer);
@@ -142,13 +142,14 @@ void Game_Scene::update(float deltaTime)
 			}
 		}
 		// win/lose check
-		int leftScore, rightScore;
-		leftScore = _leftPlayer->getScore();
-		rightScore = _rightPlayer->getScore();
-		int deltaScore = abs(leftScore - rightScore);
-
-		if (deltaScore >= 100)
-			EndGame(leftScore, rightScore);
+		for (auto& player : _players)
+		{
+			if (player->getPositionY() < Settings::playerMinY || player->getPositionY() > Settings::playerMaxY)
+			{
+				EndGame(_leftPlayer->getScore(), _rightPlayer->getScore());
+				break;
+			}
+		}
 	}
 	else
 	{
