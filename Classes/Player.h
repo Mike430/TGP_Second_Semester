@@ -18,6 +18,9 @@ private:
 	Button* _swingButton;
 	Sprite* _normalSPR;
 	Sprite* _dazedSPR;
+	Vector<SpriteFrame*> _dummyFrames;
+	Animation* _dummyAnimation;
+	Animate* _dummyAnimate;
 
 	BallManager* _ballManager;
 	BallDispencer* _ballDispencer;

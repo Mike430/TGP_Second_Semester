@@ -25,6 +25,70 @@
         <Project Name="PlayerRight.csd" Type="Node" />
         <Project Name="Target.csd" Type="Node" />
         <Project Name="RocketBall.csd" Type="Node" />
+        <Folder Name="Animations">
+          <Folder Name="DummyAnimation">
+            <Image Name="0001.png" />
+            <Image Name="0002.png" />
+            <Image Name="0003.png" />
+            <Image Name="0004.png" />
+            <Image Name="0005.png" />
+            <Image Name="0006.png" />
+            <Image Name="0007.png" />
+            <Image Name="0008.png" />
+            <Image Name="0009.png" />
+            <Image Name="0010.png" />
+            <Image Name="0011.png" />
+            <Image Name="0012.png" />
+            <Image Name="0013.png" />
+            <Image Name="0014.png" />
+            <Image Name="0015.png" />
+            <Image Name="0016.png" />
+            <Image Name="0017.png" />
+            <Image Name="0018.png" />
+            <Image Name="0019.png" />
+            <Image Name="0020.png" />
+            <Image Name="0021.png" />
+            <Image Name="0022.png" />
+            <Image Name="0023.png" />
+            <Image Name="0024.png" />
+            <Image Name="0025.png" />
+            <Image Name="0026.png" />
+            <Image Name="0027.png" />
+            <Image Name="0028.png" />
+            <Image Name="0029.png" />
+            <Image Name="0030.png" />
+            <Image Name="0031.png" />
+            <Image Name="0032.png" />
+            <Image Name="0033.png" />
+            <Image Name="0034.png" />
+            <Image Name="0035.png" />
+            <Image Name="0036.png" />
+            <Image Name="0037.png" />
+            <Image Name="0038.png" />
+            <Image Name="0039.png" />
+            <Image Name="0040.png" />
+            <Image Name="0041.png" />
+            <Image Name="0042.png" />
+            <Image Name="0043.png" />
+            <Image Name="0044.png" />
+            <Image Name="0045.png" />
+            <Image Name="0046.png" />
+            <Image Name="0047.png" />
+            <Image Name="0048.png" />
+            <Image Name="0049.png" />
+            <Image Name="0050.png" />
+            <Image Name="0051.png" />
+            <Image Name="0052.png" />
+            <Image Name="0053.png" />
+            <Image Name="0054.png" />
+            <Image Name="0055.png" />
+            <Image Name="0056.png" />
+            <Image Name="0057.png" />
+            <Image Name="0058.png" />
+            <Image Name="0059.png" />
+            <Image Name="0060.png" />
+          </Folder>
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

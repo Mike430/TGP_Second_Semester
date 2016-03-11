@@ -38,6 +38,22 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 	_ballDispencer = ballDispencer;
 	_score = 0;
 	_dazedState = false;
+	//auto asdf1 = Sprite::create("res/Sprites/RocketBall.png");
+	auto asdf = Sprite::create("res/Animations/DummyAnimation/0001.png");
+	auto asdf2 = SpriteFrame::create("res/Animations/DummyAnimation/0001.png", Rect(0, 0, 200, 200));
+	_dummyFrames.reserve(60);
+	for (int i = 1; i <= 60; i++)
+	{
+		string index = to_string(i);
+		//pad with '0' to length of 4
+		string pad = string(4 - index.length(), '0');
+		string path = "res/Animations/DummyAnimation/";
+		string fileType = ".png";
+		string file = path + pad + index + fileType;
+		_dummyFrames.pushBack(SpriteFrame::create(file, Rect(0, 0, 200, 200)));
+	}
+	_dummyAnimation = Animation::createWithSpriteFrames(_dummyFrames, 1.0 / 60);
+	_dummyAnimate = Animate::create(_dummyAnimation);
 
 	this->scheduleUpdate();
 
@@ -55,6 +71,7 @@ void Player::update(float deltaTime)
 			_dazedState = false;
 			//_swingButton->setVisible(true);
 			_normalSPR->setVisible(true);
+			_normalSPR->runAction(_dummyAnimate);
 			_dazedSPR->setVisible(false);
 		}
 	}
