@@ -48,19 +48,18 @@ bool Game_Scene::init()
 
 	// For all Players
 	const string path = "res/";
-	const float y = 300;
 	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
-	const float relativeX = 530;
+	Vec2 playerStartPos = Vec2(centerX, MathUtil::lerp(Settings::playerMinY, Settings::playerMaxY, Settings::playerRelativeStartY));
 
 	// Left Player
 	_leftPlayer = Player::create(path + "PlayerLeft.csb", _ballManager, _leftDispencer);
-	_leftPlayer->setPosition(Vec2(centerX + relativeX * -1, y));
+	_leftPlayer->setPosition(playerStartPos - Vec2(Settings::playerRelativeStartX, 0));
 	_rootNode->addChild(_leftPlayer);
 	_players.push_back(_leftPlayer);
 
 	// Right Player
 	_rightPlayer = Player::create(path + "PlayerRight.csb", _ballManager, _rightDispencer);
-	_rightPlayer->setPosition(Vec2(centerX + relativeX * 1, y));
+	_rightPlayer->setPosition(playerStartPos + Vec2(Settings::playerRelativeStartX, 0));
 	_rootNode->addChild(_rightPlayer);
 	_players.push_back(_rightPlayer);
 
