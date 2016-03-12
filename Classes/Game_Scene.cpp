@@ -76,15 +76,10 @@ bool Game_Scene::init()
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	for (int i = 0; i < _numbOfTargets; i++)
-	{
-		_targets[i] = Target::create();
-		_targets[i]->setLocalZOrder(3);
-		_rootNode->addChild(_targets[i]);
-	}
-
 	_countDown = 3.0f;
 	_paused = false;
+
+	_targets.reserve(10);
 
 	// Calls the game loop
 	this->scheduleUpdate();
@@ -120,13 +115,10 @@ void Game_Scene::update(float deltaTime)
 					bool targetCollision = false;
 					for (Target* target : _targets)
 					{
-						if (target->GetActive())
+						if (TestCollisionWithTarget(ball, target))
 						{
-							if (TestCollisionWithTarget(ball, target))
-							{
-								targetCollision = true;
-								break;
-							}
+							targetCollision = true;
+							break;
 						}
 					}
 					if (targetCollision)
@@ -138,6 +130,36 @@ void Game_Scene::update(float deltaTime)
 					{
 						break;
 					}
+				}
+			}
+		}
+		// add targets
+		if (_targets.size() < 5)
+		{
+			if (rand_0_1() < 0.5 / 60.0)//about every couple seconds
+			{
+				//make a new target
+				if (rand_0_1() < 1.0 / 6.0 && false)
+				{
+					//make a fancy new target that does something
+				}
+				else
+				{
+					//make a normal target
+					bool common = rand_0_1() < 0.9;
+					int numRare = 0;
+					for (Target* target : _targets)
+					{
+						RareTarget* rare = dynamic_cast<RareTarget*>(target);
+						if (rare) numRare++;
+					}
+					if (numRare >= 2)
+					{
+						common = true;
+					}
+					Target* newTarget = (common ? (Target*)CommonTarget::create() : (Target*)RareTarget::create());
+					_targets.push_back(newTarget);
+					_rootNode->addChild(newTarget);
 				}
 			}
 		}
@@ -197,20 +219,22 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 
 	if (ballRect.intersectsRect(targetRect))
 	{
-		int score = target->GetScarcity() ? 5 : 20;//target could return how many points its worth
+		int score = target->GetScoreValue();
 
 		// Get the ball's owner
 		Player* playerWin = ball->IsOnRight() ? _rightPlayer : _leftPlayer;
 		// Get the opposition
 		Player* playerLose = ball->IsOnRight() ? _leftPlayer : _rightPlayer;
 
-		SeeSaw(playerWin, target->GetScarcity() ? 1 : 1);
-		SeeSaw(playerLose, target->GetScarcity() ? -1 : -1);
+		SeeSaw(playerWin, 1);
+		SeeSaw(playerLose, -1);
 		playerWin->addScore(score);
 
 		DestroyAndDropBall(ball);
 
-		target->Hit();
+		target->Hit(this);
+		_targets.erase(find(_targets.begin(), _targets.end(), target));
+		_rootNode->removeChild(target);
 
 		return true;
 	}

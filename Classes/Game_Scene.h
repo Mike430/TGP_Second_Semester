@@ -15,6 +15,8 @@
 #include "BallDispencer.h"
 #include "BallManager.h"
 #include "Target.h"
+#include "CommonTarget.h"
+#include "RareTarget.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -23,7 +25,6 @@ using namespace cocos2d;
 class Game_Scene : public cocos2d::Layer
 {
 private:
-	static const int _numbOfTargets = 5;
 	cocos2d::Node* _rootNode;
 	//Cocos2d UI
 	//Button* _endButton;
@@ -38,7 +39,7 @@ private:
 	vector<BallDispencer*> _ballDispencers;
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
-	Target* _targets[_numbOfTargets];
+	vector<Target*> _targets;
 
 	BallManager* _ballManager;
 	float _countDown;

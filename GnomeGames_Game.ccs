@@ -23,8 +23,9 @@
         <Project Name="Ball.csd" Type="Node" />
         <Project Name="PlayerLeft.csd" Type="Node" />
         <Project Name="PlayerRight.csd" Type="Node" />
-        <Project Name="Target.csd" Type="Node" />
         <Project Name="RocketBall.csd" Type="Node" />
+        <Project Name="CommonTarget.csd" Type="Node" />
+        <Project Name="RareTarget.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

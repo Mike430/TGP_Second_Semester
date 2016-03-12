@@ -5,49 +5,31 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Settings.h"
+class Game_Scene;
 
 using namespace std;
 using namespace cocos2d;
 
 class Target : public Node
 {
-private:
+protected:
 	// Positioning
 	const int _minX = 300.0f;
 	const int _maxX = 650.0f;// <-look into this, apparently the screen is only 1000 wide but we KNOW it's 1280
 	const int _minY = 100.0f;
 	const int _maxY = 500.0f;
 
-	// Timing (Time in miliseconds)
-	const int _maxTimeVisible = Settings::targetMaxTimeVisible;
-	const int _minTimeVisible = Settings::targetMinTimeVisible;
-	const int _maxTimeInvisible = Settings::targetMaxTimeInvisible;
-	const int _minTimeInvisible = Settings::targetMinTimeInvisible;
-	const int _range = 20, _rareProb = 18;
-	bool _active;
-	bool _commonOrRare;
-
-	float _timeTilChange;
-	float _currentTime;
-
 	Node* _rootNode;
-	Sprite* _commonSPR;
-	Sprite* _rareSPR;
-
-	void SetNextTimePeriod(bool visibleOrNot);
-	void SetNextState();
-	void SetNextPosition();
-	void ResetTarget();
+	Sprite* _sprite;
 public:
-	//static Target* create();
-	CREATE_FUNC(Target);
+	Target() {};
+	virtual ~Target() {};
 	virtual bool init();
 
 	virtual void update(float deltaTime);
-	void Hit();
+	virtual void Hit(Game_Scene* game) = 0;
+	virtual int GetScoreValue() const = 0;
 
-	bool GetActive() const { return _active; }
-	bool GetScarcity() const { return _commonOrRare; }
-	Rect GetCollision() const { return _commonSPR->getBoundingBox(); }
+	virtual Rect GetCollision() const;
 };
 #endif

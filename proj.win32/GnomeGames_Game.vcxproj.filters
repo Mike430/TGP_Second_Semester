@@ -51,6 +51,12 @@
     <ClCompile Include="..\Classes\RocketBall.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CommonTarget.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RareTarget.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -93,6 +99,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\RocketBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CommonTarget.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RareTarget.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
