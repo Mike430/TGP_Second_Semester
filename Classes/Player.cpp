@@ -71,7 +71,7 @@ void Player::update(float deltaTime)
 			_dazedState = false;
 			//_swingButton->setVisible(true);
 			_normalSPR->setVisible(true);
-			_normalSPR->runAction(_dummyAnimate);
+			//_normalSPR->runAction(_dummyAnimate);
 			_dazedSPR->setVisible(false);
 		}
 	}
