@@ -47,7 +47,7 @@ private:
 	bool TestCollisionWithPlayer(Ball* ball);
 	bool TestCollisionWithTarget(Ball* ball, Target* target);
 	bool TestIfBallIsOut(Ball* ball);
-	void SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amount);
+	void SeeSaw(Player* player, int amount);
 	void DestroyAndDropBall(Ball* ball);
 	void EndGame(int player1Score, int player2Score);
 public:

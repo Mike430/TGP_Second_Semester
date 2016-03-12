@@ -18,4 +18,5 @@ namespace Settings
 	const float playerMaxY = 500;
 	const float playerStartY = 300;
 	const float playerRelativeStartX = 530;//distance from centre of screen
+	const float playerSeeSawMoveDistance = 9;
 }

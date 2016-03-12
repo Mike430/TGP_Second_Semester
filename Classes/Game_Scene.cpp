@@ -178,6 +178,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 
 	if (playerRect.intersectsRect(ballRect)){
 		player->PlayerHitByBall();
+		SeeSaw(player, -1);
 		ball->SetCollidable(false);
 		return true;
 	}
@@ -203,7 +204,8 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		// Get the opposition
 		Player* playerLose = ball->IsOnRight() ? _leftPlayer : _rightPlayer;
 
-		SeeSaw(playerWin, playerLose, target->GetScarcity());
+		SeeSaw(playerWin, target->GetScarcity() ? 1 : 1);
+		SeeSaw(playerLose, target->GetScarcity() ? -1 : -1);
 		playerWin->addScore(score);
 
 		DestroyAndDropBall(ball);
@@ -229,18 +231,11 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 	return false;
 }
 
-void Game_Scene::SeeSaw(Player* winningPlayer, Player* loosingPlayer, bool amount)
+void Game_Scene::SeeSaw(Player* player, int amount)
 {
 	float time = 0.1;
-	Vec2 dPos;
-
-	if (amount)
-		dPos = Vec2(0, 9);
-	else
-		dPos = Vec2(0, 18);
-
-	winningPlayer->runAction(MoveBy::create(time, dPos));
-	loosingPlayer->runAction(MoveBy::create(time, -dPos));
+	Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
+	player->runAction(MoveBy::create(time, dPos));
 }
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
