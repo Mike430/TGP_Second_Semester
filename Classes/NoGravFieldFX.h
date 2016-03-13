@@ -4,17 +4,16 @@
 #include "ui/CocosGUI.h"
 #include "Settings.h"
 #include "Target.h"
-#include "BallManager.h"
 
 using namespace std;
 using namespace cocos2d;
 
-class RareTarget : public Target
+class NoGravFieldFX : public Target
 {
 public:
-	RareTarget() {};
-	virtual ~RareTarget() {};
-	CREATE_FUNC(RareTarget);
+	NoGravFieldFX() {};
+	virtual ~NoGravFieldFX() {};
+	CREATE_FUNC(NoGravFieldFX);
 	virtual bool init();
 	virtual void Hit(Game_Scene* game) override;
 	virtual int GetScoreValue() const override;

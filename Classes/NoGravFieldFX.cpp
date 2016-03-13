@@ -1,15 +1,15 @@
-#include "RareTarget.h"
+#include "NoGravFieldFX.h"
 #include "Game_Scene.h"
-#include "FieldFXManager.h"
+#include "ball.h"
 
-bool RareTarget::init()
+bool NoGravFieldFX::init()
 {
 	if (!Target::init())
 	{
 		return false;
 	}
 
-	this->_rootNode = cocos2d::CSLoader::createNode("RareTarget.csb");
+	this->_rootNode = cocos2d::CSLoader::createNode("ZeroGrav.csb");
 	this->addChild(_rootNode);
 
 	_sprite = (cocos2d::Sprite*)_rootNode->getChildByName("sprite");
@@ -17,7 +17,7 @@ bool RareTarget::init()
 	return true;
 }
 
-void RareTarget::Hit(Game_Scene* game)
+void NoGravFieldFX::Hit(Game_Scene* game)
 {
 
 	BallManager* balls = game->GetBallMngr();
@@ -25,11 +25,12 @@ void RareTarget::Hit(Game_Scene* game)
 
 	for (int i = 0; i < balls->GetNumberOfBalls(); i++)
 	{
-		 balls->GetBallAtIndex(i)->ZeroGravityField = true;
+		balls->GetBallAtIndex(i)->ZeroGravityField = true;
 	}
+
 }
 
-int RareTarget::GetScoreValue() const
+int NoGravFieldFX::GetScoreValue() const
 {
 	return 20;
 }

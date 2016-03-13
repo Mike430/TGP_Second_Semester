@@ -17,6 +17,7 @@
 #include "Target.h"
 #include "CommonTarget.h"
 #include "RareTarget.h"
+#include "NoGravFieldFX.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -42,7 +43,10 @@ private:
 	vector<Target*> _targets;
 
 	BallManager* _ballManager;
+
 	float _countDown;
+	float _ZeroGTimer = Settings::ZeroGravityFieldDuration;
+
 	bool _paused;
 
 	bool TestCollisionWithPlayer(Ball* ball);
@@ -52,6 +56,8 @@ private:
 	void DestroyAndDropBall(Ball* ball);
 	void EndGame(int player1Score, int player2Score);
 public:
+
+
 	// Initialisers
 	//==============================================================================
 	cocos2d::Scene* _nextScene;
@@ -63,6 +69,7 @@ public:
 	virtual bool init();
 	//Custom Methods
 	void BeginButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	BallManager* GetBallMngr() { return _ballManager; }
 
 	// Game Methods
 	//==============================================================================
