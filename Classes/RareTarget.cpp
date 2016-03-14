@@ -1,6 +1,6 @@
 #include "RareTarget.h"
 #include "Game_Scene.h"
-#include "FieldFXManager.h"
+
 
 bool RareTarget::init()
 {
@@ -20,13 +20,6 @@ bool RareTarget::init()
 void RareTarget::Hit(Game_Scene* game)
 {
 
-	BallManager* balls = game->GetBallMngr();
-
-
-	for (int i = 0; i < balls->GetNumberOfBalls(); i++)
-	{
-		 balls->GetBallAtIndex(i)->ZeroGravityField = true;
-	}
 }
 
 int RareTarget::GetScoreValue() const

@@ -17,4 +17,9 @@ namespace Settings
 	const float playerRelativeStartX = 530;//distance from centre of screen
 	const float playerSeeSawMoveDistance = 9;
 	const float ZeroGravityFieldDuration = 5;
+	const float HalfGravityFieldDuration = 10;
+	const float DoubleGravityFieldDuration = 15;
+
+	const float HalfGravityStrength = 0.8;  // _gravity = _gravity * Settings::HalfGravityStrength; <- how its calculated
+	const float DoubleGravityStrength = 2; // _gravity = _gravity * Settings::DoubleGravityStrength;
 }

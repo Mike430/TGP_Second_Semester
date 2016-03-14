@@ -72,6 +72,15 @@ void Ball::Hit(Vec2 velocity)
 	{
 		_gravity = 0;
 	}
+	if (HalfGravityField)
+	{
+		_gravity = _gravity * Settings::HalfGravityStrength;
+	}
+
+	if (DoubleGravityField)
+	{
+		_gravity = _gravity * Settings::DoubleGravityStrength;
+	}
 }
 
 // Dispencer methods

@@ -18,6 +18,8 @@
 #include "CommonTarget.h"
 #include "RareTarget.h"
 #include "NoGravFieldFX.h"
+#include "HalfGravFieldFX.h"
+#include "DoubleGravFieldFX.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -45,8 +47,11 @@ private:
 	BallManager* _ballManager;
 
 	float _countDown;
-	float _ZeroGTimer = Settings::ZeroGravityFieldDuration;
 
+	// timers for diffrent field effect so they can have diffrent duration
+	float _NoGravTimer = Settings::ZeroGravityFieldDuration;
+	float _HalfGravTimer = Settings::HalfGravityFieldDuration;
+	float _DoubleGravTimer = Settings::DoubleGravityFieldDuration;
 	bool _paused;
 
 	bool TestCollisionWithPlayer(Ball* ball);

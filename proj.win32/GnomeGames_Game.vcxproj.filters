@@ -60,6 +60,12 @@
     <ClCompile Include="..\Classes\NoGravFieldFX.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\HalfGravFieldFX.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DoubleGravFieldFX.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -111,6 +117,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\NoGravFieldFX.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HalfGravFieldFX.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DoubleGravFieldFX.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
