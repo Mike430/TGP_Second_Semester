@@ -57,6 +57,7 @@
     <ClCompile Include="..\Classes\RareTarget.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Invincibility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -107,6 +108,7 @@
     <ClInclude Include="..\Classes\RareTarget.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Invincibility.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

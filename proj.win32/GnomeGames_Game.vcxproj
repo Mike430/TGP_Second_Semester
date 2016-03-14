@@ -160,6 +160,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\Score_Scene.cpp" />
     <ClCompile Include="..\Classes\Target.cpp" />
     <ClCompile Include="..\Classes\ZeroGravityBall.cpp" />
+    <ClCompile Include="Invincibility.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\Settings.h" />
     <ClInclude Include="..\Classes\Target.h" />
     <ClInclude Include="..\Classes\ZeroGravityBall.h" />
+    <ClInclude Include="Invincibility.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
