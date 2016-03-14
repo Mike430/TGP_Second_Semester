@@ -43,6 +43,17 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Invincibility" ActionTag="2112699759" Tag="9" IconVisible="False" LeftMargin="353.0000" RightMargin="881.0000" TopMargin="208.0000" BottomMargin="546.0000" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="376.0000" Y="569.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2937" Y="0.7113" />
+            <PreSize X="0.0359" Y="0.0575" />
+            <FileData Type="Normal" Path="Invincibility.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

@@ -26,6 +26,7 @@
         <Project Name="RocketBall.csd" Type="Node" />
         <Project Name="CommonTarget.csd" Type="Node" />
         <Project Name="RareTarget.csd" Type="Node" />
+        <Image Name="Invincibility.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
