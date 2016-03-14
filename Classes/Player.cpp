@@ -38,6 +38,7 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 	_ballDispencer = ballDispencer;
 	_score = 0;
 	_dazedState = false;
+	_timeSinceHit = 100;//long time since last hit so dont immediately daze
 
 	this->scheduleUpdate();
 
@@ -47,10 +48,10 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 void Player::update(float deltaTime)
 {
 	_ballDispencer->DisplayScore(_score);
+	_timeSinceHit += deltaTime;
 	if (_dazedState)
 	{
-		_timeOut += deltaTime;
-		if (_timeOut >= _recoveryTime)
+		if (_timeSinceHit >= Settings::playerDazeRecoveryTime)
 		{
 			_dazedState = false;
 			//_swingButton->setVisible(true);
@@ -104,11 +105,14 @@ void Player::SwingBat()
 
 void Player::PlayerHitByBall()
 {
-	_timeOut = 0.0f;
-	_dazedState = true;
-	//_swingButton->setVisible(false);
-	_normalSPR->setVisible(false);
-	_dazedSPR->setVisible(true);
+	if (_timeSinceHit >= Settings::playerDazeInvincibilityTime)
+	{
+		_timeSinceHit = 0;
+		_dazedState = true;
+		//_swingButton->setVisible(false);
+		_normalSPR->setVisible(false);
+		_dazedSPR->setVisible(true);
+	}
 }
 
 void Player::addScore(int points)

@@ -16,4 +16,6 @@ namespace Settings
 	const float playerStartY = 300;
 	const float playerRelativeStartX = 530;//distance from centre of screen
 	const float playerSeeSawMoveDistance = 9;
+	const float playerDazeRecoveryTime = 0.5f;
+	const float playerDazeInvincibilityTime = 3.0f;
 }
