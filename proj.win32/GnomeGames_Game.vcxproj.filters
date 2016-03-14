@@ -57,7 +57,12 @@
     <ClCompile Include="..\Classes\RareTarget.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Invincibility.cpp" />
+    <ClCompile Include="..\Classes\Invincibility.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Double_Attack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -108,7 +113,12 @@
     <ClInclude Include="..\Classes\RareTarget.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Invincibility.h" />
+    <ClInclude Include="..\Classes\Invincibility.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Double_Attack.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
