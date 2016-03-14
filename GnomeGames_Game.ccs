@@ -16,7 +16,7 @@
           <Image Name="rare.png" />
           <Image Name="RocketBall.png" />
           <Image Name="Invincibility.png" />
-          <Image Name="Invincibility1.png" />
+          <Image Name="DoubleAttack.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -29,6 +29,7 @@
         <Project Name="CommonTarget.csd" Type="Node" />
         <Project Name="RareTarget.csd" Type="Node" />
         <Project Name="Invincibility.csd" Type="Node" />
+        <Project Name="DoubleAttack.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>
