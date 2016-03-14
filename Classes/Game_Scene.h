@@ -40,6 +40,7 @@ private:
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
 	vector<Target*> _targets;
+	float _targetSpawnTimer;
 
 	BallManager* _ballManager;
 	float _countDown;

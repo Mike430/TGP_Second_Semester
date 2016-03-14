@@ -80,6 +80,7 @@ bool Game_Scene::init()
 	_paused = false;
 
 	_targets.reserve(10);
+	_targetSpawnTimer = Settings::targetMinSpawnDelay;
 
 	// Calls the game loop
 	this->scheduleUpdate();
@@ -95,6 +96,45 @@ void Game_Scene::update(float deltaTime)
 {
 	//string textDisplay = "Score: " + to_string((int)(1337));
 	//_scoreLabel->setText(textDisplay);
+	// add targets outside start countdown check
+	_targetSpawnTimer -= deltaTime;
+	if (_targets.size() < 5)
+	{
+		if (_targetSpawnTimer <= 0)
+		{
+			if (_countDown > 0)//if game not started yet
+			{
+				_targetSpawnTimer = 0.5f;
+			}
+			else
+			{
+				_targetSpawnTimer = RandomHelper::random_real(Settings::targetMinSpawnDelay, Settings::targetMaxSpawnDelay);
+			}
+			//make a new target
+			if (rand_0_1() < 1.0 / 6.0 && false)
+			{
+				//make a fancy new target that does something
+			}
+			else
+			{
+				//make a normal target
+				bool common = rand_0_1() < 0.9;
+				int numRare = 0;
+				for (Target* target : _targets)
+				{
+					RareTarget* rare = dynamic_cast<RareTarget*>(target);
+					if (rare) numRare++;
+				}
+				if (numRare >= 2)
+				{
+					common = true;
+				}
+				Target* newTarget = (common ? (Target*)CommonTarget::create() : (Target*)RareTarget::create());
+				_targets.push_back(newTarget);
+				_rootNode->addChild(newTarget);
+			}
+		}
+	}
 
 	if (_countDown <= 0 && !_paused)
 	{
@@ -133,34 +173,14 @@ void Game_Scene::update(float deltaTime)
 				}
 			}
 		}
-		// add targets
-		if (_targets.size() < 5)
+		// remove targets
+		for (int i = 0; i < _targets.size(); i++)
 		{
-			if (rand_0_1() < 0.5 / 60.0)//about every couple seconds
+			if (_targets[i]->IsLifeTimeOver())
 			{
-				//make a new target
-				if (rand_0_1() < 1.0 / 6.0 && false)
-				{
-					//make a fancy new target that does something
-				}
-				else
-				{
-					//make a normal target
-					bool common = rand_0_1() < 0.9;
-					int numRare = 0;
-					for (Target* target : _targets)
-					{
-						RareTarget* rare = dynamic_cast<RareTarget*>(target);
-						if (rare) numRare++;
-					}
-					if (numRare >= 2)
-					{
-						common = true;
-					}
-					Target* newTarget = (common ? (Target*)CommonTarget::create() : (Target*)RareTarget::create());
-					_targets.push_back(newTarget);
-					_rootNode->addChild(newTarget);
-				}
+				_rootNode->removeChild(_targets[i]);
+				_targets.erase(_targets.begin() + i);
+				break;
 			}
 		}
 		// win/lose check

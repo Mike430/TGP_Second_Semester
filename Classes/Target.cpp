@@ -15,6 +15,8 @@ bool Target::init()
 	this->setPositionX(rand() % _maxX + _minX);
 	this->setPositionY(rand() % _maxY + _minY);
 
+	_lifeTime = Settings::targetLifeTime;
+
 	this->scheduleUpdate();
 
 	return true;
@@ -24,10 +26,15 @@ bool Target::init()
 //==============================================================================
 void Target::update(float deltaTime)
 {
-	
+	_lifeTime -= deltaTime;
 }
 
 Rect Target::GetCollision() const
 {
 	return _sprite->getBoundingBox();
+}
+
+bool Target::IsLifeTimeOver()
+{
+	return _lifeTime <= 0;
 }

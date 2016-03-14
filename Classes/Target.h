@@ -21,6 +21,8 @@ protected:
 
 	Node* _rootNode;
 	Sprite* _sprite;
+
+	float _lifeTime;
 public:
 	Target() {};
 	virtual ~Target() {};
@@ -29,7 +31,7 @@ public:
 	virtual void update(float deltaTime);
 	virtual void Hit(Game_Scene* game) = 0;
 	virtual int GetScoreValue() const = 0;
-
 	virtual Rect GetCollision() const;
+	bool IsLifeTimeOver();
 };
 #endif
