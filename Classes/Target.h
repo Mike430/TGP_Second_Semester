@@ -5,6 +5,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Settings.h"
+#include "Ball.h"
+
 class Game_Scene;
 
 using namespace std;
@@ -27,9 +29,13 @@ public:
 	virtual bool init();
 
 	virtual void update(float deltaTime);
-	virtual void Hit(Game_Scene* game) = 0;
-	virtual int GetScoreValue() const = 0;
 
+	// When a target gets hit, this decides what happens
+	// Game scene lets you access everything
+	// Ball lets you know which player hit the target
+	virtual void Hit(Game_Scene* game, Ball* ball) = 0; 
+
+	virtual int GetScoreValue() const = 0;
 	virtual Rect GetCollision() const;
 };
 #endif

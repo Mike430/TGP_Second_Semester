@@ -38,8 +38,10 @@
           <FilePathData Path="CommonTarget.csd" />
           <FilePathData Path="1_Game_Scene.csd" />
           <FilePathData Path="2_Score_Scene.csd" />
+          <FilePathData Path="Invincibility.csd" />
+          <FilePathData Path="RareTarget.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="2_Score_Scene.csd" />
+        <ActiveDocument Path="RareTarget.csd" />
       </Value>
     </Item>
   </Properties>

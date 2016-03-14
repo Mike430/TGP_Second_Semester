@@ -15,6 +15,6 @@ public:
 	virtual ~CommonTarget() {};
 	CREATE_FUNC(CommonTarget);
 	virtual bool init();
-	virtual void Hit(Game_Scene* game) override;
+	virtual void Hit(Game_Scene* game, Ball* ball) override;
 	virtual int GetScoreValue() const override;
 };

@@ -1,4 +1,5 @@
 #include "Game_Scene.h"
+#include "Invincibility.h"
 
 // Initialisers
 //==============================================================================
@@ -139,9 +140,11 @@ void Game_Scene::update(float deltaTime)
 			if (rand_0_1() < 0.5 / 60.0)//about every couple seconds
 			{
 				//make a new target
-				if (rand_0_1() < 1.0 / 6.0 && false)
+				if (rand_0_1() < 1.0 / 6.0)
 				{
-					//make a fancy new target that does something
+					Target* newTarget = Invincibility::create();
+					_targets.push_back(newTarget);
+					_rootNode->addChild(newTarget);
 				}
 				else
 				{
@@ -230,11 +233,11 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		SeeSaw(playerLose, -1);
 		playerWin->addScore(score);
 
-		DestroyAndDropBall(ball);
-
-		target->Hit(this);
+		target->Hit(this, ball);
 		_targets.erase(find(_targets.begin(), _targets.end(), target));
 		_rootNode->removeChild(target);
+
+		DestroyAndDropBall(ball);
 
 		return true;
 	}
@@ -257,7 +260,7 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 
 void Game_Scene::SeeSaw(Player* player, int amount)
 {
-	float time = 0.1;
+	float time = 0.1f;
 	Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
 	player->runAction(MoveBy::create(time, dPos));
 }

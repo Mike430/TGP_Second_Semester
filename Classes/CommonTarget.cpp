@@ -16,7 +16,7 @@ bool CommonTarget::init()
 	return true;
 }
 
-void CommonTarget::Hit(Game_Scene* game)
+void CommonTarget::Hit(Game_Scene* game, Ball* ball)
 {
 
 }
