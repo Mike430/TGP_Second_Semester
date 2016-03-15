@@ -69,9 +69,15 @@
     <ClCompile Include="..\Classes\Explosion.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="OilBall.cpp" />
-    <ClCompile Include="SubPowder.cpp" />
-    <ClCompile Include="WalletBall.cpp" />
+    <ClCompile Include="..\Classes\OilBall.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SubPowder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\WalletBall.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -131,9 +137,15 @@
     <ClInclude Include="..\Classes\Explosion.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="OilBall.h" />
-    <ClInclude Include="SubPowder.h" />
-    <ClInclude Include="WalletBall.h" />
+    <ClInclude Include="..\Classes\OilBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SubPowder.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WalletBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

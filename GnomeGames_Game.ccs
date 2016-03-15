@@ -38,6 +38,7 @@
         <Project Name="BombOther.csd" Type="Node" />
         <Image Name="OilBall.png" />
         <Image Name="otherBombBall.png" />
+        <Image Name="4PlayerDazed.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

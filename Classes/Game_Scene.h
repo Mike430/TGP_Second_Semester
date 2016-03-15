@@ -48,7 +48,7 @@ private:
 	bool TestCollisionWithPlayer(Ball* ball);
 	bool TestCollisionWithTarget(Ball* ball, Target* target);
 	bool TestIfBallIsOut(Ball* ball);
-	void SeeSaw(Player* player, int amount);
+	
 	
 	void EndGame(int player1Score, int player2Score);
 public:
@@ -71,6 +71,7 @@ public:
 	void Hit();
 
 	void DestroyAndDropBall(Ball* ball);
+	void SeeSaw(Player* player, int amount);
 	// Callbacks
 	//==============================================================================
 	//void EndButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);

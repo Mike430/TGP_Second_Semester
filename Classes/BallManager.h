@@ -11,6 +11,7 @@
 #include <vector>
 #include "BombBall.h"
 #include "PowderBall.h"
+#include "OilBall.h"
 
 using namespace std;
 

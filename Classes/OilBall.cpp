@@ -19,19 +19,14 @@ bool OilBall::init()
 		return false;
 	}
 
-	this->_rootNode = cocos2d::CSLoader::createNode("OilBall.csb");
+	this->_rootNode = cocos2d::CSLoader::createNode("Oil.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 
-	this->_type = 1;
+	this->_type = 10;
 	this->scheduleUpdate();
 
 	return true;
 }
 
-void OilBall::Hit(Vec2 velocity)
-{
-	Ball::Hit(velocity);
-	_gravity = 0;
-	_velocity = Vec2((_velocity.x > 0 ? 1 : -1) * Settings::horizontalSpeed, 0);
-}
+

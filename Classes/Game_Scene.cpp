@@ -199,7 +199,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
 	if (playerRect.intersectsRect(ballRect)){
-		player->PlayerHitByBall();
+		player->PlayerHitByBall(ball);
 		SeeSaw(player, -1);
 		ball->SetCollidable(false);
 		return true;

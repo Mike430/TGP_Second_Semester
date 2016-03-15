@@ -156,18 +156,18 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\GameManager.cpp" />
     <ClCompile Include="..\Classes\Game_Scene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\OilBall.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\PowderBall.cpp" />
     <ClCompile Include="..\Classes\RareTarget.cpp" />
     <ClCompile Include="..\Classes\RocketBall.cpp" />
     <ClCompile Include="..\Classes\Score_Scene.cpp" />
+    <ClCompile Include="..\Classes\SubPowder.cpp" />
     <ClCompile Include="..\Classes\Target.cpp" />
+    <ClCompile Include="..\Classes\WalletBall.cpp" />
     <ClCompile Include="..\Classes\ZeroGravityBall.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="OilBall.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="SubPowder.cpp" />
-    <ClCompile Include="WalletBall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -180,18 +180,18 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\GameManager.h" />
     <ClInclude Include="..\Classes\Game_Scene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\OilBall.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PowderBall.h" />
     <ClInclude Include="..\Classes\RareTarget.h" />
     <ClInclude Include="..\Classes\RocketBall.h" />
     <ClInclude Include="..\Classes\Score_Scene.h" />
     <ClInclude Include="..\Classes\Settings.h" />
+    <ClInclude Include="..\Classes\SubPowder.h" />
     <ClInclude Include="..\Classes\Target.h" />
+    <ClInclude Include="..\Classes\WalletBall.h" />
     <ClInclude Include="..\Classes\ZeroGravityBall.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="OilBall.h" />
-    <ClInclude Include="SubPowder.h" />
-    <ClInclude Include="WalletBall.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />

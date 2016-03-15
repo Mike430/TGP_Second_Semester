@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Game_Scene.h"
 
 Player* Player::create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer)
 {
@@ -30,6 +31,7 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 
 	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
 	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
+//	_vDazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_4");
 	_dazedSPR->setVisible(false);
 
 	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
@@ -46,16 +48,29 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 
 void Player::update(float deltaTime)
 {
+	
 	_ballDispencer->DisplayScore(_score);
 	if (_dazedState)
 	{
 		_timeOut += deltaTime;
-		if (_timeOut >= _recoveryTime)
+		if (_timeOut >= Settings::_recoveryTime)
 		{
 			_dazedState = false;
 			//_swingButton->setVisible(true);
 			_normalSPR->setVisible(true);
 			_dazedSPR->setVisible(false);
+		}
+	}
+	if (_veryDazed)
+	{
+		_timeOut += deltaTime;
+		if (_timeOut >= (Settings::_recoveryTime)*3)
+		{
+			_veryDazed = false;
+			//_swingButton->setVisible(true);
+			_normalSPR->setVisible(true);
+			_dazedSPR->setVisible(false);
+			//_vDazedSPR->setVisible(false);
 		}
 	}
 }
@@ -73,7 +88,7 @@ void Player::update(float deltaTime)
 
 void Player::SwingBat()
 {
-	if (!_dazedState)
+	if (!_dazedState&&!_veryDazed)
 	{
 		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
@@ -94,6 +109,8 @@ void Player::SwingBat()
 					{	
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
 						ball.Hit(emptySpace);
+						PlayerHitByBall(&ball);
+						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
 					}
 					else
 					{ 
@@ -110,13 +127,26 @@ void Player::SwingBat()
 	}
 }
 
-void Player::PlayerHitByBall()
+void Player::PlayerHitByBall(Ball* ball)
 {
 	_timeOut = 0.0f;
-	_dazedState = true;
+_normalSPR->setVisible(false);
+
+	if (ball->getType() == 10)
+	{
+		_veryDazed = true;
+	//	_vDazedSPR->setVisible(true);
+		_dazedSPR->setVisible(true);
+	}
+	else
+	{
+_dazedState = true;
+_dazedSPR->setVisible(true);
+	}
+	
 	//_swingButton->setVisible(false);
-	_normalSPR->setVisible(false);
-	_dazedSPR->setVisible(true);
+	
+	
 }
 
 void Player::addScore(int points)
