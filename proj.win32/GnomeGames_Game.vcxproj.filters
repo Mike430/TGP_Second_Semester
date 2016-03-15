@@ -78,6 +78,10 @@
     <ClCompile Include="..\Classes\WalletBall.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="BombOther.cpp" />
+    <ClCompile Include="..\Classes\PoundSign.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -144,6 +148,10 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\WalletBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="BombOther.h" />
+    <ClInclude Include="..\Classes\PoundSign.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

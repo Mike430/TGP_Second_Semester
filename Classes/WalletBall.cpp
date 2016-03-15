@@ -1,4 +1,5 @@
 #include "WalletBall.h"
+#include "Game_Scene.h"
 
 WalletBall* WalletBall::create()
 {
@@ -19,11 +20,11 @@ bool WalletBall::init()
 		return false;
 	}
 
-	this->_rootNode = cocos2d::CSLoader::createNode("WalletBall.csb");
+	this->_rootNode = cocos2d::CSLoader::createNode("Wallet.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 
-	this->_type = 1;
+	this->_type = 7;
 	this->scheduleUpdate();
 
 	return true;
@@ -31,7 +32,14 @@ bool WalletBall::init()
 
 void WalletBall::Hit(Vec2 velocity)
 {
-	Ball::Hit(velocity);
-	_gravity = 0;
-	_velocity = Vec2((_velocity.x > 0 ? 1 : -1) * Settings::horizontalSpeed, 0);
+	PoundSign* boomImage;
+
+	boomImage = PoundSign::create();
+
+	this->getParent()->addChild(boomImage);
+
+	boomImage->setPosition(this->getParent()->convertToWorldSpace(this->getPosition()));
+
+	((Game_Scene*)(this->getParent()->getParent()))->DestroyAndDropBall(this);
+
 }

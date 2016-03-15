@@ -39,6 +39,8 @@
         <Image Name="OilBall.png" />
         <Image Name="otherBombBall.png" />
         <Image Name="4PlayerDazed.png" />
+        <Project Name="PoundSign.csd" Type="Node" />
+        <Image Name="Pound.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

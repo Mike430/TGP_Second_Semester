@@ -12,6 +12,7 @@
 #include "BombBall.h"
 #include "PowderBall.h"
 #include "OilBall.h"
+#include "WalletBall.h"
 
 using namespace std;
 

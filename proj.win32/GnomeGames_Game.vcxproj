@@ -158,6 +158,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\OilBall.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
+    <ClCompile Include="..\Classes\PoundSign.cpp" />
     <ClCompile Include="..\Classes\PowderBall.cpp" />
     <ClCompile Include="..\Classes\RareTarget.cpp" />
     <ClCompile Include="..\Classes\RocketBall.cpp" />
@@ -166,6 +167,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\Target.cpp" />
     <ClCompile Include="..\Classes\WalletBall.cpp" />
     <ClCompile Include="..\Classes\ZeroGravityBall.cpp" />
+    <ClCompile Include="BombOther.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -182,6 +184,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\OilBall.h" />
     <ClInclude Include="..\Classes\Player.h" />
+    <ClInclude Include="..\Classes\PoundSign.h" />
     <ClInclude Include="..\Classes\PowderBall.h" />
     <ClInclude Include="..\Classes\RareTarget.h" />
     <ClInclude Include="..\Classes\RocketBall.h" />
@@ -191,6 +194,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\Target.h" />
     <ClInclude Include="..\Classes\WalletBall.h" />
     <ClInclude Include="..\Classes\ZeroGravityBall.h" />
+    <ClInclude Include="BombOther.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

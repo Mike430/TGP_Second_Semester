@@ -1,5 +1,7 @@
 #pragma once
 #include "Ball.h"
+#include "PoundSign.h"
+
 class WalletBall : public Ball
 {
 public:

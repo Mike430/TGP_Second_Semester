@@ -112,6 +112,12 @@ void Player::SwingBat()
 						PlayerHitByBall(&ball);
 						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
 					}
+					else if (ball.getType() == 7)
+					{
+						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+						ball.Hit(emptySpace);
+						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, Settings::playerSeeSawMoveDistance);
+					}
 					else
 					{ 
 						float difficulty = 0.1f; // 0=easy, 1=hard
