@@ -57,6 +57,21 @@
     <ClCompile Include="..\Classes\RareTarget.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BombBall.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PowderBall.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Explosion.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OilBall.cpp" />
+    <ClCompile Include="SubPowder.cpp" />
+    <ClCompile Include="WalletBall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -107,6 +122,18 @@
     <ClInclude Include="..\Classes\RareTarget.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\BombBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PowderBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Explosion.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OilBall.h" />
+    <ClInclude Include="SubPowder.h" />
+    <ClInclude Include="WalletBall.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

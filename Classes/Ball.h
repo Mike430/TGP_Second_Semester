@@ -16,7 +16,7 @@ private:
 	Vec2 _dispencerPosition;// position
 	bool _advancing;// stops tampering when advancing to next way point.
 	bool _contained;// if true, no gravity
-
+	
 	//Variables for gameplay
 	bool _collidable;
 protected:
@@ -24,6 +24,7 @@ protected:
 	Vec2 _velocity;
 	float _gravity;
 	float _terminalVel;
+	int _type;
 
 	Node* _rootNode;
 	//Sprite* _sprite;
@@ -47,6 +48,9 @@ public:
 	bool IsContained() const { return _contained; }
 	bool IsCollidable() const { return _collidable; }
 	void SetCollidable(bool state) { _collidable = state; }
+	
+	int getType();
+
 
 	virtual void update(float deltaTime);
 	virtual void InGameUpdate(float deltaTime);

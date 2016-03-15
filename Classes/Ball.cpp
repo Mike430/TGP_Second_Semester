@@ -18,7 +18,7 @@ bool Ball::init()
 	{
 		return false;
 	}
-
+	this->_type = 0;
 	this->_rootNode = cocos2d::CSLoader::createNode("Ball.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
@@ -117,4 +117,11 @@ void Ball::InDispencerUpdate(float deltaTime)
 	{
 		_advancing = false;
 	}
+
 }
+
+
+int Ball::getType()
+	{
+		return _type;
+	}

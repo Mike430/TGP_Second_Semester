@@ -1,25 +1,25 @@
-#include "RocketBall.h"
+#include "OilBall.h"
 
-RocketBall* RocketBall::create()
+OilBall* OilBall::create()
 {
-	RocketBall* ball = new RocketBall();
+	OilBall* ball = new OilBall();
 	ball->init();
 	return ball;
 }
 
-RocketBall::~RocketBall()
+OilBall::~OilBall()
 {
-	
+
 }
 
-bool RocketBall::init()
+bool OilBall::init()
 {
 	if (!Node::init())
 	{
 		return false;
 	}
 
-	this->_rootNode = cocos2d::CSLoader::createNode("RocketBall.csb");
+	this->_rootNode = cocos2d::CSLoader::createNode("OilBall.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 
@@ -29,7 +29,7 @@ bool RocketBall::init()
 	return true;
 }
 
-void RocketBall::Hit(Vec2 velocity)
+void OilBall::Hit(Vec2 velocity)
 {
 	Ball::Hit(velocity);
 	_gravity = 0;

@@ -1,25 +1,25 @@
-#include "RocketBall.h"
+#include "WalletBall.h"
 
-RocketBall* RocketBall::create()
+WalletBall* WalletBall::create()
 {
-	RocketBall* ball = new RocketBall();
+	WalletBall* ball = new WalletBall();
 	ball->init();
 	return ball;
 }
 
-RocketBall::~RocketBall()
+WalletBall::~WalletBall()
 {
-	
+
 }
 
-bool RocketBall::init()
+bool WalletBall::init()
 {
 	if (!Node::init())
 	{
 		return false;
 	}
 
-	this->_rootNode = cocos2d::CSLoader::createNode("RocketBall.csb");
+	this->_rootNode = cocos2d::CSLoader::createNode("WalletBall.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 
@@ -29,7 +29,7 @@ bool RocketBall::init()
 	return true;
 }
 
-void RocketBall::Hit(Vec2 velocity)
+void WalletBall::Hit(Vec2 velocity)
 {
 	Ball::Hit(velocity);
 	_gravity = 0;

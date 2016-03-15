@@ -12,13 +12,17 @@ Ball* BallManager::CreateBall(cocos2d::Node* parent)
 {
 	Ball* newBall;
 	float rnd = rand_0_1();
-	if (rnd < 0.8)
+	if (rnd > 0.95)
 	{
-		newBall = Ball::create();
+		newBall = RocketBall::create();
+	}
+	else if (rnd > 0.8 && rnd < 0.95)
+	{
+			newBall = Ball::create();
 	}
 	else
 	{
-		newBall = RocketBall::create();
+		newBall = BombBall::create();
 	}
 	parent->addChild(newBall);
 	_balls.push_back(newBall);

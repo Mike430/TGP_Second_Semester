@@ -15,6 +15,8 @@
           <Image Name="common.png" />
           <Image Name="rare.png" />
           <Image Name="RocketBall.png" />
+          <Image Name="bombBall.png" />
+          <Image Name="bombExplode.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -26,6 +28,16 @@
         <Project Name="RocketBall.csd" Type="Node" />
         <Project Name="CommonTarget.csd" Type="Node" />
         <Project Name="RareTarget.csd" Type="Node" />
+        <Project Name="Bomb.csd" Type="Node" />
+        <Project Name="Oil.csd" Type="Node" />
+        <Project Name="Explosion.csd" Type="Node" />
+        <Project Name="PowderBall.csd" Type="Node" />
+        <Image Name="PowderBall.png" />
+        <Project Name="Wallet.csd" Type="Node" />
+        <Image Name="Wallet.png" />
+        <Project Name="BombOther.csd" Type="Node" />
+        <Image Name="OilBall.png" />
+        <Image Name="otherBombBall.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

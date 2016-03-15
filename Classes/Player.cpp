@@ -90,12 +90,20 @@ void Player::SwingBat()
 				float r = 150;
 				if (toBall.length() < r)
 				{
-					float difficulty = 0.1f; // 0=easy, 1=hard
-					float dy = toBall.y / r; // -1 -> 1
-					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
-					dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
-					Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
-					ball.Hit(hitDir);
+					if (ball.getType() == 9)
+					{	
+						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+						ball.Hit(emptySpace);
+					}
+					else
+					{ 
+						float difficulty = 0.1f; // 0=easy, 1=hard
+						float dy = toBall.y / r; // -1 -> 1
+						dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
+						dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
+						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
+						ball.Hit(hitDir);
+					}
 				}
 			}
 		}
