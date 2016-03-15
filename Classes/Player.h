@@ -47,6 +47,8 @@ public:
 	void SetInvincible();
 	void SetDoubleAttack();
 
+	bool IsInvincible();
+
 	void addScore(int points);
 	int getScore();
 };

@@ -58,6 +58,23 @@ void Player::update(float deltaTime)
 			_dazedSPR->setVisible(false);
 		}
 	}
+	
+
+	// How long invincible lasts for
+
+	// If invincible is true
+	if (_invincible)
+	{
+		// How much time has passed is added to invincibleTime
+		_invincibleTime += deltaTime; 
+
+		// If invincibleTime is greater than how long powerups last for
+		if (_invincibleTime >= Settings::powerUpTime)
+		{
+			_invincibleTime = false;
+		}
+	}
+
 }
 
 /*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -117,7 +134,14 @@ void Player::PlayerHitByBall()
 void Player::SetInvincible()
 {
 	_invincible = true;
+
+	//invincibleTime set to 0
 	_invincibleTime = 0;
+}
+
+bool Player::IsInvincible()
+{
+	return _invincible;
 }
 
 void Player::SetDoubleAttack()

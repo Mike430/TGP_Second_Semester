@@ -269,9 +269,12 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 
 void Game_Scene::SeeSaw(Player* player, int amount)
 {
-	float time = 0.1f;
-	Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
-	player->runAction(MoveBy::create(time, dPos));
+	if (!player->IsInvincible())
+	{
+		float time = 0.1f;
+		Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
+		player->runAction(MoveBy::create(time, dPos));
+	}
 }
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
