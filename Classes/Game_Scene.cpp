@@ -1,5 +1,6 @@
 #include "Game_Scene.h"
 #include "Invincibility.h"
+#include "Double_Attack.h"
 
 // Initialisers
 //==============================================================================
@@ -139,10 +140,18 @@ void Game_Scene::update(float deltaTime)
 		{
 			if (rand_0_1() < 0.5 / 60.0)//about every couple seconds
 			{
-				//make a new target
+				//Make a Invincibility target with a chance of appearting every couple seconds
 				if (rand_0_1() < 1.0 / 6.0)
 				{
 					Target* newTarget = Invincibility::create();
+					_targets.push_back(newTarget);
+					_rootNode->addChild(newTarget);
+				}
+
+				// Create a Double Attack PowerUp.
+				else if (rand_0_1() < 1.0 / 6.0)
+				{
+					Target* newTarget = Double_Attack::create();
 					_targets.push_back(newTarget);
 					_rootNode->addChild(newTarget);
 				}

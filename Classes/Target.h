@@ -30,7 +30,7 @@ public:
 
 	virtual void update(float deltaTime);
 
-	// When a target gets hit, this decides what happens
+	// This is what happens when a target is hit
 	// Game scene lets you access everything
 	// Ball lets you know which player hit the target
 	virtual void Hit(Game_Scene* game, Ball* ball) = 0; 
