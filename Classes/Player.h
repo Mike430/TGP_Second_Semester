@@ -23,7 +23,15 @@ private:
 	BallDispencer* _ballDispencer;
 
 	int _score;
+
 	bool _dazedState;
+
+	// Player PowerUp Settings
+	bool _invincible = false;
+	bool _doubleAttack = false;
+	float _invincibleTime;
+	float _doubleAttackTime;
+
 	const float _recoveryTime = 0.5f;
 	float _timeOut;
 
@@ -35,6 +43,10 @@ public:
 	void update(float deltaTime);
 	void SwingBat();
 	void PlayerHitByBall();
+
+	void SetInvincible();
+	void SetDoubleAttack();
+
 	void addScore(int points);
 	int getScore();
 };

@@ -104,11 +104,26 @@ void Player::SwingBat()
 
 void Player::PlayerHitByBall()
 {
-	_timeOut = 0.0f;
-	_dazedState = true;
-	//_swingButton->setVisible(false);
-	_normalSPR->setVisible(false);
-	_dazedSPR->setVisible(true);
+	if (!_invincible)
+	{
+		_timeOut = 0.0f;
+		_dazedState = true;
+		//_swingButton->setVisible(false);
+		_normalSPR->setVisible(false);
+		_dazedSPR->setVisible(true);
+	}
+}
+
+void Player::SetInvincible()
+{
+	_invincible = true;
+	_invincibleTime = 0;
+}
+
+void Player::SetDoubleAttack()
+{
+	_doubleAttack = true;
+	_doubleAttackTime = 0;
 }
 
 void Player::addScore(int points)
