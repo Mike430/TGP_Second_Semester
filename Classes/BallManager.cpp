@@ -32,6 +32,10 @@ Ball* BallManager::CreateBall(cocos2d::Node* parent)
 	{
 		newBall = RocketBall::create();
 	}
+	else if (rnd > 0.6 && rnd < 0.7)
+	{
+		newBall = BombOther::create();
+	}
 	else
 	{
 		newBall = Ball::create();

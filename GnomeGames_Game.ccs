@@ -41,6 +41,7 @@
         <Image Name="4PlayerDazed.png" />
         <Project Name="PoundSign.csd" Type="Node" />
         <Image Name="Pound.png" />
+        <Audio Name="main song 2.mp3" />
       </RootFolder>
     </Group>
   </SolutionFolder>

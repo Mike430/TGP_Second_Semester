@@ -17,9 +17,11 @@
 #include "Target.h"
 #include "CommonTarget.h"
 #include "RareTarget.h"
+#include "SimpleAudioEngine.h"
 
 using namespace std;
 using namespace cocos2d;
+
 
 //=========================================//
 class Game_Scene : public cocos2d::Layer

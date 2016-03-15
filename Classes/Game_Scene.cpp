@@ -22,6 +22,11 @@ bool Game_Scene::init()
 		return false;
 	}
 
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("main song 2.mp3", true);
+
+
+	// Random Generator
+	srand(time(NULL));
 	// Scene Setter
 	_rootNode = cocos2d::CSLoader::createNode("1_Game_Scene.csb");
 	this->addChild(_rootNode);
@@ -63,8 +68,6 @@ bool Game_Scene::init()
 	_rootNode->addChild(_rightPlayer);
 	_players.push_back(_rightPlayer);
 
-	// Random Generator
-	srand(time(NULL));
 
 	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
 	//_endButton->addTouchEventListener(CC_CALLBACK_2(Game_Scene::EndButtonPressed, this));

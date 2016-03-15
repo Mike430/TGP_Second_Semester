@@ -138,6 +138,20 @@ void Player::PlayerHitByBall(Ball* ball)
 	_timeOut = 0.0f;
 _normalSPR->setVisible(false);
 
+if (ball->getType() == 8)
+{
+	_timeOut = -1.0f;
+
+	((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance/2);
+
+	Explosion* boomImage;
+	boomImage = Explosion::create();
+	ball->getParent()->addChild(boomImage);
+
+	boomImage->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
+	((Game_Scene*)(ball->getParent()->getParent()))->DestroyAndDropBall(ball);
+}
+
 	if (ball->getType() == 10)
 	{
 		_veryDazed = true;
