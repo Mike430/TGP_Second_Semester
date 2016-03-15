@@ -283,6 +283,11 @@ void Game_Scene::DestroyAndDropBall(Ball* ball)
 	_ballManager->DestroyBall(ball);
 }
 
+Player* Game_Scene::GetBallHitter(Ball* ball)
+{
+	return ball->IsOnRight() ? _rightPlayer : _leftPlayer;
+}
+
 void Game_Scene::EndGame(int player1Score, int player2Score)
 {
 	cocos2d::Scene* scoreScene = Score_Scene::createScene(player1Score, player2Score);

@@ -1,4 +1,5 @@
 #include "Invincibility.h"
+#include "Game_Scene.h"
 
 
 Invincibility::Invincibility()
@@ -27,7 +28,8 @@ bool Invincibility::init()
 
 void Invincibility::Hit(Game_Scene* game, Ball* ball)
 {
-
+	// Returns the player who hit the ball
+	Player* hitter = game->GetBallHitter(ball);
 }
 
 int Invincibility::GetScoreValue() const

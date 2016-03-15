@@ -70,6 +70,8 @@ public:
 
 	void Hit();
 
+	Player* GetBallHitter(Ball* ball);
+
 	// Callbacks
 	//==============================================================================
 	//void EndButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
