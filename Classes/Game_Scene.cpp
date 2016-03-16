@@ -111,9 +111,17 @@ void Game_Scene::update(float deltaTime)
 				_targetSpawnTimer = RandomHelper::random_real(Settings::targetMinSpawnDelay, Settings::targetMaxSpawnDelay);
 			}
 			//make a new target
-			if (rand_0_1() < 1.0 / 6.0 && false)
+			if (rand_0_1() < 1.0 / 6.0)
 			{
-				//make a fancy new target that does something
+				newTarget = NoGravFieldFX::create();
+			}
+			else if (rand_0_1() < 1.0 / 6.0)
+			{
+				newTarget = HalfGravFieldFX::create();
+			}
+			else if (rand_0_1() < 1.0 / 2.0)
+			{
+				newTarget = DoubleGravFieldFX::create();
 			}
 			else
 			{
@@ -172,17 +180,16 @@ void Game_Scene::update(float deltaTime)
 					}
 				}
 			}
-		}
+				}
 		// remove targets
 		for (int i = 0; i < _targets.size(); i++)
-		{
+					{
 			if (_targets[i]->IsLifeTimeOver())
-			{
+					{
 				_rootNode->removeChild(_targets[i]);
 				_targets.erase(_targets.begin() + i);
 				break;
 			}
-		}
 		// win/lose check
 		for (auto& player : _players)
 		{
@@ -201,6 +208,50 @@ void Game_Scene::update(float deltaTime)
 		{
 			_rightDispencer->DropBall();
 			_leftDispencer->DropBall();
+		}
+	}
+
+	// turning off zero gravity after set amount of time
+	if (_ballManager->GetBallAtIndex(0)->ZeroGravityField)
+	{
+		_NoGravTimer -= deltaTime;
+		if (_NoGravTimer <= 0)
+		{
+			for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+			{
+				_ballManager->GetBallAtIndex(i)->ZeroGravityField = false;
+
+			}
+			_NoGravTimer = Settings::ZeroGravityFieldDuration;
+		}
+	}
+
+	// turning off half gravity
+	if (_ballManager->GetBallAtIndex(0)->HalfGravityField)
+	{
+		_HalfGravTimer -= deltaTime;
+		if (_HalfGravTimer <= 0)
+		{
+			for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+			{
+				_ballManager->GetBallAtIndex(i)->HalfGravityField = false;
+			}
+			_HalfGravTimer = Settings::HalfGravityFieldDuration;
+		}
+	}
+
+
+	// turning off double gravity
+	if (_ballManager->GetBallAtIndex(0)->DoubleGravityField)
+	{
+		_DoubleGravTimer -= deltaTime;
+		if (_DoubleGravTimer <= 0)
+		{
+			for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+			{
+				_ballManager->GetBallAtIndex(i)->DoubleGravityField = false;
+			}
+			_DoubleGravTimer = Settings::DoubleGravityFieldDuration;
 		}
 	}
 }

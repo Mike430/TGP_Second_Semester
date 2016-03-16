@@ -48,6 +48,7 @@ void Ball::Setup(Vec2 startPoint, Vec2 next, bool onRight)
 // Gameplay Methods
 float Ball::GravityEffect(float position, float deltaTime)
 {
+
 	_velocity.y -= _gravity * deltaTime;
 	if (_velocity.y < _terminalVel)
 	{
@@ -65,6 +66,20 @@ void Ball::Hit(Vec2 velocity)
 	if (_onRight)
 	{
 		_velocity.x *= -1;
+	}
+	//if 0 gravity field is active set gravity to 0
+	if (ZeroGravityField)
+	{
+		_gravity = 0;
+	}
+	if (HalfGravityField)
+	{
+		_gravity = _gravity * Settings::HalfGravityStrength;
+	}
+
+	if (DoubleGravityField)
+	{
+		_gravity = _gravity * Settings::DoubleGravityStrength;
 	}
 }
 
@@ -92,6 +107,9 @@ void Ball::update(float deltaTime)
 	{
 		InDispencerUpdate(deltaTime);
 	}
+
+
+
 }
 
 void Ball::InGameUpdate(float deltaTime)
@@ -103,6 +121,8 @@ void Ball::InGameUpdate(float deltaTime)
 	float xPos = getPositionX();
 	xPos += _velocity.x * deltaTime;
 	setPositionX(xPos);
+
+
 }
 
 void Ball::InDispencerUpdate(float deltaTime)

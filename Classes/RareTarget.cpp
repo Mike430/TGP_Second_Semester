@@ -1,6 +1,7 @@
 #include "RareTarget.h"
 #include "Game_Scene.h"
 
+
 bool RareTarget::init()
 {
 	if (!Target::init())

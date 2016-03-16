@@ -18,4 +18,10 @@ namespace Settings
 	const float playerSeeSawMoveDistance = 9;
 	const float playerDazeRecoveryTime = 0.5f;
 	const float playerDazeInvincibilityTime = 3.0f;
+	//Field Effects
+	const float ZeroGravityFieldDuration = 5;
+	const float HalfGravityFieldDuration = 10;
+	const float DoubleGravityFieldDuration = 15;
+	const float HalfGravityStrength = 0.8;  // _gravity = _gravity * Settings::HalfGravityStrength; <- how its calculated
+	const float DoubleGravityStrength = 2; // _gravity = _gravity * Settings::DoubleGravityStrength;
 }

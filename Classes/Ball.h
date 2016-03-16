@@ -43,10 +43,18 @@ public:
 	virtual void Hit(Vec2 velocity);
 	bool IsOnRight() const { return _onRight; }
 
+
 	//general
 	bool IsContained() const { return _contained; }
 	bool IsCollidable() const { return _collidable; }
 	void SetCollidable(bool state) { _collidable = state; }
+	
+	void SetGravity(float newGrav){ _gravity = newGrav; }
+
+	//bools used to add field effects
+	bool ZeroGravityField = false;
+	bool HalfGravityField = false;
+	bool DoubleGravityField = false;
 
 	virtual void update(float deltaTime);
 	virtual void InGameUpdate(float deltaTime);
