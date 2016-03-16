@@ -85,8 +85,8 @@ void Player::update(float deltaTime)
 		// If invincibleTime is greater than how long powerups last for
 		if (_invincibleTime >= Settings::powerUpTime)
 		{
-			_invincibleTime = false;
-}
+			_invincible = false;
+		}
 	}
 
 }

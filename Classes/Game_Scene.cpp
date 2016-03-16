@@ -203,6 +203,7 @@ void Game_Scene::update(float deltaTime)
 				_rootNode->removeChild(_targets[i]);
 				_targets.erase(_targets.begin() + i);
 				break;
+			}
 		}
 		// win/lose check
 		for (auto& player : _players)
@@ -213,7 +214,6 @@ void Game_Scene::update(float deltaTime)
 				break;
 			}
 		}
-	}
 	}
 	else
 	{
@@ -343,12 +343,12 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 
 void Game_Scene::SeeSaw(Player* player, int amount)
 {
-	if (!player->IsInvincible())
+	if (!player->IsInvincible() || amount > 0)
 	{
 		float time = 0.1f;
-	Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
-	player->runAction(MoveBy::create(time, dPos));
-}
+		Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
+		player->runAction(MoveBy::create(time, dPos));
+	}
 }
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
