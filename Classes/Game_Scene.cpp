@@ -111,6 +111,7 @@ void Game_Scene::update(float deltaTime)
 				_targetSpawnTimer = RandomHelper::random_real(Settings::targetMinSpawnDelay, Settings::targetMaxSpawnDelay);
 			}
 			//make a new target
+			Target* newTarget = nullptr;
 			if (rand_0_1() < 1.0 / 6.0)
 			{
 				newTarget = NoGravFieldFX::create();
@@ -137,10 +138,10 @@ void Game_Scene::update(float deltaTime)
 				{
 					common = true;
 				}
-				Target* newTarget = (common ? (Target*)CommonTarget::create() : (Target*)RareTarget::create());
-				_targets.push_back(newTarget);
-				_rootNode->addChild(newTarget);
+				newTarget = (common ? (Target*)CommonTarget::create() : (Target*)RareTarget::create());
 			}
+			_targets.push_back(newTarget);
+			_rootNode->addChild(newTarget);
 		}
 	}
 
@@ -180,23 +181,24 @@ void Game_Scene::update(float deltaTime)
 					}
 				}
 			}
-				}
+		}
 		// remove targets
 		for (int i = 0; i < _targets.size(); i++)
-					{
+		{
 			if (_targets[i]->IsLifeTimeOver())
-					{
+			{
 				_rootNode->removeChild(_targets[i]);
 				_targets.erase(_targets.begin() + i);
 				break;
 			}
-		// win/lose check
-		for (auto& player : _players)
-		{
-			if (player->getPositionY() < Settings::playerMinY || player->getPositionY() > Settings::playerMaxY)
+			// win/lose check
+			for (auto& player : _players)
 			{
-				EndGame(_leftPlayer->getScore(), _rightPlayer->getScore());
-				break;
+				if (player->getPositionY() < Settings::playerMinY || player->getPositionY() > Settings::playerMaxY)
+				{
+					EndGame(_leftPlayer->getScore(), _rightPlayer->getScore());
+					break;
+				}
 			}
 		}
 	}
