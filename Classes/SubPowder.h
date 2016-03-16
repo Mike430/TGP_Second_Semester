@@ -3,6 +3,7 @@
 class SubPowder : public Ball
 {
 public:
+	static const int type = 1;
 	static SubPowder* create();
 	virtual bool init() override;
 	virtual ~SubPowder();

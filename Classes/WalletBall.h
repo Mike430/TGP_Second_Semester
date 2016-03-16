@@ -5,6 +5,7 @@
 class WalletBall : public Ball
 {
 public:
+	static const int type = 7;
 	static WalletBall* create();
 	virtual bool init() override;
 	virtual ~WalletBall();

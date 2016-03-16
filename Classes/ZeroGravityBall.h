@@ -3,6 +3,7 @@
 class ZeroGravityBall : public Ball
 {
 public:
+	static const int type = -1;
 	static ZeroGravityBall* createZeroGravity();
 	virtual bool init() override;
 	virtual ~ZeroGravityBall();

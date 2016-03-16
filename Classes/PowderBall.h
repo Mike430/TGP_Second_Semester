@@ -1,9 +1,11 @@
 #pragma once
 #include "Ball.h"
 class PowderBall : public Ball
-{ private:
+{
+private:
 	int subBalls;
 public:
+	static const int type = 13;
 	static PowderBall* create();
 	virtual bool init() override;
 	virtual ~PowderBall();

@@ -23,7 +23,6 @@ bool RocketBall::init()
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 
-	this->_type = 1;
 	this->scheduleUpdate();
 
 	return true;

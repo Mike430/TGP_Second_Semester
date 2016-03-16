@@ -19,7 +19,6 @@ bool BombBall::init()
 	{
 		return false;
 	}
-	this->_type = 9;
 	this->_rootNode = cocos2d::CSLoader::createNode("Bomb.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
