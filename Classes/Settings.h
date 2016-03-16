@@ -24,4 +24,6 @@ namespace Settings
 	const float DoubleGravityFieldDuration = 15;
 	const float HalfGravityStrength = 0.8;  // _gravity = _gravity * Settings::HalfGravityStrength; <- how its calculated
 	const float DoubleGravityStrength = 2; // _gravity = _gravity * Settings::DoubleGravityStrength;
+	//Powerups
+	const float powerUpTime = 30.0f;
 }

@@ -26,8 +26,15 @@ private:
 	BallDispencer* _ballDispencer;
 
 	int _score;
+
 	bool _dazedState;
 	bool _veryDazed;
+
+	// Player PowerUp Settings
+	bool _invincible = false;
+	bool _doubleAttack = false;
+	float _invincibleTime;
+	float _doubleAttackTime;
 
 	float _timeSinceHit;
 
@@ -38,6 +45,12 @@ public:
 	static Player* create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer);
 	void update(float deltaTime);
 	void SwingBat();
+
+	void SetInvincible();
+	void SetDoubleAttack();
+
+	bool IsInvincible();
+
 	void PlayerHitByBall(Ball* ball);
 	void addScore(int points);
 	int getScore();

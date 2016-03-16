@@ -17,7 +17,7 @@ bool HalfGravFieldFX::init()
 	return true;
 }
 
-void HalfGravFieldFX::Hit(Game_Scene* game)
+void HalfGravFieldFX::Hit(Game_Scene* game, Ball* ball)
 {
 
 	BallManager* balls = game->GetBallMngr();

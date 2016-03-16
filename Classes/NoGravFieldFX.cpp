@@ -17,7 +17,7 @@ bool NoGravFieldFX::init()
 	return true;
 }
 
-void NoGravFieldFX::Hit(Game_Scene* game)
+void NoGravFieldFX::Hit(Game_Scene* game, Ball* ball)
 {
 
 	BallManager* balls = game->GetBallMngr();

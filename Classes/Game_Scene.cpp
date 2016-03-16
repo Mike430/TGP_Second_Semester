@@ -1,4 +1,6 @@
 #include "Game_Scene.h"
+#include "Invincibility.h"
+#include "Double_Attack.h"
 
 // Initialisers
 //==============================================================================
@@ -117,6 +119,14 @@ void Game_Scene::update(float deltaTime)
 			Target* newTarget = nullptr;
 			if (rand_0_1() < 1.0 / 6.0)
 			{
+				newTarget = Invincibility::create();
+			}
+			else if (rand_0_1() < 1.0 / 6.0)
+			{
+				newTarget = Double_Attack::create();
+			}
+			else if (rand_0_1() < 1.0 / 6.0)
+			{
 				newTarget = NoGravFieldFX::create();
 			}
 			else if (rand_0_1() < 1.0 / 6.0)
@@ -193,17 +203,17 @@ void Game_Scene::update(float deltaTime)
 				_rootNode->removeChild(_targets[i]);
 				_targets.erase(_targets.begin() + i);
 				break;
-			}
-			// win/lose check
-			for (auto& player : _players)
+		}
+		// win/lose check
+		for (auto& player : _players)
+		{
+			if (player->getPositionY() < Settings::playerMinY || player->getPositionY() > Settings::playerMaxY)
 			{
-				if (player->getPositionY() < Settings::playerMinY || player->getPositionY() > Settings::playerMaxY)
-				{
-					EndGame(_leftPlayer->getScore(), _rightPlayer->getScore());
-					break;
-				}
+				EndGame(_leftPlayer->getScore(), _rightPlayer->getScore());
+				break;
 			}
 		}
+	}
 	}
 	else
 	{
@@ -306,11 +316,11 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		SeeSaw(playerLose, -1);
 		playerWin->addScore(score);
 
-		DestroyAndDropBall(ball);
-
-		target->Hit(this);
+		target->Hit(this, ball);
 		_targets.erase(find(_targets.begin(), _targets.end(), target));
 		_rootNode->removeChild(target);
+
+		DestroyAndDropBall(ball);
 
 		return true;
 	}
@@ -333,9 +343,12 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 
 void Game_Scene::SeeSaw(Player* player, int amount)
 {
-	float time = 0.1;
+	if (!player->IsInvincible())
+	{
+		float time = 0.1f;
 	Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
 	player->runAction(MoveBy::create(time, dPos));
+}
 }
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
@@ -345,6 +358,11 @@ void Game_Scene::DestroyAndDropBall(Ball* ball)
 		(ball->IsOnRight() ? _rightDispencer : _leftDispencer)->DropBall();
 	}
 	_ballManager->DestroyBall(ball);
+}
+
+Player* Game_Scene::GetBallHitter(Ball* ball)
+{
+	return ball->IsOnRight() ? _rightPlayer : _leftPlayer;
 }
 
 void Game_Scene::EndGame(int player1Score, int player2Score)

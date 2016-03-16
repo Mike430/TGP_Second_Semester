@@ -93,6 +93,12 @@
     <ClCompile Include="..\Classes\WalletBall.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Invincibility.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Double_Attack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -174,6 +180,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\WalletBall.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Invincibility.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Double_Attack.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

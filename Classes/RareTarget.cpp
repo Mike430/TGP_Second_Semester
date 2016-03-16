@@ -17,7 +17,7 @@ bool RareTarget::init()
 	return true;
 }
 
-void RareTarget::Hit(Game_Scene* game)
+void RareTarget::Hit(Game_Scene* game, Ball* ball)
 {
 
 }

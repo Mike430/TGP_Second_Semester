@@ -1,20 +1,18 @@
 #pragma once
-#include "cocos2d.h"
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
-#include "Settings.h"
 #include "Target.h"
 
 using namespace std;
 using namespace cocos2d;
 
-class CommonTarget : public Target
+class Double_Attack : public Target
 {
 public:
-	CommonTarget() {};
-	virtual ~CommonTarget() {};
-	CREATE_FUNC(CommonTarget);
+	Double_Attack();
+	virtual ~Double_Attack();
+
+	CREATE_FUNC(Double_Attack);
 	virtual bool init();
 	virtual void Hit(Game_Scene* game, Ball* ball) override;
 	virtual int GetScoreValue() const override;
 };
+

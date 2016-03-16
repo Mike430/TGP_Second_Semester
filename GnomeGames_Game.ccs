@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="GnomeGames_Game" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="GNOMEG~1" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -15,6 +15,8 @@
           <Image Name="common.png" />
           <Image Name="rare.png" />
           <Image Name="RocketBall.png" />
+          <Image Name="Invincibility.png" />
+          <Image Name="DoubleAttack.png" />
           <Image Name="bombBall.png" />
           <Image Name="bombExplode.png" />
           <Image Name="DoubleGrav.png" />
@@ -49,6 +51,9 @@
         <Image Name="Pound.png" />
         <Image Name="PowderBall.png" />
         <Image Name="Wallet.png" />
+        <Project Name="RareTarget.csd" Type="Node" />
+        <Project Name="Invincibility.csd" Type="Node" />
+        <Project Name="DoubleAttack.csd" Type="Node" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -85,6 +85,8 @@ public:
 
 	void Hit();
 
+	Player* GetBallHitter(Ball* ball);
+
 	void DestroyAndDropBall(Ball* ball);
 	void SeeSaw(Player* player, int amount);
 	// Callbacks

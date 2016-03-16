@@ -17,7 +17,7 @@ bool DoubleGravFieldFX::init()
 	return true;
 }
 
-void DoubleGravFieldFX::Hit(Game_Scene* game)
+void DoubleGravFieldFX::Hit(Game_Scene* game, Ball* ball)
 {
 
 	BallManager* balls = game->GetBallMngr();
