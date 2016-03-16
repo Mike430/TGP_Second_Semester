@@ -121,14 +121,16 @@ void Player::SwingBat()
 				float r = 150;
 				if (toBall.length() < r)
 				{
-					if (ball.getType() == 9)
+					auto asdf1 = ball.getType();
+					auto asdf2 = BombBall::type;
+					if (ball.getType() == BombBall::type)
 					{	
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
 						ball.Hit(emptySpace);
 						PlayerHitByBall(&ball);
 						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
 					}
-					else if (ball.getType() == 7)
+					else if (ball.getType() == WalletBall::type)
 					{
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
 						ball.Hit(emptySpace);
@@ -157,7 +159,7 @@ void Player::PlayerHitByBall(Ball* ball)
 		_normalSPR->setVisible(false);
 		_dazedSPR->setVisible(true);
 		//_swingButton->setVisible(false);
-		if (ball->getType() == 8)
+		if (ball->getType() == BombOther::type)
 		{
 			_timeSinceHit = -1.0f;//extra 1 second dazed
 
@@ -170,7 +172,7 @@ void Player::PlayerHitByBall(Ball* ball)
 			boomImage->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
 			((Game_Scene*)(ball->getParent()->getParent()))->DestroyAndDropBall(ball);
 		}
-		else if (ball->getType() == 10)
+		else if (ball->getType() == OilBall::type)
 		{
 			_veryDazed = true;
 			//_vDazedSPR->setVisible(true);

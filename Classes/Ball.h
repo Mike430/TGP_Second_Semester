@@ -24,11 +24,11 @@ protected:
 	Vec2 _velocity;
 	float _gravity;
 	float _terminalVel;
-	int _type;
 
 	Node* _rootNode;
 	//Sprite* _sprite;
 public:
+	static const int type = 0;
 	virtual bool init();
 	static Ball* create();
 	virtual void Setup(Vec2 startPoint, Vec2 next, bool onRight);

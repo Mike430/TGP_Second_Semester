@@ -7,6 +7,7 @@
 class BombBall : public Ball
 {
 public:
+	static const int type = 9;
 	static BombBall* create();
 	virtual bool init() override;
 	virtual ~BombBall();

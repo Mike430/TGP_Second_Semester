@@ -19,7 +19,6 @@ bool PowderBall::init()
 	{
 		return false;
 	}
-	this->_type = 13; // set type of ball
 	this->_rootNode = cocos2d::CSLoader::createNode("PowderBall.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
