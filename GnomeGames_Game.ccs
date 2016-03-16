@@ -15,11 +15,11 @@
           <Image Name="common.png" />
           <Image Name="rare.png" />
           <Image Name="RocketBall.png" />
-          <Image Name="ZeroGrav.png" />
-          <Image Name="HalfGrav.png" />
-          <Image Name="DoubleGrav.png" />
           <Image Name="bombBall.png" />
           <Image Name="bombExplode.png" />
+          <Image Name="DoubleGrav.png" />
+          <Image Name="HalfGrav.png" />
+          <Image Name="ZeroGrav.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -29,25 +29,26 @@
         <Project Name="PlayerLeft.csd" Type="Node" />
         <Project Name="PlayerRight.csd" Type="Node" />
         <Project Name="RocketBall.csd" Type="Node" />
-        <Project Name="CommonTarget.csd" Type="Node" />
-        <Project Name="RareTarget.csd" Type="Node" />
-        <Project Name="Bomb.csd" Type="Node" />
-        <Project Name="Oil.csd" Type="Node" />
-        <Project Name="Explosion.csd" Type="Node" />
-        <Project Name="PowderBall.csd" Type="Node" />
-        <Image Name="PowderBall.png" />
+        <Image Name="4PlayerDazed.png" />
+        <Project Name="ZeroGravField.csd" Type="Node" />
+        <Project Name="ZeroGrav.csd" Type="Node" />
         <Project Name="Wallet.csd" Type="Node" />
-        <Image Name="Wallet.png" />
+        <Project Name="RareTarget.csd" Type="Node" />
+        <Project Name="PowderBall.csd" Type="Node" />
+        <Project Name="PoundSign.csd" Type="Node" />
+        <Project Name="Oil.csd" Type="Node" />
+        <Project Name="HalfGravField.csd" Type="Node" />
+        <Project Name="Explosion.csd" Type="Node" />
+        <Project Name="DoubleGravField.csd" Type="Node" />
+        <Project Name="CommonTarget.csd" Type="Node" />
         <Project Name="BombOther.csd" Type="Node" />
+        <Project Name="Bomb.csd" Type="Node" />
+        <Audio Name="main song 2.mp3" />
         <Image Name="OilBall.png" />
         <Image Name="otherBombBall.png" />
-        <Image Name="4PlayerDazed.png" />
-        <Project Name="PoundSign.csd" Type="Node" />
         <Image Name="Pound.png" />
-        <Audio Name="main song 2.mp3" />
-        <Project Name="ZeroGravField.csd" Type="Node" />
-        <Project Name="HalfGravField.csd" Type="Node" />
-        <Project Name="DoubleGravField.csd" Type="Node" />
+        <Image Name="PowderBall.png" />
+        <Image Name="Wallet.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

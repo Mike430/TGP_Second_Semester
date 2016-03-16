@@ -14,7 +14,7 @@
         <LuaEncryptSign Value="" />
         <Android_PackageName Value="org.cocos.GnomeGamesGame" />
         <AndroidkeyStore Value="" />
-        <AndroidVersion Value="android-20" />
+        <AndroidVersion Value="android-19" />
         <iOS_Target Value="GnomeGames_Game-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />
@@ -26,6 +26,11 @@
         <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <ActiveDocument />
       </Value>
     </Item>
   </Properties>
