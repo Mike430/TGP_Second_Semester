@@ -22,6 +22,8 @@ bool RocketBall::init()
 	this->_rootNode = cocos2d::CSLoader::createNode("RocketBall.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
+
+	this->_type = 1;
 	this->scheduleUpdate();
 
 	return true;

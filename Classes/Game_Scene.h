@@ -17,12 +17,14 @@
 #include "Target.h"
 #include "CommonTarget.h"
 #include "RareTarget.h"
+#include "SimpleAudioEngine.h"
 #include "NoGravFieldFX.h"
 #include "HalfGravFieldFX.h"
 #include "DoubleGravFieldFX.h"
 
 using namespace std;
 using namespace cocos2d;
+
 
 //=========================================//
 class Game_Scene : public cocos2d::Layer
@@ -58,8 +60,8 @@ private:
 	bool TestCollisionWithPlayer(Ball* ball);
 	bool TestCollisionWithTarget(Ball* ball, Target* target);
 	bool TestIfBallIsOut(Ball* ball);
-	void SeeSaw(Player* player, int amount);
-	void DestroyAndDropBall(Ball* ball);
+	
+	
 	void EndGame(int player1Score, int player2Score);
 public:
 
@@ -83,6 +85,8 @@ public:
 
 	void Hit();
 
+	void DestroyAndDropBall(Ball* ball);
+	void SeeSaw(Player* player, int amount);
 	// Callbacks
 	//==============================================================================
 	//void EndButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);

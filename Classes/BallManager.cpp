@@ -12,13 +12,33 @@ Ball* BallManager::CreateBall(cocos2d::Node* parent)
 {
 	Ball* newBall;
 	float rnd = rand_0_1();
-	if (rnd < 0.8)
+	if (rnd > 0.95)
 	{
-		newBall = Ball::create();
+		newBall = WalletBall::create();
+	}
+	else if (rnd > 0.9 && rnd < 0.95)
+	{
+		newBall = BombBall::create();
+	}
+	else if (rnd > 0.89 && rnd < 0.9)
+	{
+		newBall = PowderBall::create();
+	}
+	else if (rnd > 0.8 && rnd < 0.89)
+	{
+		newBall = OilBall::create();
+	}
+	else if (rnd > 0.7 && rnd < 0.8)
+	{
+		newBall = RocketBall::create();
+	}
+	else if (rnd > 0.6 && rnd < 0.7)
+	{
+		newBall = BombOther::create();
 	}
 	else
 	{
-		newBall = RocketBall::create();
+		newBall = Ball::create();
 	}
 	parent->addChild(newBall);
 	_balls.push_back(newBall);

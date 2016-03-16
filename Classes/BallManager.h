@@ -9,6 +9,11 @@
 #include "ZeroGravityBall.h"
 #include "RocketBall.h"
 #include <vector>
+#include "BombBall.h"
+#include "PowderBall.h"
+#include "OilBall.h"
+#include "WalletBall.h"
+#include "BombOther.h"
 
 using namespace std;
 

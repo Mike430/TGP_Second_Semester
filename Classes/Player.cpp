@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Game_Scene.h"
 
 Player* Player::create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer)
 {
@@ -30,6 +31,7 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 
 	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
 	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
+//	_vDazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_4");
 	_dazedSPR->setVisible(false);
 
 	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
@@ -59,6 +61,17 @@ void Player::update(float deltaTime)
 			_dazedSPR->setVisible(false);
 		}
 	}
+	if (_veryDazed)
+	{
+		if (_timeSinceHit >= (Settings::playerDazeRecoveryTime)*3)
+		{
+			_veryDazed = false;
+			//_swingButton->setVisible(true);
+			_normalSPR->setVisible(true);
+			_dazedSPR->setVisible(false);
+			//_vDazedSPR->setVisible(false);
+		}
+	}
 }
 
 /*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -74,7 +87,7 @@ void Player::update(float deltaTime)
 
 void Player::SwingBat()
 {
-	if (!_dazedState)
+	if (!_dazedState&&!_veryDazed)
 	{
 		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
@@ -91,6 +104,21 @@ void Player::SwingBat()
 				float r = 150;
 				if (toBall.length() < r)
 				{
+					if (ball.getType() == 9)
+					{	
+						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+						ball.Hit(emptySpace);
+						PlayerHitByBall(&ball);
+						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
+					}
+					else if (ball.getType() == 7)
+					{
+						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+						ball.Hit(emptySpace);
+						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, Settings::playerSeeSawMoveDistance);
+					}
+					else
+					{ 
 					float difficulty = 0.1f; // 0=easy, 1=hard
 					float dy = toBall.y / r; // -1 -> 1
 					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
@@ -102,16 +130,39 @@ void Player::SwingBat()
 		}
 	}
 }
+}
 
-void Player::PlayerHitByBall()
+void Player::PlayerHitByBall(Ball* ball)
 {
 	if (_timeSinceHit >= Settings::playerDazeInvincibilityTime)
 	{
-		_timeSinceHit = 0;
-		_dazedState = true;
-		//_swingButton->setVisible(false);
+		_timeSinceHit = 0.0f;
 		_normalSPR->setVisible(false);
 		_dazedSPR->setVisible(true);
+		//_swingButton->setVisible(false);
+		if (ball->getType() == 8)
+		{
+			_timeSinceHit = -1.0f;//extra 1 second dazed
+
+			((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -4);
+
+			Explosion* boomImage;
+			boomImage = Explosion::create();
+			ball->getParent()->addChild(boomImage);
+
+			boomImage->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
+			((Game_Scene*)(ball->getParent()->getParent()))->DestroyAndDropBall(ball);
+		}
+		else if (ball->getType() == 10)
+		{
+			_veryDazed = true;
+			//_vDazedSPR->setVisible(true);
+			//_dazedSPR->setVisible(false);
+		}
+		else
+		{
+			_dazedState = true;
+		}
 	}
 }
 
