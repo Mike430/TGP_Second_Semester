@@ -121,8 +121,6 @@ void Player::SwingBat()
 				float r = 150;
 				if (toBall.length() < r)
 				{
-					auto asdf1 = ball.getType();
-					auto asdf2 = BombBall::type;
 					if (ball.getType() == BombBall::type)
 					{	
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.

@@ -8,4 +8,5 @@ public:
 	virtual bool init() override;
 	virtual ~SubPowder();
 	virtual void Hit(Vec2 velocity) override;
+	virtual int getType() override { return type; }
 };

@@ -8,4 +8,5 @@ public:
 	static BombOther* create();
 	virtual bool init() override;
 	virtual ~BombOther();
+	virtual int getType() override { return type; }
 };

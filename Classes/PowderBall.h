@@ -11,4 +11,5 @@ public:
 	virtual ~PowderBall();
 	void releasePowder();
 	//virtual void Hit(Vec2 velocity) override;
+	virtual int getType() override { return type; }
 };
