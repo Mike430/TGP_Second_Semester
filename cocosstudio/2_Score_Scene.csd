@@ -14,8 +14,19 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="Sprites/render2.png" Plist="" />
+            <FileData Type="Normal" Path="Sprites/Sky.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="outside_2" ActionTag="-593462982" Tag="19" IconVisible="False" ctype="SpriteObjectData">
+            <Size X="1280.0000" Y="800.0000" />
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="1.0000" Y="1.0000" />
+            <FileData Type="Normal" Path="Sprites/outside.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Play_Again" ActionTag="342092180" Tag="9" IconVisible="False" LeftMargin="540.0000" RightMargin="540.0000" TopMargin="650.0000" BottomMargin="90.0000" TouchEnable="True" FontSize="36" ButtonText="Play Again!" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="200.0000" Y="60.0000" />

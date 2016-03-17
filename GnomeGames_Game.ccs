@@ -22,6 +22,9 @@
           <Image Name="DoubleGrav.png" />
           <Image Name="HalfGrav.png" />
           <Image Name="ZeroGrav.png" />
+          <Image Name="Inside.png" />
+          <Image Name="outside.png" />
+          <Image Name="Sky.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
