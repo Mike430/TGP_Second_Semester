@@ -57,8 +57,7 @@ public:
 	bool HalfGravityField = false;
 	bool DoubleGravityField = false;
 
-	int getType();
-
+	virtual int getType() { return type; }
 
 	virtual void update(float deltaTime);
 	virtual void InGameUpdate(float deltaTime);

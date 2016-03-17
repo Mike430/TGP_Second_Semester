@@ -7,4 +7,5 @@ public:
 	static OilBall* create();
 	virtual bool init() override;
 	virtual ~OilBall();
+	virtual int getType() override { return type; }
 };

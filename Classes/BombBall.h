@@ -13,5 +13,6 @@ public:
 	virtual ~BombBall();
 	//virtual void Setup(Vec2 startPoint, Vec2 next, bool onRight) override;
 	virtual void Hit(Vec2 velocity) override;
+	virtual int getType() override { return type; }
 };
 

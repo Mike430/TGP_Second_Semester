@@ -138,9 +138,3 @@ void Ball::InDispencerUpdate(float deltaTime)
 	}
 
 }
-
-
-int Ball::getType()
-{
-	return this->type;
-}

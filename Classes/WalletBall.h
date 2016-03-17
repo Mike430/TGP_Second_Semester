@@ -10,4 +10,5 @@ public:
 	virtual bool init() override;
 	virtual ~WalletBall();
 	virtual void Hit(Vec2 velocity) override;
+	virtual int getType() override { return type; }
 };
