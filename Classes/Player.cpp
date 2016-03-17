@@ -35,6 +35,7 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 
 	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
 	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
+	auto asdf1 = Sprite::create("res/Animations/Idle/0001.png");
 	_idleSprite = _rootNode->getChildByName<Sprite*>("Sprite_Idle");
 	int numIdleFrames = 120;
 	float idleFrameRate = 60;
@@ -49,7 +50,8 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 		string file = path + pad + index + fileType;
 		_idleFrames.pushBack(SpriteFrame::create(file, Rect(0, 0, 300, 225)));
 	}
-	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / idleFrameRate);
+	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / idleFrameRate, numeric_limits<unsigned int>::max());
+	//_idleSprite->runAction(Animate::create(_idleAnimation));
 	//	_vDazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_4");
 	_dazedSPR->setVisible(false);
 
@@ -113,6 +115,10 @@ void Player::update(float deltaTime)
 
 void Player::SwingBat()
 {
+	_idleSprite->stopAllActions();
+	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / 60.0f, 100);
+	_idleSprite->runAction(Animate::create(_idleAnimation));
+
 	if (!IsDazed())
 	{
 		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
@@ -225,7 +231,8 @@ void Player::Daze(bool extendedTime)
 	{
 		_dazedSPR->setVisible(true);
 	}
-	runAction(Animate::create(_idleAnimation));
+	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / 60.0f, 100);
+	_idleSprite->runAction(Animate::create(_idleAnimation));
 }
 
 void Player::EndDaze()
