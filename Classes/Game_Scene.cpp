@@ -59,13 +59,13 @@ bool Game_Scene::init()
 	Vec2 playerStartPos = Vec2(centerX, Settings::playerStartY);
 
 	// Left Player
-	_leftPlayer = Player::create(path + "PlayerLeft.csb", _ballManager, _leftDispencer);
+	_leftPlayer = Player::create(false, _ballManager, _leftDispencer);
 	_leftPlayer->setPosition(playerStartPos - Vec2(Settings::playerRelativeStartX, 0));
 	_rootNode->addChild(_leftPlayer);
 	_players.push_back(_leftPlayer);
 
 	// Right Player
-	_rightPlayer = Player::create(path + "PlayerRight.csb", _ballManager, _rightDispencer);
+	_rightPlayer = Player::create(true, _ballManager, _rightDispencer);
 	_rightPlayer->setPosition(playerStartPos + Vec2(Settings::playerRelativeStartX, 0));
 	_rootNode->addChild(_rightPlayer);
 	_players.push_back(_rightPlayer);

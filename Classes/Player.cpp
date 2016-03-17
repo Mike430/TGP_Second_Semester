@@ -1,10 +1,10 @@
 #include "Player.h"
 #include "Game_Scene.h"
 
-Player* Player::create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer)
+Player* Player::create(bool onRight, BallManager* ballManager, BallDispencer* ballDispencer)
 {
 	Player* player = new Player();
-	if (!player->init(csbFile, ballManager, ballDispencer))
+	if (!player->init(onRight, ballManager, ballDispencer))
 	{
 		CC_SAFE_DELETE(player);
 		return nullptr;
@@ -14,14 +14,18 @@ Player* Player::create(const string csbFile, BallManager* ballManager, BallDispe
 	return player;
 }
 
-bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer)
+bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDispencer)
 {
 	if (!Node::init())
 	{
 		return false;
 	}
 
-	_rootNode = CSLoader::createNode(csbFile);
+	_rootNode = CSLoader::createNode("PlayerLeft.csb");
+	if (onRight)
+	{
+		_rootNode->setScaleX(-1);
+	}
 	//sprite->setPhysicsBody(PhysicsBody::createBox(sprite->getBoundingBox().size));
 	addChild(_rootNode);
 
@@ -31,7 +35,22 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 
 	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
 	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
-//	_vDazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_4");
+	_idleSprite = _rootNode->getChildByName<Sprite*>("Sprite_Idle");
+	int numIdleFrames = 120;
+	float idleFrameRate = 60;
+	_idleFrames.reserve(numIdleFrames);
+	for (int i = 1; i <= numIdleFrames; i++)
+	{
+		string index = to_string(i);
+		//pad with '0' to length of 4
+		string pad = string(4 - index.length(), '0');
+		string path = "res/Animations/Idle/";
+		string fileType = ".png";
+		string file = path + pad + index + fileType;
+		_idleFrames.pushBack(SpriteFrame::create(file, Rect(0, 0, 300, 225)));
+	}
+	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / idleFrameRate);
+	//	_vDazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_4");
 	_dazedSPR->setVisible(false);
 
 	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
@@ -206,6 +225,7 @@ void Player::Daze(bool extendedTime)
 	{
 		_dazedSPR->setVisible(true);
 	}
+	runAction(Animate::create(_idleAnimation));
 }
 
 void Player::EndDaze()

@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="GNOMEG~1" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="GnomeGames_Game" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -15,16 +15,11 @@
           <Image Name="common.png" />
           <Image Name="rare.png" />
           <Image Name="RocketBall.png" />
-          <Image Name="Invincibility.png" />
-          <Image Name="DoubleAttack.png" />
           <Image Name="bombBall.png" />
           <Image Name="bombExplode.png" />
           <Image Name="DoubleGrav.png" />
           <Image Name="HalfGrav.png" />
           <Image Name="ZeroGrav.png" />
-          <Image Name="Inside.png" />
-          <Image Name="outside.png" />
-          <Image Name="Sky.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -32,7 +27,6 @@
         <Project Name="BallDispencer.csd" Type="Node" />
         <Project Name="Ball.csd" Type="Node" />
         <Project Name="PlayerLeft.csd" Type="Node" />
-        <Project Name="PlayerRight.csd" Type="Node" />
         <Project Name="RocketBall.csd" Type="Node" />
         <Image Name="4PlayerDazed.png" />
         <Project Name="ZeroGravField.csd" Type="Node" />
@@ -54,9 +48,130 @@
         <Image Name="Pound.png" />
         <Image Name="PowderBall.png" />
         <Image Name="Wallet.png" />
-        <Project Name="RareTarget.csd" Type="Node" />
-        <Project Name="Invincibility.csd" Type="Node" />
-        <Project Name="DoubleAttack.csd" Type="Node" />
+        <Folder Name="Animations">
+          <Folder Name="Idle">
+            <Image Name="0001.png" />
+            <Image Name="0002.png" />
+            <Image Name="0003.png" />
+            <Image Name="0004.png" />
+            <Image Name="0005.png" />
+            <Image Name="0006.png" />
+            <Image Name="0007.png" />
+            <Image Name="0008.png" />
+            <Image Name="0009.png" />
+            <Image Name="0010.png" />
+            <Image Name="0011.png" />
+            <Image Name="0012.png" />
+            <Image Name="0013.png" />
+            <Image Name="0014.png" />
+            <Image Name="0015.png" />
+            <Image Name="0016.png" />
+            <Image Name="0017.png" />
+            <Image Name="0018.png" />
+            <Image Name="0019.png" />
+            <Image Name="0020.png" />
+            <Image Name="0021.png" />
+            <Image Name="0022.png" />
+            <Image Name="0023.png" />
+            <Image Name="0024.png" />
+            <Image Name="0025.png" />
+            <Image Name="0026.png" />
+            <Image Name="0027.png" />
+            <Image Name="0028.png" />
+            <Image Name="0029.png" />
+            <Image Name="0030.png" />
+            <Image Name="0031.png" />
+            <Image Name="0032.png" />
+            <Image Name="0033.png" />
+            <Image Name="0034.png" />
+            <Image Name="0035.png" />
+            <Image Name="0036.png" />
+            <Image Name="0037.png" />
+            <Image Name="0038.png" />
+            <Image Name="0039.png" />
+            <Image Name="0040.png" />
+            <Image Name="0041.png" />
+            <Image Name="0042.png" />
+            <Image Name="0043.png" />
+            <Image Name="0044.png" />
+            <Image Name="0045.png" />
+            <Image Name="0046.png" />
+            <Image Name="0047.png" />
+            <Image Name="0048.png" />
+            <Image Name="0049.png" />
+            <Image Name="0050.png" />
+            <Image Name="0051.png" />
+            <Image Name="0052.png" />
+            <Image Name="0053.png" />
+            <Image Name="0054.png" />
+            <Image Name="0055.png" />
+            <Image Name="0056.png" />
+            <Image Name="0057.png" />
+            <Image Name="0058.png" />
+            <Image Name="0059.png" />
+            <Image Name="0060.png" />
+            <Image Name="0061.png" />
+            <Image Name="0062.png" />
+            <Image Name="0063.png" />
+            <Image Name="0064.png" />
+            <Image Name="0065.png" />
+            <Image Name="0066.png" />
+            <Image Name="0067.png" />
+            <Image Name="0068.png" />
+            <Image Name="0069.png" />
+            <Image Name="0070.png" />
+            <Image Name="0071.png" />
+            <Image Name="0072.png" />
+            <Image Name="0073.png" />
+            <Image Name="0074.png" />
+            <Image Name="0075.png" />
+            <Image Name="0076.png" />
+            <Image Name="0077.png" />
+            <Image Name="0078.png" />
+            <Image Name="0079.png" />
+            <Image Name="0080.png" />
+            <Image Name="0081.png" />
+            <Image Name="0082.png" />
+            <Image Name="0083.png" />
+            <Image Name="0084.png" />
+            <Image Name="0085.png" />
+            <Image Name="0086.png" />
+            <Image Name="0087.png" />
+            <Image Name="0088.png" />
+            <Image Name="0089.png" />
+            <Image Name="0090.png" />
+            <Image Name="0091.png" />
+            <Image Name="0092.png" />
+            <Image Name="0093.png" />
+            <Image Name="0094.png" />
+            <Image Name="0095.png" />
+            <Image Name="0096.png" />
+            <Image Name="0097.png" />
+            <Image Name="0098.png" />
+            <Image Name="0099.png" />
+            <Image Name="0100.png" />
+            <Image Name="0101.png" />
+            <Image Name="0102.png" />
+            <Image Name="0103.png" />
+            <Image Name="0104.png" />
+            <Image Name="0105.png" />
+            <Image Name="0106.png" />
+            <Image Name="0107.png" />
+            <Image Name="0108.png" />
+            <Image Name="0109.png" />
+            <Image Name="0110.png" />
+            <Image Name="0111.png" />
+            <Image Name="0112.png" />
+            <Image Name="0113.png" />
+            <Image Name="0114.png" />
+            <Image Name="0115.png" />
+            <Image Name="0116.png" />
+            <Image Name="0117.png" />
+            <Image Name="0118.png" />
+            <Image Name="0119.png" />
+            <Image Name="0120.png" />
+          </Folder>
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

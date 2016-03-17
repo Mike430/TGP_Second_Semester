@@ -21,6 +21,9 @@ private:
 	Sprite* _normalSPR;
 	Sprite* _dazedSPR;
 	Sprite* _vDazedSPR;
+	Sprite* _idleSprite;
+	Vector<SpriteFrame*> _idleFrames;
+	Animation* _idleAnimation;
 
 	BallManager* _ballManager;
 	BallDispencer* _ballDispencer;
@@ -43,8 +46,8 @@ private:
 	//void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	
 public:
-	virtual bool init(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer);
-	static Player* create(const string csbFile, BallManager* ballManager, BallDispencer* ballDispencer);
+	virtual bool init(bool onRight, BallManager* ballManager, BallDispencer* ballDispencer);
+	static Player* create(bool onRight, BallManager* ballManager, BallDispencer* ballDispencer);
 	void update(float deltaTime);
 	void SwingBat();
 
