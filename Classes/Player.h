@@ -29,6 +29,7 @@ private:
 
 	bool _dazedState;
 	bool _veryDazed;
+	bool IsDazed() { return _dazedState || _veryDazed; }
 
 	// Player PowerUp Settings
 	bool _invincible = false;
@@ -37,6 +38,7 @@ private:
 	float _doubleAttackTime;
 
 	float _timeSinceHit;
+	float _stunLockTimer;
 
 	//void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	
@@ -52,6 +54,9 @@ public:
 	bool IsInvincible();
 
 	void PlayerHitByBall(Ball* ball);
+	void Daze(bool extendedTime = false);
+	void EndDaze();
+
 	void addScore(int points);
 	int getScore();
 };

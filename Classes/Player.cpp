@@ -40,7 +40,10 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 	_ballDispencer = ballDispencer;
 	_score = 0;
 	_dazedState = false;
+	_veryDazed = false;
+
 	_timeSinceHit = 100;//long time since last hit so dont immediately daze
+	_stunLockTimer = 0;
 
 	this->scheduleUpdate();
 
@@ -50,32 +53,19 @@ bool Player::init(const string csbFile, BallManager* ballManager, BallDispencer*
 void Player::update(float deltaTime)
 {
 	_ballDispencer->DisplayScore(_score);
+
 	_timeSinceHit += deltaTime;
-	if (_dazedState)
-	{
-		if (_timeSinceHit >= Settings::playerDazeRecoveryTime)
-		{
-			_dazedState = false;
-			//_swingButton->setVisible(true);
-			_normalSPR->setVisible(true);
-			_dazedSPR->setVisible(false);
-		}
-	}
-	if (_veryDazed)
-	{
-		if (_timeSinceHit >= (Settings::playerDazeRecoveryTime)*3)
-		{
-			_veryDazed = false;
-			//_swingButton->setVisible(true);
-			_normalSPR->setVisible(true);
-			_dazedSPR->setVisible(false);
-			//_vDazedSPR->setVisible(false);
-		}
-	}
-	
+	_stunLockTimer += deltaTime;
 
+	if (IsDazed())
+	{
+		float recoveryTime = Settings::playerDazeRecoveryTime * (_veryDazed ? 3 : 1);
+		if (_timeSinceHit >= recoveryTime)
+		{
+			EndDaze();
+		}
+	}
 	// How long invincible lasts for
-
 	// If invincible is true
 	if (_invincible)
 	{
@@ -104,7 +94,7 @@ void Player::update(float deltaTime)
 
 void Player::SwingBat()
 {
-	if (!_dazedState&&!_veryDazed)
+	if (!IsDazed())
 	{
 		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
@@ -136,31 +126,40 @@ void Player::SwingBat()
 					}
 					else
 					{ 
-					float difficulty = 0.1f; // 0=easy, 1=hard
-					float dy = toBall.y / r; // -1 -> 1
-					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
-					dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
-					Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
-					ball.Hit(hitDir);
+						float difficulty = 0.1f; // 0=easy, 1=hard
+						float dy = toBall.y / r; // -1 -> 1
+						dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
+						dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
+						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
+						ball.Hit(hitDir);
+					}
 				}
 			}
 		}
 	}
 }
-}
 
 void Player::PlayerHitByBall(Ball* ball)
 {
-	if (!_invincible && _timeSinceHit >= Settings::playerDazeInvincibilityTime)
+	if (!_invincible)
 	{
+		//get hit
 		_timeSinceHit = 0.0f;
-		_normalSPR->setVisible(false);
-		_dazedSPR->setVisible(true);
-		//_swingButton->setVisible(false);
+		//daze only if not dazed too recently
+		if (_stunLockTimer >= Settings::playerDazeInvincibilityTime)
+		{
+			_stunLockTimer = 0;
+			if (ball->getType() == OilBall::type || ball->getType() == BombOther::type)
+			{
+				Daze(true);
+			}
+			else
+			{
+				Daze();
+			}
+		}
 		if (ball->getType() == BombOther::type)
 		{
-			_timeSinceHit = -1.0f;//extra 1 second dazed
-
 			((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -4);
 
 			Explosion* boomImage;
@@ -169,16 +168,6 @@ void Player::PlayerHitByBall(Ball* ball)
 
 			boomImage->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
 			((Game_Scene*)(ball->getParent()->getParent()))->DestroyAndDropBall(ball);
-		}
-		else if (ball->getType() == OilBall::type)
-		{
-			_veryDazed = true;
-			//_vDazedSPR->setVisible(true);
-			//_dazedSPR->setVisible(false);
-		}
-		else
-		{
-			_dazedState = true;
 		}
 	}
 }
@@ -200,6 +189,32 @@ void Player::SetDoubleAttack()
 {
 	_doubleAttack = true;
 	_doubleAttackTime = 0;
+}
+
+void Player::Daze(bool extendedTime)
+{
+	_dazedState = true;
+	_normalSPR->setVisible(false);
+	//_swingButton->setVisible(false);
+	if (extendedTime)
+	{
+		_veryDazed = true;
+		//_vDazedSPR->setVisible(true);
+		_dazedSPR->setVisible(true);
+	}
+	else
+	{
+		_dazedSPR->setVisible(true);
+	}
+}
+
+void Player::EndDaze()
+{
+	_dazedState = _veryDazed = false;
+	_dazedSPR->setVisible(false);
+	//_vDazedSPR->setVisible(false);
+	_normalSPR->setVisible(true);
+	//_swingButton->setVisible(true);
 }
 
 void Player::addScore(int points)
