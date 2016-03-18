@@ -281,7 +281,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 	Player* player = ball->IsOnRight() ? _leftPlayer : _rightPlayer;
 
 	// make a hit box to represent the opponent
-	Rect playerRect = player->getChildren().at(0)->getChildByName("Sprite_2")->getBoundingBox();
+	Rect playerRect = player->GetCollision();
 	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
 	if (playerRect.intersectsRect(ballRect)){

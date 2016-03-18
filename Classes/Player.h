@@ -8,6 +8,7 @@
 #include "BallDispencer.h"
 #include "Settings.h"
 #include "Explosion.h"
+#include "AnimationHelper.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
@@ -18,12 +19,8 @@ class Player : public Node
 private:
 	Node* _rootNode;
 	Button* _swingButton;
-	Sprite* _normalSPR;
-	Sprite* _dazedSPR;
-	Sprite* _vDazedSPR;
-	Sprite* _idleSprite;
-	Vector<SpriteFrame*> _idleFrames;
-	Animation* _idleAnimation;
+	Sprite* _sprite;
+	Sprite* _collisionSprite;
 
 	BallManager* _ballManager;
 	BallDispencer* _ballDispencer;
@@ -55,6 +52,7 @@ public:
 	void SetDoubleAttack();
 
 	bool IsInvincible();
+	Rect GetCollision();
 
 	void PlayerHitByBall(Ball* ball);
 	void Daze(bool extendedTime = false);

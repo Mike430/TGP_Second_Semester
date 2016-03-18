@@ -6,26 +6,15 @@
       <ObjectData Name="Node" Tag="13" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="Sprite_1" ActionTag="2145557949" Tag="14" IconVisible="False" LeftMargin="-60.0000" RightMargin="-60.0000" TopMargin="-112.5000" BottomMargin="-112.5000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="CollisionSprite" ActionTag="2145557949" Tag="14" IconVisible="False" LeftMargin="-59.9999" RightMargin="-60.0001" TopMargin="-100.1064" BottomMargin="-124.8936" ctype="SpriteObjectData">
             <Size X="120.0000" Y="225.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Position X="0.0001" Y="-12.3936" />
+            <Scale ScaleX="1.0000" ScaleY="0.9021" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="Sprites/3PlayerTouched.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_2" ActionTag="312661878" Tag="15" IconVisible="False" LeftMargin="-60.0000" RightMargin="-60.0000" TopMargin="-112.5000" BottomMargin="-112.5000" ctype="SpriteObjectData">
-            <Size X="120.0000" Y="225.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="Sprites/2PlayerUnTouched.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Fire_Button" ActionTag="-512133324" Tag="16" IconVisible="False" LeftMargin="124.0000" RightMargin="-224.0000" TopMargin="41.5000" BottomMargin="-116.5000" TouchEnable="True" FontSize="48" ButtonText="Fire" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -43,29 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_3" ActionTag="263346224" VisibleForFrame="False" Tag="17" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-60.0000" RightMargin="-60.0000" TopMargin="-112.5000" BottomMargin="-112.5000" ctype="SpriteObjectData">
-            <Size X="120.0000" Y="225.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="4PlayerDazed.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_4" ActionTag="-1680419874" VisibleForFrame="False" Tag="19" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-60.0000" RightMargin="-60.0000" TopMargin="-112.5000" BottomMargin="-112.5000" ctype="SpriteObjectData">
-            <Size X="120.0000" Y="225.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="4PlayerDazed.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Sprite_Idle" ActionTag="754927599" Tag="12" IconVisible="False" LeftMargin="-112.8777" RightMargin="-187.1223" TopMargin="-146.6371" BottomMargin="-78.3629" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite" ActionTag="754927599" Tag="12" IconVisible="False" LeftMargin="-112.8777" RightMargin="-187.1223" TopMargin="-146.6371" BottomMargin="-78.3629" ctype="SpriteObjectData">
             <Size X="300.0000" Y="225.0000" />
             <AnchorPoint ScaleX="0.3750" ScaleY="0.2523" />
             <Position X="-0.3776" Y="-21.6061" />

@@ -33,27 +33,13 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 	// we do not want it but we might bring it back uder a different name, like use super powerful power of awesome button
 	_swingButton->setVisible(false);
 
-	_normalSPR = _rootNode->getChildByName<Sprite*>("Sprite_1");
-	_dazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_2");
-	auto asdf1 = Sprite::create("res/Animations/Idle/0001.png");
-	_idleSprite = _rootNode->getChildByName<Sprite*>("Sprite_Idle");
-	int numIdleFrames = 120;
-	float idleFrameRate = 60;
-	_idleFrames.reserve(numIdleFrames);
-	for (int i = 1; i <= numIdleFrames; i++)
-	{
-		string index = to_string(i);
-		//pad with '0' to length of 4
-		string pad = string(4 - index.length(), '0');
-		string path = "res/Animations/Idle/";
-		string fileType = ".png";
-		string file = path + pad + index + fileType;
-		_idleFrames.pushBack(SpriteFrame::create(file, Rect(0, 0, 300, 225)));
-	}
-	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / idleFrameRate, numeric_limits<unsigned int>::max());
-	//_idleSprite->runAction(Animate::create(_idleAnimation));
-	//	_vDazedSPR = _rootNode->getChildByName<Sprite*>("Sprite_4");
-	_dazedSPR->setVisible(false);
+
+	_sprite = _rootNode->getChildByName<Sprite*>("Sprite");
+	_collisionSprite = _rootNode->getChildByName<Sprite*>("CollisionSprite");
+	_collisionSprite->setVisible(false);
+	AnimationHelper::PreLoadAnimation("Idle", 120);
+	AnimationHelper::PreLoadAnimation("Dazed", 120);
+	AnimationHelper::PreLoadAnimation("Swing", 30);
 
 	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 
@@ -78,6 +64,11 @@ void Player::update(float deltaTime)
 	_timeSinceHit += deltaTime;
 	_stunLockTimer += deltaTime;
 
+	if (AnimationHelper::AnimationFinished(_sprite))
+	{
+		AnimationHelper::Animate(_sprite, "Idle");
+	}
+
 	if (IsDazed())
 	{
 		float recoveryTime = Settings::playerDazeRecoveryTime * (_veryDazed ? 3 : 1);
@@ -99,7 +90,6 @@ void Player::update(float deltaTime)
 			_invincible = false;
 		}
 	}
-
 }
 
 /*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -115,12 +105,9 @@ void Player::update(float deltaTime)
 
 void Player::SwingBat()
 {
-	_idleSprite->stopAllActions();
-	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / 60.0f, 100);
-	_idleSprite->runAction(Animate::create(_idleAnimation));
-
 	if (!IsDazed())
 	{
+		AnimationHelper::Animate(_sprite, "Swing");
 		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
 			Ball& ball = *_ballManager->GetBallAtIndex(i);
@@ -216,32 +203,24 @@ void Player::SetDoubleAttack()
 	_doubleAttackTime = 0;
 }
 
+Rect Player::GetCollision()
+{
+	return _collisionSprite->getBoundingBox();
+}
+
 void Player::Daze(bool extendedTime)
 {
 	_dazedState = true;
-	_normalSPR->setVisible(false);
 	//_swingButton->setVisible(false);
-	if (extendedTime)
-	{
-		_veryDazed = true;
-		//_vDazedSPR->setVisible(true);
-		_dazedSPR->setVisible(true);
-	}
-	else
-	{
-		_dazedSPR->setVisible(true);
-	}
-	_idleAnimation = Animation::createWithSpriteFrames(_idleFrames, 1.0f / 60.0f, 100);
-	_idleSprite->runAction(Animate::create(_idleAnimation));
+	_veryDazed = extendedTime;
+	AnimationHelper::Animate(_sprite, "Dazed", true);
 }
 
 void Player::EndDaze()
 {
 	_dazedState = _veryDazed = false;
-	_dazedSPR->setVisible(false);
-	//_vDazedSPR->setVisible(false);
-	_normalSPR->setVisible(true);
 	//_swingButton->setVisible(true);
+	AnimationHelper::Animate(_sprite, "Idle");
 }
 
 void Player::addScore(int points)
