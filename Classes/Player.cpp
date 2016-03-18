@@ -146,7 +146,7 @@ void Player::HitBall()
 				Vec2 ppos = this->convertToWorldSpace(Vec2());
 				Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
 				Vec2 toBall = bpos - ppos;
-			float r = 100;
+				float r = 100;
 				if (toBall.length() < r)
 				{
 					if (ball.getType() == BombBall::type)
@@ -188,6 +188,10 @@ void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 		{
 			_stunLockTimer = 0;
 			if (ball->getType() == OilBall::type || ball->getType() == BombOther::type)
+			{
+				Daze(true);
+			}
+			else if (ball->getType() == BombBall::type)
 			{
 				Daze(true);
 			}
