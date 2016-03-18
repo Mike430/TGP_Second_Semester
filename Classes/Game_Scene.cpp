@@ -285,7 +285,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
 	if (playerRect.intersectsRect(ballRect)){
-		player->PlayerHitByBall(ball);
+		player->PlayerHitByBall(this, ball);
 		SeeSaw(player, -1);
 		ball->SetCollidable(false);
 		return true;
@@ -320,11 +320,14 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		_targets.erase(find(_targets.begin(), _targets.end(), target));
 		_rootNode->removeChild(target);
 
+		if (ball->getType() == PowderBall::type)
+		{
+			PowderBallActivate(ball);
+		}
 		DestroyAndDropBall(ball);
 
 		return true;
 	}
-
 	return false;
 }
 
@@ -343,17 +346,51 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 
 void Game_Scene::SeeSaw(Player* player, int amount)
 {
+	// Double Attack
+	bool doubleAttack = false;
+
+	// If leftPlayer has double attack power up
+	if (player == _leftPlayer)
+	{
+		if (_rightPlayer->HasDoubleAttack())
+		{
+			doubleAttack = true;
+		}
+
+	}
+
+	// If rightPlayer has double attack
+	else if (player == _rightPlayer)
+	{
+		if (_leftPlayer->HasDoubleAttack())
+		{
+			doubleAttack = true;
+		}
+	}
+
+	// If player is invincible
 	if (!player->IsInvincible() || amount > 0)
 	{
 		float time = 0.1f;
-		Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
-		player->runAction(MoveBy::create(time, dPos));
+
+		if (doubleAttack == true)
+		{
+			Vec2 changeInPos(0, Settings::playerSeeSawMoveDistance * amount * 2);
+			player->runAction(MoveBy::create(time, changeInPos));
+		}
+
+		else
+		{
+			Vec2 changeInPos(0, Settings::playerSeeSawMoveDistance * amount);
+			player->runAction(MoveBy::create(time, changeInPos));
+		}
+
 	}
 }
 
 void Game_Scene::DestroyAndDropBall(Ball* ball)
 {
-	if (Settings::dropRate == -1)
+	if (Settings::dropRate == -1 && ball->getType() != SubPowder::type)
 	{
 		(ball->IsOnRight() ? _rightDispencer : _leftDispencer)->DropBall();
 	}
@@ -372,6 +409,19 @@ void Game_Scene::EndGame(int player1Score, int player2Score)
 }
 
 
+void Game_Scene::PowderBallActivate(Ball* ball)
+{
+	for (int i = 0; i < Settings::powderClusters; i++)
+	{
+		SubPowder* miniCluster;
+		miniCluster = SubPowder::create();
+
+		miniCluster->Setup(ball->getParent()->convertToWorldSpace(ball->getPosition()), ball->IsOnRight());		
+		miniCluster->Hit(Vec2 (RandomHelper::random_real(-600.0f, 600.0f), RandomHelper::random_real(-600.0f, 600.0f)));
+
+		_ballManager->AddBall(_rootNode, miniCluster);
+	}
+}
 
 // Callbacks
 //==============================================================================

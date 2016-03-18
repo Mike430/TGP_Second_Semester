@@ -67,7 +67,7 @@ void BallDispencer::Setup(bool leftOrRight, float x, float y, BallManager* manag
 
 void BallDispencer::AddBall()
 {
-	Ball* tempBall = _ballManager->CreateBall(_rootNode);
+	Ball* tempBall = _ballManager->CreateBall(_rootNode, false);
 	tempBall->Setup(_nodes[14 - _containedBalls.size()]->getPosition(), _nodes[14 - _containedBalls.size()]->getPosition(), (this->getPositionX() > 500));
 	_containedBalls.push_back(tempBall);
 }

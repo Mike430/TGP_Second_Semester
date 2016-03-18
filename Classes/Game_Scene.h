@@ -89,6 +89,8 @@ public:
 
 	void DestroyAndDropBall(Ball* ball);
 	void SeeSaw(Player* player, int amount);
+
+	void PowderBallActivate(Ball* ball);
 	// Callbacks
 	//==============================================================================
 	//void EndButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);

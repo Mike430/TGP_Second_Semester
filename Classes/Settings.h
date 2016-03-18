@@ -28,4 +28,5 @@ namespace Settings
 	const float DoubleGravityStrength = 2; // _gravity = _gravity * Settings::DoubleGravityStrength;
 	//Powerups
 	const float powerUpTime = 6.0f;
+	const int powderClusters = 5;
 }

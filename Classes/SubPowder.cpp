@@ -19,18 +19,19 @@ bool SubPowder::init()
 		return false;
 	}
 
-	this->_rootNode = cocos2d::CSLoader::createNode("PowderBall.csb");
+	this->_rootNode = cocos2d::CSLoader::createNode("PowderSub.csb");
 	this->addChild(_rootNode);
 	//_sprite = (cocos2d::Sprite*)this->getChildByName("Sprite_1");
 
 	this->scheduleUpdate();
+	//_contained = false;
 
 	return true;
 }
 
-void SubPowder::Hit(Vec2 velocity)
+void SubPowder::Setup(Vec2 position, bool onRight)
 {
-	Ball::Hit(velocity);
-	_gravity = 0;
-	_velocity = Vec2((_velocity.x > 0 ? 1 : -1) * Settings::horizontalSpeed, 0);
+	Ball::Setup(position, Vec2(), true);
+	_contained = false;
+	_onRight = onRight;
 }

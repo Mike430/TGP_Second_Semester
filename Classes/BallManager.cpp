@@ -8,10 +8,12 @@ BallManager::~BallManager()
 {
 }
 
-Ball* BallManager::CreateBall(cocos2d::Node* parent)
+Ball* BallManager::CreateBall(cocos2d::Node* parent, bool bypass)
 {
 	Ball* newBall;
+
 	float rnd = rand_0_1();
+
 	if (rnd > 0.95)
 	{
 		newBall = WalletBall::create();
@@ -40,8 +42,8 @@ Ball* BallManager::CreateBall(cocos2d::Node* parent)
 	{
 		newBall = Ball::create();
 	}
-	parent->addChild(newBall);
-	_balls.push_back(newBall);
+
+	AddBall(parent, newBall);
 	return newBall;
 }
 
@@ -55,4 +57,10 @@ void BallManager::DestroyBall(int index)
 void BallManager::DestroyBall(Ball* ball)
 {
 	DestroyBall(find(begin(_balls), end(_balls), ball) - begin(_balls));
+}
+
+void BallManager::AddBall(Node* parent, Ball* ball)
+{
+	parent->addChild(ball);
+	_balls.push_back(ball);
 }

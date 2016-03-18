@@ -15,7 +15,6 @@ private:
 	int _wayPointIndex;
 	Vec2 _dispencerPosition;// position
 	bool _advancing;// stops tampering when advancing to next way point.
-	bool _contained;// if true, no gravity
 
 	//Variables for gameplay
 	bool _collidable;
@@ -24,6 +23,7 @@ protected:
 	Vec2 _velocity;
 	float _gravity;
 	float _terminalVel;
+	bool _contained;// if true, no gravity
 
 	Node* _rootNode;
 	//Sprite* _sprite;

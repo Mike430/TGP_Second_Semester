@@ -113,17 +113,17 @@ void Player::update(float deltaTime)
 		}
 	}
 }
-
-/*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (!_dazedState)
+	if (_doubleAttack)
 	{
-		if (type == ui::Widget::TouchEventType::BEGAN)
-		{
-			//Do super awesome undefined thing here future us
+		_doubleAttackTime += deltaTime;
+
+		if (_doubleAttackTime >= Settings::powerUpTime)
+{
+			_doubleAttack = false;
 		}
 	}
-}*/
+
+}
 
 void Player::SwingBat()
 {
@@ -136,50 +136,50 @@ void Player::SwingBat()
 }
 
 void Player::HitBall()
-{
-	for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 	{
-		Ball& ball = *_ballManager->GetBallAtIndex(i);
-
-		// don't test if ball belongs to other player
-		// not enough balls to justify it.
-		if (!ball.IsContained())
+		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
-			Vec2 ppos = this->convertToWorldSpace(Vec2());
-			Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
-			Vec2 toBall = bpos - ppos;
-			float r = 100;
-			if (toBall.length() < r)
+			Ball& ball = *_ballManager->GetBallAtIndex(i);
+
+			// don't test if ball belongs to other player
+			// not enough balls to justify it.
+			if (!ball.IsContained())
 			{
-				if (ball.getType() == BombBall::type)
+				Vec2 ppos = this->convertToWorldSpace(Vec2());
+				Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
+				Vec2 toBall = bpos - ppos;
+			float r = 100;
+				if (toBall.length() < r)
 				{
-					Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
-					ball.Hit(emptySpace);
-					PlayerHitByBall(&ball);
-					((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -4);
-				}
-				else if (ball.getType() == WalletBall::type)
-				{
-					Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
-					ball.Hit(emptySpace);
+					if (ball.getType() == BombBall::type)
+					{	
+						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+						ball.Hit(emptySpace);
+						PlayerHitByBall(nullptr, &ball);
+						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -4);
+					}
+					else if (ball.getType() == WalletBall::type)
+					{
+						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+						ball.Hit(emptySpace);
 					((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, 4);
-				}
-				else
-				{
-					float difficulty = 0.1f; // 0=easy, 1=hard
-					float dy = toBall.y / r; // -1 -> 1
+					}
+					else
+					{ 
+						float difficulty = 0.1f; // 0=easy, 1=hard
+						float dy = toBall.y / r; // -1 -> 1
 					
-					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
-					dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
-					Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
-					ball.Hit(hitDir);
+						dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
+						dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
+						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
+						ball.Hit(hitDir);
+					}
 				}
 			}
 		}
 	}
-}
 
-void Player::PlayerHitByBall(Ball* ball)
+void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 {
 	if (!_invincible)
 	{
@@ -193,9 +193,13 @@ void Player::PlayerHitByBall(Ball* ball)
 			{
 				Daze(true);
 			}
+			else if (game->GetBallHitter(ball)->HasDoubleAttack())
+			{
+				Daze(true);
+			}
 			else
 			{
-				Daze();
+				Daze(false);
 			}
 		}
 		if (ball->getType() == BombOther::type)
@@ -234,6 +238,11 @@ void Player::SetDoubleAttack()
 Rect Player::GetCollision()
 {
 	return _collisionSprite->getBoundingBox();
+}
+
+bool Player::HasDoubleAttack()
+{
+	return _doubleAttack;
 }
 
 void Player::Daze(bool extendedTime)
