@@ -39,6 +39,8 @@ private:
 
 	float _timeSinceHit;
 	float _stunLockTimer;
+	float _swingCooldownTimer;
+	bool _swingHasHitYet;
 
 	//void SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 	
@@ -47,6 +49,7 @@ public:
 	static Player* create(bool onRight, BallManager* ballManager, BallDispencer* ballDispencer);
 	void update(float deltaTime);
 	void SwingBat();
+	void HitBall();
 
 	void SetInvincible();
 	void SetDoubleAttack();

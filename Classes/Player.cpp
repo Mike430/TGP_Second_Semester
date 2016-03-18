@@ -39,7 +39,10 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 	_collisionSprite->setVisible(false);
 	AnimationHelper::PreLoadAnimation("Idle", 120);
 	AnimationHelper::PreLoadAnimation("Dazed", 120);
-	AnimationHelper::PreLoadAnimation("Swing", 30);
+	//make swing animation last exactly Settings::playerSwingDuration
+	int swingFrames = 30;
+	float swingFPS = (float)swingFrames / Settings::playerSwingDuration;
+	AnimationHelper::PreLoadAnimation("Swing", swingFrames, swingFPS);
 
 	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 
@@ -51,6 +54,8 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 
 	_timeSinceHit = 100;//long time since last hit so dont immediately daze
 	_stunLockTimer = 0;
+	_swingCooldownTimer = 0;
+	_swingHasHitYet = false;
 
 	this->scheduleUpdate();
 
@@ -63,6 +68,7 @@ void Player::update(float deltaTime)
 
 	_timeSinceHit += deltaTime;
 	_stunLockTimer += deltaTime;
+	_swingCooldownTimer += deltaTime;
 
 	if (AnimationHelper::AnimationFinished(_sprite))
 	{
@@ -90,6 +96,22 @@ void Player::update(float deltaTime)
 			_invincible = false;
 		}
 	}
+
+	if (!IsDazed())
+	{
+		//if mid swing
+		if (_swingCooldownTimer <= Settings::playerSwingDuration)
+		{
+			if (!_swingHasHitYet)
+			{
+				if (_swingCooldownTimer >= Settings::playerSwingHitDelay)
+				{
+					HitBall();
+					_swingHasHitYet = true;
+				}
+			}
+		}
+	}
 }
 
 /*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
@@ -105,46 +127,52 @@ void Player::update(float deltaTime)
 
 void Player::SwingBat()
 {
-	if (!IsDazed())
+	if (!IsDazed() && _swingCooldownTimer >= Settings::playerSwingDuration)
 	{
+		_swingCooldownTimer = 0;
+		_swingHasHitYet = false;
 		AnimationHelper::Animate(_sprite, "Swing");
-		for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
-		{
-			Ball& ball = *_ballManager->GetBallAtIndex(i);
+	}
+}
 
-			// don't test if ball belongs to other player
-			// not enough balls to justify it.
-			if (!ball.IsContained())
+void Player::HitBall()
+{
+	for (size_t i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	{
+		Ball& ball = *_ballManager->GetBallAtIndex(i);
+
+		// don't test if ball belongs to other player
+		// not enough balls to justify it.
+		if (!ball.IsContained())
+		{
+			Vec2 ppos = this->convertToWorldSpace(Vec2());
+			Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
+			Vec2 toBall = bpos - ppos;
+			//float r = 100;
+			float r = 150;
+			if (toBall.length() < r)
 			{
-				Vec2 ppos = this->convertToWorldSpace(Vec2());
-				Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
-				Vec2 toBall = bpos - ppos;
-				//float r = 100;
-				float r = 150;
-				if (toBall.length() < r)
+				if (ball.getType() == BombBall::type)
 				{
-					if (ball.getType() == BombBall::type)
-					{	
-						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
-						ball.Hit(emptySpace);
-						PlayerHitByBall(&ball);
-						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
-					}
-					else if (ball.getType() == WalletBall::type)
-					{
-						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
-						ball.Hit(emptySpace);
-						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, Settings::playerSeeSawMoveDistance);
-					}
-					else
-					{ 
-						float difficulty = 0.1f; // 0=easy, 1=hard
-						float dy = toBall.y / r; // -1 -> 1
-						dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
-						dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
-						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
-						ball.Hit(hitDir);
-					}
+					Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+					ball.Hit(emptySpace);
+					PlayerHitByBall(&ball);
+					((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
+				}
+				else if (ball.getType() == WalletBall::type)
+				{
+					Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
+					ball.Hit(emptySpace);
+					((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, Settings::playerSeeSawMoveDistance);
+				}
+				else
+				{
+					float difficulty = 0.1f; // 0=easy, 1=hard
+					float dy = toBall.y / r; // -1 -> 1
+					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
+					dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
+					Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
+					ball.Hit(hitDir);
 				}
 			}
 		}
