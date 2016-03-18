@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="GNOMEG~1" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="GnomeGames_Game" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -57,6 +57,8 @@
         <Project Name="RareTarget.csd" Type="Node" />
         <Project Name="Invincibility.csd" Type="Node" />
         <Project Name="DoubleAttack.csd" Type="Node" />
+        <Project Name="PowderSub.csd" Type="Node" />
+        <Image Name="PowderSub.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

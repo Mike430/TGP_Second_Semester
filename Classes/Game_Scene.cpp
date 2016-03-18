@@ -319,8 +319,20 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		target->Hit(this, ball);
 		_targets.erase(find(_targets.begin(), _targets.end(), target));
 		_rootNode->removeChild(target);
-
-		DestroyAndDropBall(ball);
+		
+		if (ball->getType() == SubPowder::type)
+		{
+			this->removeChild(ball); //Only for sub-powder balls, because they're the clusters of a cluster bomb.
+		}
+		else
+		{
+			if (ball->getType() == PowderBall::type)
+			{
+				PowderBallActivate(ball);
+			}
+			DestroyAndDropBall(ball);
+		}
+	
 
 		return true;
 	}
@@ -335,7 +347,14 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 		|| ball->getPositionY() > _windowSize.y
 		|| ball->getPositionY() < 0))
 	{
-		DestroyAndDropBall(ball);
+		if (ball->getType() == SubPowder::type)
+		{
+			this->removeChild(ball); //Only for sub-powder balls, because they're the clusters of a cluster bomb.
+		}
+		else
+		{
+			DestroyAndDropBall(ball);
+		}
 		return true;
 	}
 	return false;
@@ -372,6 +391,49 @@ void Game_Scene::EndGame(int player1Score, int player2Score)
 }
 
 
+void Game_Scene::PowderBallActivate(Ball* ball)
+{
+	int randm[5];
+	for (int i = 0; i < Settings::powderClusters; i++)
+	{
+		SubPowder* miniCluster;
+		miniCluster = SubPowder::create();
+
+		miniCluster->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
+		randm[0] = (rand_0_1() * 360) + 100;
+		randm[2] = rand_0_1() * 360;
+		randm[1] = rand_0_1() * 360;
+		
+		randm[4] = rand_0_1();
+
+		if (randm[4] > 0.5)
+		{
+			randm[3] = -1;
+		}
+		else
+		{
+			randm[3] = 1;
+		}
+		randm[4] = rand_0_1();
+		if (randm[4] > 0.5)
+		{
+			randm[1] = -1;
+		}
+		else
+		{
+			randm[1] = 1;
+		}
+		
+		
+		
+		miniCluster->Hit(Vec2 (RandomHelper::random_real(-600.0f, 600.0f), RandomHelper::random_real(-600.0f, 600.0f)));
+
+		_rootNode->addChild(miniCluster);
+		_ballManager->AddSubsToVector(miniCluster);
+
+	}
+
+}
 
 // Callbacks
 //==============================================================================

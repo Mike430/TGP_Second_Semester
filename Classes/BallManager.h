@@ -14,6 +14,7 @@
 #include "OilBall.h"
 #include "WalletBall.h"
 #include "BombOther.h"
+#include "SubPowder.h"
 
 using namespace std;
 
@@ -25,10 +26,11 @@ public:
 	BallManager();
 	~BallManager();
 
-	Ball* CreateBall(cocos2d::Node* parent);
+	Ball* CreateBall(cocos2d::Node* parent, bool bypass);
 	void DestroyBall(int index);
 	void DestroyBall(Ball* ball);
 	int GetNumberOfBalls() const { return _balls.size(); };
 	Ball* GetBallAtIndex(int index) const { return _balls.at(index); }
+	void AddSubsToVector(Ball* ball);
 };
 #endif // __BALL_MANAGER_H__
