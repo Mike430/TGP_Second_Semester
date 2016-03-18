@@ -148,8 +148,7 @@ void Player::HitBall()
 			Vec2 ppos = this->convertToWorldSpace(Vec2());
 			Vec2 bpos = ball.getParent()->convertToWorldSpace(ball.getPosition());
 			Vec2 toBall = bpos - ppos;
-			//float r = 100;
-			float r = 150;
+			float r = 100;
 			if (toBall.length() < r)
 			{
 				if (ball.getType() == BombBall::type)
@@ -169,6 +168,7 @@ void Player::HitBall()
 				{
 					float difficulty = 0.1f; // 0=easy, 1=hard
 					float dy = toBall.y / r; // -1 -> 1
+					
 					dy = (dy > 0 ? 1 : -1) * pow(abs(cbrtf(dy)), (1.0f - difficulty)); // cubic curve, harder to get y just right
 					dy = (dy + 1) / 2.0f; // 0 -> 1 for lerp
 					Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
