@@ -1,4 +1,5 @@
 #include "Double_Attack.h"
+#include "Game_Scene.h"
 
 
 Double_Attack::Double_Attack()
@@ -27,7 +28,8 @@ bool Double_Attack::init()
 
 void Double_Attack::Hit(Game_Scene* game, Ball* ball)
 {
-
+	Player* hitter = game->GetBallHitter(ball);
+	hitter->SetDoubleAttack();
 }
 
 int Double_Attack::GetScoreValue() const

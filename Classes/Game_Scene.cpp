@@ -285,7 +285,7 @@ bool Game_Scene::TestCollisionWithPlayer(Ball* ball)
 	playerRect.origin = player->convertToWorldSpace(playerRect.origin);
 
 	if (playerRect.intersectsRect(ballRect)){
-		player->PlayerHitByBall(ball);
+		player->PlayerHitByBall(this, ball);
 		SeeSaw(player, -1);
 		ball->SetCollidable(false);
 		return true;
@@ -346,11 +346,45 @@ bool Game_Scene::TestIfBallIsOut(Ball* ball)
 
 void Game_Scene::SeeSaw(Player* player, int amount)
 {
+	// Double Attack
+	bool doubleAttack = false;
+
+	// If leftPlayer has double attack power up
+	if (player == _leftPlayer)
+	{
+		if (_rightPlayer->HasDoubleAttack())
+		{
+			doubleAttack = true;
+		}
+
+	}
+
+	// If rightPlayer has double attack
+	else if (player == _rightPlayer)
+	{
+		if (_leftPlayer->HasDoubleAttack())
+		{
+			doubleAttack = true;
+		}
+	}
+
+	// If player is invincible
 	if (!player->IsInvincible() || amount > 0)
 	{
 		float time = 0.1f;
-		Vec2 dPos(0, Settings::playerSeeSawMoveDistance * amount);
-		player->runAction(MoveBy::create(time, dPos));
+
+		if (doubleAttack == true)
+		{
+			Vec2 changeInPos(0, Settings::playerSeeSawMoveDistance * amount * 2);
+			player->runAction(MoveBy::create(time, changeInPos));
+		}
+
+		else
+		{
+			Vec2 changeInPos(0, Settings::playerSeeSawMoveDistance * amount);
+			player->runAction(MoveBy::create(time, changeInPos));
+		}
+
 	}
 }
 

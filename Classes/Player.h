@@ -9,6 +9,8 @@
 #include "Settings.h"
 #include "Explosion.h"
 
+class Game_Scene;
+
 using namespace cocos2d;
 using namespace cocos2d::ui;
 using namespace std;
@@ -52,8 +54,9 @@ public:
 	void SetDoubleAttack();
 
 	bool IsInvincible();
+	bool HasDoubleAttack();
 
-	void PlayerHitByBall(Ball* ball);
+	void PlayerHitByBall(Game_Scene* game, Ball* ball);
 	void Daze(bool extendedTime = false);
 	void EndDaze();
 

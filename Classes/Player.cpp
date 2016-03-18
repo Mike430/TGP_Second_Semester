@@ -79,18 +79,17 @@ void Player::update(float deltaTime)
 		}
 	}
 
-}
-
-/*void Player::SwingButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (!_dazedState)
+	if (_doubleAttack)
 	{
-		if (type == ui::Widget::TouchEventType::BEGAN)
+		_doubleAttackTime += deltaTime;
+
+		if (_doubleAttackTime >= Settings::powerUpTime)
 		{
-			//Do super awesome undefined thing here future us
+			_doubleAttack = false;
 		}
 	}
-}*/
+
+}
 
 void Player::SwingBat()
 {
@@ -115,7 +114,7 @@ void Player::SwingBat()
 					{	
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
 						ball.Hit(emptySpace);
-						PlayerHitByBall(&ball);
+						PlayerHitByBall(nullptr, &ball);
 						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -Settings::playerSeeSawMoveDistance);
 					}
 					else if (ball.getType() == WalletBall::type)
@@ -139,7 +138,7 @@ void Player::SwingBat()
 	}
 }
 
-void Player::PlayerHitByBall(Ball* ball)
+void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 {
 	if (!_invincible)
 	{
@@ -153,9 +152,13 @@ void Player::PlayerHitByBall(Ball* ball)
 			{
 				Daze(true);
 			}
+			else if (game->GetBallHitter(ball)->HasDoubleAttack())
+			{
+				Daze(true);
+			}
 			else
 			{
-				Daze();
+				Daze(false);
 			}
 		}
 		if (ball->getType() == BombOther::type)
@@ -189,6 +192,11 @@ void Player::SetDoubleAttack()
 {
 	_doubleAttack = true;
 	_doubleAttackTime = 0;
+}
+
+bool Player::HasDoubleAttack()
+{
+	return _doubleAttack;
 }
 
 void Player::Daze(bool extendedTime)
