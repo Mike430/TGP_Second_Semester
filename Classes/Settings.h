@@ -9,7 +9,7 @@ namespace Settings
 	//Targets
 	const float targetMinSpawnDelay = 0.5f;
 	const float targetMaxSpawnDelay = 3.0f;
-	const float targetLifeTime = 4.0f;
+	const float targetLifeTime = 15.0f;
 	//Players
 	const float playerMinY = 150;
 	const float playerMaxY = 500;
