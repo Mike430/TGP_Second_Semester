@@ -385,7 +385,6 @@ void Game_Scene::PowderBallActivate(Ball* ball)
 		miniCluster->Setup(ball->getParent()->convertToWorldSpace(ball->getPosition()), ball->IsOnRight());		
 		miniCluster->Hit(Vec2 (RandomHelper::random_real(-600.0f, 600.0f), RandomHelper::random_real(-600.0f, 600.0f)));
 
-		_rootNode->addChild(miniCluster);
 		_ballManager->AddBall(_rootNode, miniCluster);
 	}
 }
