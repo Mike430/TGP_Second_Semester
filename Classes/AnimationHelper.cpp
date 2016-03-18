@@ -28,7 +28,9 @@ void AnimationHelper::LoadAnimation(string name, int numFrames, float framerate)
 	frames.reserve(numFrames);
 	for (int i = 1; i <= numFrames; i++)
 	{
-		string index = to_string(i);
+		stringstream indexStream;
+		indexStream << i;
+		string index = indexStream.str();
 		//pad with '0' to length of 4
 		string pad = string(4 - index.length(), '0');
 		string path = "res/Animations/" + name + "/";
