@@ -96,6 +96,15 @@ void Player::update(float deltaTime)
 			_invincible = false;
 		}
 	}
+	if (_doubleAttack)
+	{
+		_doubleAttackTime += deltaTime;
+
+		if (_doubleAttackTime >= Settings::powerUpTime)
+		{
+			_doubleAttack = false;
+		}
+	}
 
 	if (!IsDazed())
 	{
@@ -112,17 +121,6 @@ void Player::update(float deltaTime)
 			}
 		}
 	}
-}
-	if (_doubleAttack)
-	{
-		_doubleAttackTime += deltaTime;
-
-		if (_doubleAttackTime >= Settings::powerUpTime)
-{
-			_doubleAttack = false;
-		}
-	}
-
 }
 
 void Player::SwingBat()
