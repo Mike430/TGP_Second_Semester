@@ -8,7 +8,6 @@ public:
 	static SubPowder* create();
 	virtual bool init() override;
 	virtual ~SubPowder();
-	virtual void Hit(Vec2 velocity) override;
-	virtual void update(float deltaTime) override;
+	void Setup(Vec2 position, bool onRight);
 	virtual int getType() override { return type; }
 };

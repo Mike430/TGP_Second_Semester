@@ -29,44 +29,9 @@ bool SubPowder::init()
 	return true;
 }
 
-void SubPowder::Hit(Vec2 velocity)
+void SubPowder::Setup(Vec2 position, bool onRight)
 {
-//	if (_contained) return;
-	_velocity = velocity;
-	
-	//if 0 gravity field is active set gravity to 0
-	if (ZeroGravityField)
-	{
-		_gravity = 0;
-	}
-	else if (HalfGravityField)
-	{
-		_gravity = Settings::gravity * Settings::HalfGravityStrength;
-	}
-
-	else if (DoubleGravityField)
-	{
-		_gravity = Settings::gravity * Settings::DoubleGravityStrength;
-	}
-
-	else 
-	{
-		_gravity = Settings::gravity;
-	}
-
+	Ball::Setup(position, Vec2(), true);
+	_contained = false;
+	_onRight = onRight;
 }
-
-
-void SubPowder::update(float deltaTime)
-{
-	float yPos = getPositionY();
-	yPos = GravityEffect(yPos, deltaTime);
-	setPositionY(yPos);
-
-	float xPos = getPositionX();
-	xPos += _velocity.x * deltaTime;
-	setPositionX(xPos);
-
-
-}
-

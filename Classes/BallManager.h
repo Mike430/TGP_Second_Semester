@@ -27,10 +27,10 @@ public:
 	~BallManager();
 
 	Ball* CreateBall(cocos2d::Node* parent, bool bypass);
+	void AddBall(Node* parent, Ball* ball);
 	void DestroyBall(int index);
 	void DestroyBall(Ball* ball);
 	int GetNumberOfBalls() const { return _balls.size(); };
 	Ball* GetBallAtIndex(int index) const { return _balls.at(index); }
-	void AddSubsToVector(Ball* ball);
 };
 #endif // __BALL_MANAGER_H__
