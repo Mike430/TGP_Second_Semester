@@ -4,7 +4,7 @@
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="VS" />
         <IsLastPublish Value="True" />
-        <LastRunType Value="Android" />
+        <LastRunType Value="Windows" />
       </Value>
     </Item>
     <Item Key="PackageParamsKey">
@@ -18,7 +18,7 @@
         <iOS_Target Value="GnomeGames_Game-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />
-        <RunPlatform Value="Android" />
+        <RunPlatform Value="Windows" />
         <FrameworkVersion Value="cocos2d-x-3.9" />
         <IsDebugKeystore Value="True" />
         <KeystorePassword Value="" />
@@ -30,7 +30,10 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <ActiveDocument />
+        <OpenedDocuments>
+          <FilePathData Path="0_Main_Menu.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="0_Main_Menu.csd" />
       </Value>
     </Item>
   </Properties>
