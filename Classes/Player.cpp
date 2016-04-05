@@ -173,6 +173,7 @@ void Player::HitBall()
 						ball.Hit(hitDir);
 					}
 				}
+				AudioHelper::Play("test");
 			}
 		}
 	}

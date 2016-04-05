@@ -148,6 +148,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
   <ItemGroup>
     <ClCompile Include="..\Classes\AnimationHelper.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\AudioHelper.cpp" />
     <ClCompile Include="..\Classes\Ball.cpp" />
     <ClCompile Include="..\Classes\BallDispencer.cpp" />
     <ClCompile Include="..\Classes\BallManager.cpp" />
@@ -180,6 +181,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.9\prebuilt\win32\*.*" "$(OutDir)"
   <ItemGroup>
     <ClInclude Include="..\Classes\AnimationHelper.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\AudioHelper.h" />
     <ClInclude Include="..\Classes\Ball.h" />
     <ClInclude Include="..\Classes\BallDispencer.h" />
     <ClInclude Include="..\Classes\BallManager.h" />
