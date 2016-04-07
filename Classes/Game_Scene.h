@@ -9,6 +9,7 @@
 #include "ui/CocosGUI.h"
 #include <string.h>
 #include "SimpleAudioEngine.h"
+#include "AudioHelper.h"
 #include "GameManager.h"
 #include "Player.h"
 #include "Ball.h"
@@ -17,7 +18,6 @@
 #include "Target.h"
 #include "CommonTarget.h"
 #include "RareTarget.h"
-#include "SimpleAudioEngine.h"
 #include "NoGravFieldFX.h"
 #include "HalfGravFieldFX.h"
 #include "DoubleGravFieldFX.h"

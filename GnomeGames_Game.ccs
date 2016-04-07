@@ -329,6 +329,9 @@
             <Image Name="0120.png" />
           </Folder>
         </Folder>
+        <Folder Name="Audio">
+          <Audio Name="test.mp3" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>
