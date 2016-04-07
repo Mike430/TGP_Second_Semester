@@ -62,7 +62,7 @@ void AppDelegate::applicationDidEnterBackground() {
 	 auto gameScene = dynamic_cast<Game_Scene*>(scene);
 	 if (gameScene)
 	 {
-		 //gameScene->Pause();
+		 gameScene->Pause();
 	 }
 }
 

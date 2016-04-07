@@ -26,7 +26,6 @@ bool Game_Scene::init()
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("main song 2.mp3", true);
 
-
 	// Random Generator
 	srand(time(NULL));
 	// Scene Setter
@@ -99,6 +98,10 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
+	if (_paused)
+	{
+		return;
+	}
 	//string textDisplay = "Score: " + to_string((int)(1337));
 	//_scoreLabel->setText(textDisplay);
 	// add targets outside start countdown check
@@ -432,6 +435,11 @@ void Game_Scene::PowderBallActivate(Ball* ball)
 
 bool Game_Scene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	if (_paused)
+	{
+		return false;
+	}
+
 	if (touch->getLocation().x > (_windowSize.x / 2))
 		_rightPlayer->SwingBat();
 	else
@@ -450,4 +458,14 @@ void Game_Scene::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void Game_Scene::onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+}
+
+void Game_Scene::Pause()
+{
+	_paused = true;
+}
+
+void Game_Scene::UnPause()
+{
+	_paused = false;
 }
