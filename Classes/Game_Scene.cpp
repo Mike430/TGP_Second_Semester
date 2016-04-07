@@ -11,7 +11,7 @@ cocos2d::Scene* Game_Scene::createScene()
 	// 'layer' is an autorelease object
 	auto layer = Game_Scene::create();
 	// add layer as a child to scene
-	scene->addChild(layer);
+	scene->addChild(layer, 0, "Game_Scene");
 	//RETURN
 	return scene;
 }
