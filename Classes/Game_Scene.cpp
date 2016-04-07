@@ -117,42 +117,37 @@ void Game_Scene::update(float deltaTime)
 			}
 			//make a new target
 			Target* newTarget = nullptr;
-			if (rand_0_1() < 1.0 / 6.0)
+
+			float randNmbr = rand_0_1();
+			if (randNmbr >= 0.97)
 			{
 				newTarget = Invincibility::create();
 			}
-			else if (rand_0_1() < 1.0 / 6.0)
+			else if (randNmbr >= 0.9 && randNmbr < 0.97)
 			{
 				newTarget = Double_Attack::create();
 			}
-			else if (rand_0_1() < 1.0 / 6.0)
+			else if (randNmbr >= 0.84 && randNmbr < 0.9)
 			{
 				newTarget = NoGravFieldFX::create();
 			}
-			else if (rand_0_1() < 1.0 / 6.0)
+			else if (randNmbr >= 0.8 && randNmbr < 0.84)
 			{
 				newTarget = HalfGravFieldFX::create();
 			}
-			else if (rand_0_1() < 1.0 / 2.0)
+			else if (randNmbr >= 0.76 && randNmbr < 0.8)
 			{
 				newTarget = DoubleGravFieldFX::create();
 			}
-			else
+			else if (randNmbr >= 0.7 && randNmbr < 0.76)
 			{
-				//make a normal target
-				bool common = rand_0_1() < 0.9;
-				int numRare = 0;
-				for (Target* target : _targets)
-				{
-					RareTarget* rare = dynamic_cast<RareTarget*>(target);
-					if (rare) numRare++;
-				}
-				if (numRare >= 2)
-				{
-					common = true;
-				}
-				newTarget = (common ? (Target*)CommonTarget::create() : (Target*)RareTarget::create());
+				newTarget = RareTarget::create();
 			}
+			else 
+			{
+				newTarget = CommonTarget::create();
+			}
+			
 			_targets.push_back(newTarget);
 			_rootNode->addChild(newTarget);
 		}
