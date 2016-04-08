@@ -59,7 +59,7 @@ void AppDelegate::applicationDidEnterBackground() {
 
 
 	 auto scene = Director::getInstance()->getRunningScene();
-	 auto gameScene = dynamic_cast<Game_Scene*>(scene);
+	 auto gameScene = scene->getChildByName<Game_Scene*>("Game_Scene");
 	 if (gameScene)
 	 {
 		 gameScene->Pause();
