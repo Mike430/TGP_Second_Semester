@@ -52,6 +52,7 @@ private:
 	float _countDown;
 
 	bool _paused;
+	Button* _unPauseButton;
 
 	// timers for diffrent field effect so they can have diffrent duration
 	float _NoGravTimer = Settings::ZeroGravityFieldDuration;

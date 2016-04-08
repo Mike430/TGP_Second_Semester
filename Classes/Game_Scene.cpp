@@ -82,6 +82,14 @@ bool Game_Scene::init()
 
 	_countDown = 3.0f;
 	_paused = false;
+	_unPauseButton = _rootNode->getChildByName<Button*>("btn_unpause");
+	_unPauseButton->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){
+		if (type == Widget::TouchEventType::ENDED)
+		{
+			UnPause();
+		}
+	});
+	_unPauseButton->setVisible(false);
 
 	_targets.reserve(10);
 	_targetSpawnTimer = Settings::targetMinSpawnDelay;
@@ -463,9 +471,11 @@ void Game_Scene::onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
 void Game_Scene::Pause()
 {
 	_paused = true;
+	_unPauseButton->setVisible(true);
 }
 
 void Game_Scene::UnPause()
 {
 	_paused = false;
+	_unPauseButton->setVisible(false);
 }
