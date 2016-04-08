@@ -11,7 +11,7 @@ cocos2d::Scene* Game_Scene::createScene()
 	// 'layer' is an autorelease object
 	auto layer = Game_Scene::create();
 	// add layer as a child to scene
-	scene->addChild(layer);
+	scene->addChild(layer, 0, "Game_Scene");
 	//RETURN
 	return scene;
 }
@@ -25,7 +25,6 @@ bool Game_Scene::init()
 	}
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("main song 2.mp3", true);
-
 
 	// Random Generator
 	srand(time(NULL));
@@ -83,6 +82,14 @@ bool Game_Scene::init()
 
 	_countDown = 3.0f;
 	_paused = false;
+	_unPauseButton = _rootNode->getChildByName<Button*>("btn_unpause");
+	_unPauseButton->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){
+		if (type == Widget::TouchEventType::ENDED)
+		{
+			UnPause();
+		}
+	});
+	_unPauseButton->setVisible(false);
 
 	_targets.reserve(10);
 	_targetSpawnTimer = Settings::targetMinSpawnDelay;
@@ -99,6 +106,10 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
+	if (_paused)
+	{
+		return;
+	}
 	//string textDisplay = "Score: " + to_string((int)(1337));
 	//_scoreLabel->setText(textDisplay);
 	// add targets outside start countdown check
@@ -427,6 +438,11 @@ void Game_Scene::PowderBallActivate(Ball* ball)
 
 bool Game_Scene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	if (_paused)
+	{
+		return false;
+	}
+
 	if (touch->getLocation().x > (_windowSize.x / 2))
 		_rightPlayer->SwingBat();
 	else
@@ -445,4 +461,39 @@ void Game_Scene::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void Game_Scene::onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+}
+
+void Game_Scene::EnableUpdates(bool update)
+{
+	auto setUpdate = [&](Node* node)
+	{
+		update ? node->scheduleUpdate() : node->unscheduleUpdate();
+	};
+	for (Node* obj : vector<Node*>{ this, _leftPlayer, _rightPlayer })
+	{
+		setUpdate(obj);
+	}
+	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	{
+		setUpdate(_ballManager->GetBallAtIndex(i));
+	}
+}
+
+void Game_Scene::Pause()
+{
+	_paused = true;
+	_unPauseButton->setVisible(true);
+	EnableUpdates(false);
+}
+
+void Game_Scene::UnPause()
+{
+	_paused = false;
+	_unPauseButton->setVisible(false);
+	EnableUpdates(true);
+}
+
+bool Game_Scene::IsPaused()
+{
+	return _paused;
 }

@@ -56,6 +56,14 @@ void AppDelegate::applicationDidEnterBackground() {
 
     // if you use SimpleAudioEngine, it must be paused
      SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+
+
+	 auto scene = Director::getInstance()->getRunningScene();
+	 auto gameScene = scene->getChildByName<Game_Scene*>("Game_Scene");
+	 if (gameScene)
+	 {
+		 gameScene->Pause();
+	 }
 }
 
 // this function will be called when the app is active again

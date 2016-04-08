@@ -51,11 +51,13 @@ private:
 
 	float _countDown;
 
+	bool _paused;
+	Button* _unPauseButton;
+
 	// timers for diffrent field effect so they can have diffrent duration
 	float _NoGravTimer = Settings::ZeroGravityFieldDuration;
 	float _HalfGravTimer = Settings::HalfGravityFieldDuration;
 	float _DoubleGravTimer = Settings::DoubleGravityFieldDuration;
-	bool _paused;
 
 	bool TestCollisionWithPlayer(Ball* ball);
 	bool TestCollisionWithTarget(Ball* ball, Target* target);
@@ -99,5 +101,10 @@ public:
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event);
+
+	void Pause();
+	void UnPause();
+	bool IsPaused();
+	void EnableUpdates(bool enable);
 };
 #endif // __GAME_H__
