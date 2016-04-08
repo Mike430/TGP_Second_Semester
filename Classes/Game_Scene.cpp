@@ -468,14 +468,37 @@ void Game_Scene::onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 }
 
+void Game_Scene::EnableUpdates(bool update)
+{
+	auto setUpdate = [&](Node* node)
+	{
+		update ? node->scheduleUpdate() : node->unscheduleUpdate();
+	};
+	for (Node* obj : vector<Node*>{ this, _leftPlayer, _rightPlayer })
+	{
+		setUpdate(obj);
+	}
+	for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
+	{
+		setUpdate(_ballManager->GetBallAtIndex(i));
+	}
+}
+
 void Game_Scene::Pause()
 {
 	_paused = true;
 	_unPauseButton->setVisible(true);
+	EnableUpdates(false);
 }
 
 void Game_Scene::UnPause()
 {
 	_paused = false;
 	_unPauseButton->setVisible(false);
+	EnableUpdates(true);
+}
+
+bool Game_Scene::IsPaused()
+{
+	return _paused;
 }

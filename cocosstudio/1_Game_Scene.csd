@@ -50,14 +50,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="btn_unpause" ActionTag="-184565085" Tag="11" IconVisible="False" LeftMargin="615.8333" RightMargin="618.1667" TopMargin="171.0342" BottomMargin="592.9658" TouchEnable="True" FontSize="9" ButtonText="UNPAUSE" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="46.0000" Y="36.0000" />
+          <AbstractNodeData Name="btn_unpause" ActionTag="-184565085" Tag="11" IconVisible="False" LeftMargin="538.8333" RightMargin="541.1667" TopMargin="151.5342" BottomMargin="573.4658" TouchEnable="True" FontSize="36" ButtonText="UNPAUSE" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="200.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="638.8333" Y="610.9658" />
-            <Scale ScaleX="6.9600" ScaleY="5.0550" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.4991" Y="0.7637" />
-            <PreSize X="0.0359" Y="0.0450" />
+            <PreSize X="0.1563" Y="0.0938" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
             <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />

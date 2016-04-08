@@ -104,5 +104,7 @@ public:
 
 	void Pause();
 	void UnPause();
+	bool IsPaused();
+	void EnableUpdates(bool enable);
 };
 #endif // __GAME_H__
