@@ -47,7 +47,7 @@ void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 {
 	if (_gameScene == nullptr)
 	{
-		_gameScene = Tutorial_Scene::createScene();
+		_gameScene = Game_Scene::createScene();
 		CCDirector::getInstance()->replaceScene(_gameScene);
 	}
 }
