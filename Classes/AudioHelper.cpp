@@ -8,17 +8,17 @@ void AudioHelper::PreLoad(string soundEffectName)
 	SimpleAudioEngine::getInstance()->preloadEffect(getFileName(soundEffectName).c_str());
 }
 
-void AudioHelper::Play(string soundEffectName)
+void AudioHelper::Play(string soundEffectName, float pitch, float gain)
 {
-	SimpleAudioEngine::getInstance()->playEffect(getFileName(soundEffectName).c_str());
+	SimpleAudioEngine::getInstance()->playEffect(getFileName(soundEffectName).c_str(), false, pitch, 0.0f, gain);
 }
 
-void AudioHelper::PlayRandom(string soundEffectName, int numEffects)
+void AudioHelper::PlayRandom(string soundEffectName, int numEffects, float pitch, float gain)
 {
 	stringstream fileName;
 	fileName << soundEffectName;
 	fileName << int(((double)rand() / (double)RAND_MAX) * numEffects) + 1;
-	Play(fileName.str());
+	Play(fileName.str(), pitch, gain);
 }
 
 string AudioHelper::getFileName(string soundEffectName)

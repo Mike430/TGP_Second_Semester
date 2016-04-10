@@ -225,11 +225,17 @@ void Game_Scene::update(float deltaTime)
 	{
 		_countDown -= deltaTime;
 
+		static bool playedAirhorns = false;
+		if (_countDown <= 7 && !playedAirhorns)
+		{
+			AudioHelper::Play("airhorn");
+			playedAirhorns = true;
+		}
+
 		if (_countDown <= 0)
 		{
 			_rightDispencer->DropBall();
 			_leftDispencer->DropBall();
-			AudioHelper::Play("Airhorns");
 		}
 	}
 
@@ -245,6 +251,7 @@ void Game_Scene::update(float deltaTime)
 
 			}
 			_NoGravTimer = Settings::ZeroGravityFieldDuration;
+			AudioHelper::Play("endgrav");
 		}
 	}
 
@@ -259,6 +266,7 @@ void Game_Scene::update(float deltaTime)
 				_ballManager->GetBallAtIndex(i)->HalfGravityField = false;
 			}
 			_HalfGravTimer = Settings::HalfGravityFieldDuration;
+			AudioHelper::Play("endgrav");
 		}
 	}
 
@@ -274,6 +282,7 @@ void Game_Scene::update(float deltaTime)
 				_ballManager->GetBallAtIndex(i)->DoubleGravityField = false;
 			}
 			_DoubleGravTimer = Settings::DoubleGravityFieldDuration;
+			AudioHelper::Play("endgrav");
 		}
 	}
 }
@@ -330,6 +339,11 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		if (ball->getType() == PowderBall::type)
 		{
 			PowderBallActivate(ball);
+			AudioHelper::PlayRandom("powderball", 2);
+		}
+		else if (ball->getType() == RocketBall::type)
+		{
+			AudioHelper::Play("missilehit");
 		}
 		DestroyAndDropBall(ball);
 

@@ -40,6 +40,8 @@ bool HelloWorld::init()
 	_beginButton = (cocos2d::ui::Button*)_rootNode->getChildByName("Begin_Button");
 	_beginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BeginButtonPressed, this));
 
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/Menusong.mp3", true);
+
     return true;
 }
 

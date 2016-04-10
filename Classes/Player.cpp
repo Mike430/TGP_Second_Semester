@@ -155,6 +155,7 @@ void Player::HitBall()
 						ball.Hit(emptySpace);
 						PlayerHitByBall(nullptr, &ball);
 						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -4);
+						AudioHelper::Play("selfexplode");
 					}
 					else if (ball.getType() == WalletBall::type)
 					{
@@ -173,7 +174,7 @@ void Player::HitBall()
 						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
 						ball.Hit(hitDir);
 					}
-					AudioHelper::PlayRandom("hitting", 2);
+					AudioHelper::PlayRandom("bathitting", 4, 0.75 + rand_0_1() * 0.5);
 				}
 			}
 		}
@@ -217,9 +218,13 @@ void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 			boomImage->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
 			((Game_Scene*)(ball->getParent()->getParent()))->DestroyAndDropBall(ball);
 
-			//bomb sound
+			AudioHelper::Play("bombball");
 		}
-		AudioHelper::PlayRandom("Au", 4);
+		else if (ball->getType() == OilBall::type)
+		{
+			AudioHelper::Play("oilball");
+		}
+		AudioHelper::PlayRandom("Au", 8, (0.5 + rand_0_1() * 1.5));
 	}
 }
 

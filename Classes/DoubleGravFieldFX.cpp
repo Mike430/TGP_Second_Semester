@@ -1,6 +1,7 @@
 #include "DoubleGravFieldFX.h"
 #include "Game_Scene.h"
 #include "ball.h"
+#include "AudioHelper.h"
 
 bool DoubleGravFieldFX::init()
 {
@@ -30,6 +31,7 @@ void DoubleGravFieldFX::Hit(Game_Scene* game, Ball* ball)
 		balls->GetBallAtIndex(i)->HalfGravityField = false;
 	}
 
+	AudioHelper::Play("startgrav");
 }
 
 int DoubleGravFieldFX::GetScoreValue() const
