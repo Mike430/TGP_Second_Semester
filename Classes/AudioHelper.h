@@ -2,6 +2,7 @@
 
 #include <string>
 #include <sstream>
+#include <random>
 using namespace std;
 
 namespace AudioHelper
