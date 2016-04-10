@@ -34,5 +34,5 @@ void RocketBall::Hit(Vec2 velocity)
 	Ball::Hit(velocity);
 	_gravity = 0;
 	_velocity = Vec2((_velocity.x > 0 ? 1 : -1) * Settings::horizontalSpeed, 0);
-	AudioHelper::Play("misilestart");
+	AudioHelper::Play("missilelaunch2");
 }

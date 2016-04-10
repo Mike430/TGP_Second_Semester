@@ -224,6 +224,10 @@ void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 		{
 			AudioHelper::Play("oilball");
 		}
+		else if (ball->getType() == RocketBall::type)
+		{
+			AudioHelper::Play("missilehit");
+		}
 		AudioHelper::PlayRandom("Au", 8, (0.5 + rand_0_1() * 1.5));
 	}
 }

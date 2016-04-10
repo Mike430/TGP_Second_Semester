@@ -24,7 +24,8 @@ bool Game_Scene::init()
 		return false;
 	}
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/main song 2.mp3", true);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/mainsong.mp3", true);
+	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.0f);
 
 	// Random Generator
 	srand(time(NULL));
@@ -109,6 +110,11 @@ void Game_Scene::update(float deltaTime)
 	if (_paused)
 	{
 		return;
+	}
+	float backgroundVolume = CocosDenshion::SimpleAudioEngine::getInstance()->getBackgroundMusicVolume();
+	if (backgroundVolume < 1.0f)
+	{
+		CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(min(1.0f, backgroundVolume + 0.3f * deltaTime));
 	}
 	//string textDisplay = "Score: " + to_string((int)(1337));
 	//_scoreLabel->setText(textDisplay);
