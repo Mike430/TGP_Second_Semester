@@ -45,7 +45,6 @@
         <Project Name="CommonTarget.csd" Type="Node" />
         <Project Name="BombOther.csd" Type="Node" />
         <Project Name="Bomb.csd" Type="Node" />
-        <Audio Name="main song 2.mp3" />
         <Image Name="OilBall.png" />
         <Image Name="otherBombBall.png" />
         <Image Name="Pound.png" />

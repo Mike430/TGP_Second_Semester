@@ -24,7 +24,7 @@ bool Game_Scene::init()
 		return false;
 	}
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("main song 2.mp3", true);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/main song 2.mp3", true);
 
 	// Random Generator
 	srand(time(NULL));
@@ -164,7 +164,7 @@ void Game_Scene::update(float deltaTime)
 		}
 	}
 
-	if (_countDown <= 0 && !_paused)
+	if (_countDown <= 0)
 	{
 		// if ball intersects target, get leftorRight var from ball and add to player score
 		for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
@@ -229,6 +229,7 @@ void Game_Scene::update(float deltaTime)
 		{
 			_rightDispencer->DropBall();
 			_leftDispencer->DropBall();
+			AudioHelper::Play("Airhorns");
 		}
 	}
 
@@ -427,6 +428,7 @@ void Game_Scene::PowderBallActivate(Ball* ball)
 
 		_ballManager->AddBall(_rootNode, miniCluster);
 	}
+	AudioHelper::Play("powderball");
 }
 
 // Callbacks

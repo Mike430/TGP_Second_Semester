@@ -160,7 +160,8 @@ void Player::HitBall()
 					{
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
 						ball.Hit(emptySpace);
-					((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, 4);
+						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, 4);
+						AudioHelper::Play("moneyball");
 					}
 					else
 					{ 
@@ -172,8 +173,8 @@ void Player::HitBall()
 						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
 						ball.Hit(hitDir);
 					}
+					AudioHelper::PlayRandom("hitting", 2);
 				}
-				AudioHelper::Play("test");
 			}
 		}
 	}
@@ -215,7 +216,10 @@ void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 
 			boomImage->setPosition(ball->getParent()->convertToWorldSpace(ball->getPosition()));
 			((Game_Scene*)(ball->getParent()->getParent()))->DestroyAndDropBall(ball);
+
+			//bomb sound
 		}
+		AudioHelper::PlayRandom("Au", 4);
 	}
 }
 
