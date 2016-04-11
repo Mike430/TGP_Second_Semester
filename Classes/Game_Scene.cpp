@@ -37,6 +37,13 @@ bool Game_Scene::init()
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
 	_ballManager = new BallManager();
+	//enable all ball types for now
+	_ballManager->EnableBall(WalletBall::type);
+	_ballManager->EnableBall(BombBall::type);
+	_ballManager->EnableBall(PowderBall::type);
+	_ballManager->EnableBall(OilBall::type);
+	_ballManager->EnableBall(RocketBall::type);
+	_ballManager->EnableBall(BombOther::type);
 
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
