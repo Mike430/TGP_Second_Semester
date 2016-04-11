@@ -2,6 +2,17 @@
 
 BallManager::BallManager()
 {
+	_ballChance = unordered_map<int, float>{
+		{ Ball::type, 60.0f },
+		{ WalletBall::type, 5.0f },
+		{ BombBall::type, 5.0f },
+		{ PowderBall::type, 1.0f },
+		{ OilBall::type, 9.0f },
+		{ RocketBall::type, 10.0f },
+		{ BombOther::type, 10.0f }
+	};
+	//enable basic ball to start with
+	EnableBall(Ball::type);
 }
 
 BallManager::~BallManager()
@@ -10,39 +21,42 @@ BallManager::~BallManager()
 
 Ball* BallManager::CreateBall(cocos2d::Node* parent, bool bypass)
 {
-	Ball* newBall;
-
-	float rnd = rand_0_1();
-
-	if (rnd > 0.95)
+	//or would you prefer templates?
+	static const auto createBallFromType = [](int type)
 	{
-		newBall = WalletBall::create();
-	}
-	else if (rnd > 0.9 && rnd < 0.95)
+		Ball* newBall = nullptr;
+		switch (type)
+		{
+		case Ball::type:		newBall = Ball::create(); break;
+		case WalletBall::type:	newBall = WalletBall::create(); break;
+		case BombBall::type:	newBall = BombBall::create(); break;
+		case PowderBall::type:	newBall = PowderBall::create(); break;
+		case OilBall::type:		newBall = OilBall::create(); break;
+		case RocketBall::type:	newBall = RocketBall::create(); break;
+		case BombOther::type:	newBall = BombOther::create(); break;
+		}
+		return newBall;
+	};
+	//random enabled ball based on chances
+	//	example:
+	//	Ball: 60, WalletBall: 5   -> _totalChance = 65
+	//	random number up to total = 63
+	//	not smaller than 60, take away the 60, leaving 3
+	//	3 smaller than WalletBalls 5, to create a WalletBall
+	int ballType = 0;
+	float rnd = RandomHelper::random_real(0.0f, _totalChance);
+	for (const auto enabledType : _enabledBalls)
 	{
-		newBall = BombBall::create();
+		float chance = _ballChance[enabledType];
+		if (rnd <= chance)
+		{
+			ballType = enabledType;
+			break;
+		}
+		rnd -= chance;
 	}
-	else if (rnd > 0.89 && rnd < 0.9)
-	{
-		newBall = PowderBall::create();
-	}
-	else if (rnd > 0.8 && rnd < 0.89)
-	{
-		newBall = OilBall::create();
-	}
-	else if (rnd > 0.7 && rnd < 0.8)
-	{
-		newBall = RocketBall::create();
-	}
-	else if (rnd > 0.6 && rnd < 0.7)
-	{
-		newBall = BombOther::create();
-	}
-	else
-	{
-		newBall = Ball::create();
-	}
-
+	//create new ball
+	Ball* newBall = createBallFromType(ballType);
 	AddBall(parent, newBall);
 	return newBall;
 }
@@ -53,7 +67,6 @@ void BallManager::DestroyBall(int index)
 	_balls.erase(_balls.begin() + index);
 }
 
-
 void BallManager::DestroyBall(Ball* ball)
 {
 	DestroyBall(find(begin(_balls), end(_balls), ball) - begin(_balls));
@@ -63,4 +76,10 @@ void BallManager::AddBall(Node* parent, Ball* ball)
 {
 	parent->addChild(ball);
 	_balls.push_back(ball);
+}
+
+void BallManager::EnableBall(int ballType)
+{
+	_enabledBalls.insert(ballType);
+	_totalChance += _ballChance[ballType];
 }
