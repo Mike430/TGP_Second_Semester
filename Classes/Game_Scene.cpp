@@ -37,28 +37,25 @@ bool Game_Scene::init()
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
 	_ballManager = new BallManager();
-	//enable all ball types for now
-	_ballManager->EnableBall(WalletBall::type);
-	_ballManager->EnableBall(BombBall::type);
-	_ballManager->EnableBall(PowderBall::type);
-	_ballManager->EnableBall(OilBall::type);
-	_ballManager->EnableBall(RocketBall::type);
-	_ballManager->EnableBall(BombOther::type);
 
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
 	_leftDispencer->Setup(false, 320, 725, _ballManager);
 	_rootNode->addChild(_leftDispencer);
 	_leftDispencer->setLocalZOrder(1);
-	for (int i = 0; i < 15; i++) _leftDispencer->AddBall();
 	_ballDispencers.push_back(_leftDispencer);
 
 	_rightDispencer = BallDispencer::create();
 	_rightDispencer->Setup(true, 960, 725, _ballManager);
 	_rootNode->addChild(_rightDispencer);
 	_rightDispencer->setLocalZOrder(1);
-	for (int i = 0; i < 15; i++) _rightDispencer->AddBall();
 	_ballDispencers.push_back(_rightDispencer);
+
+	for (int i = 0; i < 15; i++)
+	{
+		_leftDispencer->AddBall();
+		_rightDispencer->AddBall();
+	}
 
 	// For all Players
 	const string path = "res/";

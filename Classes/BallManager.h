@@ -27,6 +27,8 @@ private:
 	unordered_map<int, float> _ballChance;//ball type -> chance of spawning
 	float _totalChance;//sum of chances of enabled balls, divide by this to get actual chance
 	set<int> _enabledBalls;
+	int _spawnedBalls = 0;
+	unordered_map<int, int> _ballEnableTimes;//num balls spawned -> id of ball type to enable
 public:
 	BallManager();
 	~BallManager();
