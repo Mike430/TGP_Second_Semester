@@ -466,12 +466,16 @@ void Game_Scene::onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void Game_Scene::EnableUpdates(bool update)
 {
-	auto setUpdate = [&](Node* node)
+	function<void(Node*)> setUpdate = [&](Node* node)
 	{
 		update ? node->scheduleUpdate() : node->unscheduleUpdate();
 		update ? node->resumeSchedulerAndActions() : node->stopAllActions();
+		for (Node* child : node->getChildren())
+		{
+			setUpdate(child);
+		}
 	};
-	for (Node* obj : vector<Node*>{ this, _leftPlayer, _rightPlayer })
+	for (Node* obj : vector<Node*>{_leftPlayer, _rightPlayer })
 	{
 		setUpdate(obj);
 	}
@@ -483,6 +487,7 @@ void Game_Scene::EnableUpdates(bool update)
 
 void Game_Scene::Pause()
 {
+	pause();
 	_paused = true;
 	_unPauseButton->setVisible(true);
 	EnableUpdates(false);
@@ -491,6 +496,7 @@ void Game_Scene::Pause()
 
 void Game_Scene::UnPause()
 {
+	resume();
 	_paused = false;
 	_unPauseButton->setVisible(false);
 	EnableUpdates(true);
