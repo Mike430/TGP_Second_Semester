@@ -38,6 +38,7 @@ bool Game_Scene::init()
 
 	_ballManager = new BallManager();
 	_targetManager = new TargetManager();
+	_gameProgression = new GameProgression(this);
 
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
@@ -149,6 +150,7 @@ void Game_Scene::update(float deltaTime)
 
 	if (_countDown <= 0)
 	{
+		_gameProgression->Update(deltaTime);
 		// if ball intersects target, get leftorRight var from ball and add to player score
 		for (int i = 0; i < _ballManager->GetNumberOfBalls(); i++)
 		{
@@ -467,6 +469,7 @@ void Game_Scene::EnableUpdates(bool update)
 	auto setUpdate = [&](Node* node)
 	{
 		update ? node->scheduleUpdate() : node->unscheduleUpdate();
+		update ? node->resumeSchedulerAndActions() : node->stopAllActions();
 	};
 	for (Node* obj : vector<Node*>{ this, _leftPlayer, _rightPlayer })
 	{

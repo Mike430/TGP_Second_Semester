@@ -11,14 +11,6 @@ BallManager::BallManager()
 		{ RocketBall::type, 10.0f },
 		{ BombOther::type, 10.0f }
 	};
-	_ballEnableTimes = unordered_map<int, int>{
-		{ 10, RocketBall::type },
-		{ 20, OilBall::type },
-		{ 30, BombOther::type },
-		{ 36, BombBall::type },
-		{ 44, WalletBall::type },
-		{ 50, PowderBall::type }
-	};
 	//enable basic ball to start with
 	EnableBall(Ball::type);
 }
@@ -66,13 +58,6 @@ Ball* BallManager::CreateBall(cocos2d::Node* parent, bool bypass)
 	//create new ball
 	Ball* newBall = createBallFromType(ballType);
 	AddBall(parent, newBall);
-	//Possibly enable new ball type
-	_spawnedBalls++;
-	auto it = _ballEnableTimes.find(_spawnedBalls);
-	if (it != _ballEnableTimes.end())
-	{
-		EnableBall(it->second);
-	}
 	return newBall;
 }
 

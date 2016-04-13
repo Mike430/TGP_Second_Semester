@@ -2,8 +2,10 @@
 
 #include "cocos2d.h"
 #include "Game_Scene.h"
-#include <functional>
+#include <vector>
+#include <string>
 #include <sstream>
+using namespace std;
 using namespace cocos2d;
 
 class Tutorial_Scene : public Layer
@@ -13,9 +15,8 @@ private:
 	Node* _rootNode;
 	bool _wasPaused;
 	Text* _text;
-	//for each message, when the function returns true, display the message
-	list<tuple<function<bool()>, function<string()>>> _tutorialMessages;
-	bool _zeroGrav, _halfGrav, _doubleGrav;
+	vector<string> _tutorialMessages;
+	int _prevEventsCount = -1;
 public:
 	CREATE_FUNC(Tutorial_Scene);
 	static cocos2d::Scene* createScene();

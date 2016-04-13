@@ -15,6 +15,7 @@
 #include "BallDispencer.h"
 #include "BallManager.h"
 #include "TargetManager.h"
+#include "GameProgression.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -24,6 +25,7 @@ using namespace cocos2d;
 class Game_Scene : public cocos2d::Layer
 {
 	friend class Tutorial_Scene;
+	friend class GameProgression;
 private:
 	cocos2d::Node* _rootNode;
 	//Cocos2d UI
@@ -44,6 +46,7 @@ private:
 
 	BallManager* _ballManager;
 	TargetManager* _targetManager;
+	GameProgression* _gameProgression;
 
 	float _countDown;
 

@@ -28,68 +28,41 @@ bool Tutorial_Scene::init()
 
 	this->scheduleUpdate();
 
-	_zeroGrav = _halfGrav = _doubleGrav = false;
-
-	_tutorialMessages.push_back(make_tuple(
-		[]() { return true; }, 
-		[]() { return "Tap unpause to start the game\nWhile playing, tap the screen to swing your bat"; })
-	);
-	_tutorialMessages.push_back(make_tuple(
-		[this]() { return _zeroGrav; },
-		[this]()
-		{
-			stringstream message;
-			message << "Zero gravity has been enabled for ";
-			message << Settings::ZeroGravityFieldDuration;
-			message << " seconds.";
-			return message.str();
-		})
-	);
-	_tutorialMessages.push_back(make_tuple(
-		[this]() { return _halfGrav; },
-		[this]()
-		{
-			stringstream message;
-			message << "Half gravity has been enabled for ";
-			message << Settings::HalfGravityFieldDuration;
-			message << " seconds.";
-			return message.str();
-		})
-	);
-	_tutorialMessages.push_back(make_tuple(
-		[this]() { return _doubleGrav; },
-		[this]()
-		{
-			stringstream message;
-			message << "Double gravity has been enabled for ";
-			message << Settings::DoubleGravityFieldDuration;
-			message << " seconds.";
-			return message.str();
-		})
-	);
+	//order based on time, see GameProgression::_events
+	_tutorialMessages = {
+		"Rocket Ball",
+		"Rare Target",
+		"Oil Ball",
+		"Double Attack Target",
+		"Bomb Ball",
+		"Invincibility Target",
+		"Bomb Other Ball",
+		"Zero Gravity Target",
+		"Wallet Ball",
+		"Double Gravity Target",
+		"Powder Ball",
+		"Half Gravity Target"
+	};
 	return true;
 }
 
 void Tutorial_Scene::update(float deltaTime)
 {
-	for (int i = 0; i < _game->_ballManager->GetNumberOfBalls(); i++)
+	int events = _game->_gameProgression->GetRemainingEvents();
+	if (_prevEventsCount == -1)
 	{
-		Ball* ball = _game->_ballManager->GetBallAtIndex(i);
-		if (ball->ZeroGravityField) _zeroGrav = true; break;
-		if (ball->DoubleGravityField) _doubleGrav = true; break;
-		if (ball->HalfGravityField) _halfGrav = true; break;
+		_prevEventsCount = events;
 	}
-	for (auto it = _tutorialMessages.begin(); it != _tutorialMessages.end(); it++)
+	for (int i = 0; i < _prevEventsCount - events; i++)
 	{
-		function<bool()>& trigger = get<0>(*it);
-		function<string()>& message = get<1>(*it);
-		if (trigger())
+		if (!_tutorialMessages.empty())
 		{
-			Display(message());
-			_tutorialMessages.erase(it);
-			break;
+			Display(_tutorialMessages.front());
+			_tutorialMessages.erase(_tutorialMessages.begin());
+			_prevEventsCount = _game->_gameProgression->GetRemainingEvents();
 		}
 	}
+	_prevEventsCount = events;
 	if (_wasPaused && !_game->IsPaused())
 	{
 		OnResumeGame();

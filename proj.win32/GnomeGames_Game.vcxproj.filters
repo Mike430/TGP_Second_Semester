@@ -111,6 +111,7 @@
     <ClCompile Include="..\Classes\TargetManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameProgression.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -212,6 +213,7 @@
     <ClInclude Include="..\Classes\TargetManager.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GameProgression.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
