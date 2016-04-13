@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "Game_Scene.h"
 #include <functional>
+#include <sstream>
 using namespace cocos2d;
 
 class Tutorial_Scene : public Layer
@@ -13,7 +14,8 @@ private:
 	bool _wasPaused;
 	Text* _text;
 	//for each message, when the function returns true, display the message
-	list<tuple<function<bool()>, string>> _tutorialMessages;
+	list<tuple<function<bool()>, function<string()>>> _tutorialMessages;
+	bool _zeroGrav, _halfGrav, _doubleGrav;
 public:
 	CREATE_FUNC(Tutorial_Scene);
 	static cocos2d::Scene* createScene();

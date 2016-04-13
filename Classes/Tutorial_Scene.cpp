@@ -28,20 +28,64 @@ bool Tutorial_Scene::init()
 
 	this->scheduleUpdate();
 
-	_tutorialMessages.push_back(make_tuple([this]() { return true; }, "Tap unpause to start the game\nWhile playing, tap the screen to swing your bat"));
+	_zeroGrav = _halfGrav = _doubleGrav = false;
 
+	_tutorialMessages.push_back(make_tuple(
+		[]() { return true; }, 
+		[]() { return "Tap unpause to start the game\nWhile playing, tap the screen to swing your bat"; })
+	);
+	_tutorialMessages.push_back(make_tuple(
+		[this]() { return _zeroGrav; },
+		[this]()
+		{
+			stringstream message;
+			message << "Zero gravity has been enabled for ";
+			message << Settings::ZeroGravityFieldDuration;
+			message << " seconds.";
+			return message.str();
+		})
+	);
+	_tutorialMessages.push_back(make_tuple(
+		[this]() { return _halfGrav; },
+		[this]()
+		{
+			stringstream message;
+			message << "Half gravity has been enabled for ";
+			message << Settings::HalfGravityFieldDuration;
+			message << " seconds.";
+			return message.str();
+		})
+	);
+	_tutorialMessages.push_back(make_tuple(
+		[this]() { return _doubleGrav; },
+		[this]()
+		{
+			stringstream message;
+			message << "Double gravity has been enabled for ";
+			message << Settings::DoubleGravityFieldDuration;
+			message << " seconds.";
+			return message.str();
+		})
+	);
 	return true;
 }
 
 void Tutorial_Scene::update(float deltaTime)
 {
+	for (int i = 0; i < _game->_ballManager->GetNumberOfBalls(); i++)
+	{
+		Ball* ball = _game->_ballManager->GetBallAtIndex(i);
+		if (ball->ZeroGravityField) _zeroGrav = true; break;
+		if (ball->DoubleGravityField) _doubleGrav = true; break;
+		if (ball->HalfGravityField) _halfGrav = true; break;
+	}
 	for (auto it = _tutorialMessages.begin(); it != _tutorialMessages.end(); it++)
 	{
 		function<bool()>& trigger = get<0>(*it);
-		string& message = get<1>(*it);
+		function<string()>& message = get<1>(*it);
 		if (trigger())
 		{
-			Display(message);
+			Display(message());
 			_tutorialMessages.erase(it);
 			break;
 		}
