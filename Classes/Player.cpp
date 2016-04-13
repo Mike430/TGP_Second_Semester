@@ -64,7 +64,16 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 
 void Player::update(float deltaTime)
 {
-	_ballDispencer->DisplayScore(_score);
+	stringstream message;
+	if (_doubleAttack)
+	{
+		message << "Power*2";
+	}
+	if (_invincible)
+	{
+		message << "Invincible";
+	}
+	_ballDispencer->DisplayText(message.str());
 
 	_timeSinceHit += deltaTime;
 	_stunLockTimer += deltaTime;

@@ -32,5 +32,6 @@ public:
 	void AddBall();
 	void DropBall();
 	void DisplayScore(int score);
+	void DisplayText(string text);
 };
 #endif // __BALL_DISPENCER_H__

@@ -109,6 +109,10 @@ void BallDispencer::update(float deltaTime)
 
 void BallDispencer::DisplayScore(int score)
 {
-	//_scoreLabel->setText( to_string(score));
-	_scoreLabel->setText(StringUtils::format("%d", score));
+	DisplayText(StringUtils::format("%d", score));
+}
+
+void BallDispencer::DisplayText(string text)
+{
+	_scoreLabel->setText(text);
 }
