@@ -29,6 +29,7 @@ using namespace cocos2d;
 //=========================================//
 class Game_Scene : public cocos2d::Layer
 {
+	friend class Tutorial_Scene;
 private:
 	cocos2d::Node* _rootNode;
 	//Cocos2d UI
