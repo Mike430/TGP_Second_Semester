@@ -17,6 +17,7 @@ class HelloWorld : public cocos2d::Layer
 private:
 	cocos2d::Node* _rootNode;
 	cocos2d::ui::Button* _beginButton;
+	cocos2d::ui::Button* _tutorialButton;
 	cocos2d::Scene* _gameScene;
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -29,6 +30,7 @@ public:
     CREATE_FUNC(HelloWorld);
 
 	void BeginButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void TutorialButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
