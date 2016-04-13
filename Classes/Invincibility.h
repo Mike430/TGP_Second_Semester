@@ -7,6 +7,8 @@ using namespace cocos2d;
 class Invincibility : public Target
 {
 public:
+	static const int type = 3;
+	virtual int getType() override { return type; }
 	Invincibility();
 	virtual ~Invincibility();
 

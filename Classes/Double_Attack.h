@@ -7,6 +7,8 @@ using namespace cocos2d;
 class Double_Attack : public Target
 {
 public:
+	static const int type = 6;
+	virtual int getType() override { return type; }
 	Double_Attack();
 	virtual ~Double_Attack();
 

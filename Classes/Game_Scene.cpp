@@ -37,6 +37,7 @@ bool Game_Scene::init()
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
 
 	_ballManager = new BallManager();
+	_targetManager = new TargetManager();
 
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
@@ -139,35 +140,7 @@ void Game_Scene::update(float deltaTime)
 			//make a new target
 			Target* newTarget = nullptr;
 
-			float randNmbr = rand_0_1();
-			if (randNmbr >= 0.97)
-			{
-				newTarget = Invincibility::create();
-			}
-			else if (randNmbr >= 0.9 && randNmbr < 0.97)
-			{
-				newTarget = Double_Attack::create();
-			}
-			else if (randNmbr >= 0.84 && randNmbr < 0.9)
-			{
-				newTarget = NoGravFieldFX::create();
-			}
-			else if (randNmbr >= 0.8 && randNmbr < 0.84)
-			{
-				newTarget = HalfGravFieldFX::create();
-			}
-			else if (randNmbr >= 0.76 && randNmbr < 0.8)
-			{
-				newTarget = DoubleGravFieldFX::create();
-			}
-			else if (randNmbr >= 0.7 && randNmbr < 0.76)
-			{
-				newTarget = RareTarget::create();
-			}
-			else 
-			{
-				newTarget = CommonTarget::create();
-			}
+			newTarget = _targetManager->CreateTarget();
 			
 			_targets.push_back(newTarget);
 			_rootNode->addChild(newTarget);

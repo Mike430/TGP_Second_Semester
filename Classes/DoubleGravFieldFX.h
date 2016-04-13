@@ -11,6 +11,8 @@ using namespace cocos2d;
 class DoubleGravFieldFX : public Target
 {
 public:
+	static const int type = 5;
+	virtual int getType() override { return type; }
 	DoubleGravFieldFX() {};
 	virtual ~DoubleGravFieldFX() {};
 	CREATE_FUNC(DoubleGravFieldFX);

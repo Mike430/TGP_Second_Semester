@@ -26,6 +26,8 @@ protected:
 
 	float _lifeTime;
 public:
+	static const int type = 0;
+	virtual int getType() { return type; }
 	Target() {};
 	virtual ~Target() {};
 	virtual bool init();

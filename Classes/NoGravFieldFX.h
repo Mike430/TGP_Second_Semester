@@ -11,6 +11,8 @@ using namespace cocos2d;
 class NoGravFieldFX : public Target
 {
 public:
+	static const int type = 2;
+	virtual int getType() override { return type; }
 	NoGravFieldFX() {};
 	virtual ~NoGravFieldFX() {};
 	CREATE_FUNC(NoGravFieldFX);

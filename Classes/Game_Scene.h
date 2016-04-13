@@ -12,15 +12,9 @@
 #include "AudioHelper.h"
 #include "GameManager.h"
 #include "Player.h"
-#include "Ball.h"
 #include "BallDispencer.h"
 #include "BallManager.h"
-#include "Target.h"
-#include "CommonTarget.h"
-#include "RareTarget.h"
-#include "NoGravFieldFX.h"
-#include "HalfGravFieldFX.h"
-#include "DoubleGravFieldFX.h"
+#include "TargetManager.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -49,6 +43,7 @@ private:
 	float _targetSpawnTimer;
 
 	BallManager* _ballManager;
+	TargetManager* _targetManager;
 
 	float _countDown;
 

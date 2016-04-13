@@ -12,6 +12,8 @@ using namespace cocos2d;
 class RareTarget : public Target
 {
 public:
+	static const int type = 1;
+	virtual int getType() override { return type; }
 	RareTarget() {};
 	virtual ~RareTarget() {};
 	CREATE_FUNC(RareTarget);
