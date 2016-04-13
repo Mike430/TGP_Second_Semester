@@ -28,24 +28,36 @@ bool Tutorial_Scene::init()
 
 	this->scheduleUpdate();
 
+	_tutorialMessages.push_back(make_tuple([this]() { return true; }, "Tap unpause to start the game\nWhile playing, tap the screen to swing your bat"));
+
 	return true;
 }
 
 void Tutorial_Scene::update(float deltaTime)
 {
+	for (auto it = _tutorialMessages.begin(); it != _tutorialMessages.end(); it++)
+	{
+		function<bool()>& trigger = get<0>(*it);
+		string& message = get<1>(*it);
+		if (trigger())
+		{
+			Display(message);
+			_tutorialMessages.erase(it);
+			break;
+		}
+	}
 	if (_wasPaused && !_game->IsPaused())
 	{
 		OnResumeGame();
 	}
 	_wasPaused = _game->IsPaused();
-	asdf += deltaTime;
-	if (asdf > 3)
-	{
-		asdf = -100;
-		_game->Pause();
-		_text->setText("Tap the screen to swing your bat!");
-		_text->setVisible(true);
-	}
+}
+
+void Tutorial_Scene::Display(string message)
+{
+	_game->Pause();
+	_text->setText(message);
+	_text->setVisible(true);
 }
 
 void Tutorial_Scene::OnResumeGame()
