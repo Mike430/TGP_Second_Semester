@@ -483,6 +483,7 @@ void Game_Scene::Pause()
 	_paused = true;
 	_unPauseButton->setVisible(true);
 	EnableUpdates(false);
+	CocosDenshion::SimpleAudioEngine::getInstance()->pauseAllEffects();
 }
 
 void Game_Scene::UnPause()
@@ -490,6 +491,7 @@ void Game_Scene::UnPause()
 	_paused = false;
 	_unPauseButton->setVisible(false);
 	EnableUpdates(true);
+	CocosDenshion::SimpleAudioEngine::getInstance()->resumeAllEffects();
 }
 
 bool Game_Scene::IsPaused()
