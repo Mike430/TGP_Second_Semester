@@ -28,41 +28,51 @@ bool Tutorial_Scene::init()
 
 	this->scheduleUpdate();
 
-	//order based on time, see GameProgression::_events
-	_tutorialMessages = {
-		"Rocket Ball",
-		"Rare Target",
-		"Oil Ball",
-		"Double Attack Target",
-		"Bomb Ball",
-		"Invincibility Target",
-		"Bomb Other Ball",
-		"Zero Gravity Target",
-		"Wallet Ball",
-		"Double Gravity Target",
-		"Powder Ball",
-		"Half Gravity Target"
+	_newBallMessages = unordered_map<int, string>{
+		{ RocketBall::type, "Rocket Ball"},
+		{ OilBall::type, "Oil Ball" },
+		{ BombBall::type, "Bomb Ball" },
+		{ BombOther::type, "Bomb Other Ball" },
+		{ WalletBall::type, "Wallet Ball" },
+		{ PowderBall::type, "Powder Ball" }
 	};
+	_newTargetMessages = unordered_map<int, string>{
+		{ RareTarget::type, "Rare Target" },
+		{ Double_Attack::type, "Double Attack Target" },
+		{ Invincibility::type, "Invincibility Target" },
+		{ NoGravFieldFX::type, "Zero Gravity Target" },
+		{ DoubleGravFieldFX::type, "Double Gravity Target" },
+		{ HalfGravFieldFX::type, "Half Gravity Target" }
+	};
+
 	return true;
 }
 
 void Tutorial_Scene::update(float deltaTime)
 {
-	int events = _game->_gameProgression->GetRemainingEvents();
-	if (_prevEventsCount == -1)
+	// watch for new ball type
+	for (int i = 0; i < _game->_ballManager->GetNumberOfBalls(); i++)
 	{
-		_prevEventsCount = events;
-	}
-	for (int i = 0; i < _prevEventsCount - events; i++)
-	{
-		if (!_tutorialMessages.empty())
+		int ballType = _game->_ballManager->GetBallAtIndex(i)->getType();
+		auto it = _newBallMessages.find(ballType);
+		if (it != _newBallMessages.end())
 		{
-			Display(_tutorialMessages.front());
-			_tutorialMessages.erase(_tutorialMessages.begin());
-			_prevEventsCount = _game->_gameProgression->GetRemainingEvents();
+			Display(it->second);
+			_newBallMessages.erase(it);
 		}
 	}
-	_prevEventsCount = events;
+	// watch for new target type
+	for (const auto& target : _game->_targets)
+	{
+		int targetType = target->getType();
+		auto it = _newTargetMessages.find(targetType);
+		if (it != _newTargetMessages.end())
+		{
+			Display(it->second);
+			_newTargetMessages.erase(it);
+		}
+	}
+	// watch for unpause button press
 	if (_wasPaused && !_game->IsPaused())
 	{
 		OnResumeGame();

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <unordered_map>
 using namespace std;
 using namespace cocos2d;
 
@@ -15,8 +16,8 @@ private:
 	Node* _rootNode;
 	bool _wasPaused;
 	Text* _text;
-	vector<string> _tutorialMessages;
-	int _prevEventsCount = -1;
+	unordered_map<int, string> _newBallMessages;
+	unordered_map<int, string> _newTargetMessages;
 public:
 	CREATE_FUNC(Tutorial_Scene);
 	static cocos2d::Scene* createScene();
