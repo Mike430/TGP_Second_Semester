@@ -61,6 +61,19 @@ void Tutorial_Scene::update(float deltaTime)
 			_newBallMessages.erase(it);
 		}
 	}
+	// stop the players winning/losing
+	for (auto& player : _game->_players)
+	{
+		const float buffer = 50.0f;
+		if (player->getPositionY() < Settings::playerMinY + buffer)
+		{
+			player->setPositionY(Settings::playerMinY + buffer);
+		}
+		else if (player->getPositionY() > Settings::playerMaxY - buffer)
+		{
+			player->setPositionY(Settings::playerMaxY - buffer);
+		}
+	}
 	// watch for new target type
 	for (const auto& target : _game->_targets)
 	{
