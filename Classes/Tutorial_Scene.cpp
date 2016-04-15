@@ -29,20 +29,20 @@ bool Tutorial_Scene::init()
 	this->scheduleUpdate();
 
 	_newBallMessages = unordered_map<int, string>{
-		{ RocketBall::type, "Rocket Ball"},
-		{ OilBall::type, "Oil Ball" },
-		{ BombBall::type, "Bomb Ball" },
-		{ BombOther::type, "Bomb Other Ball" },
-		{ WalletBall::type, "Wallet Ball" },
-		{ PowderBall::type, "Powder Ball" }
+		{ RocketBall().getType(), "Rocket Ball"},
+		{ OilBall().getType(), "Oil Ball" },
+		{ BombBall().getType(), "Bomb Ball" },
+		{ BombOther().getType(), "Bomb Other Ball" },
+		{ WalletBall().getType(), "Wallet Ball" },
+		{ PowderBall().getType(), "Powder Ball" }
 	};
 	_newTargetMessages = unordered_map<int, string>{
-		{ RareTarget::type, "Rare Target" },
-		{ Double_Attack::type, "Double Attack Target" },
-		{ Invincibility::type, "Invincibility Target" },
-		{ NoGravFieldFX::type, "Zero Gravity Target" },
-		{ DoubleGravFieldFX::type, "Double Gravity Target" },
-		{ HalfGravFieldFX::type, "Half Gravity Target" }
+		{ RareTarget().getType(), "Rare Target" },
+		{ Double_Attack().getType(), "Double Attack Target" },
+		{ Invincibility().getType(), "Invincibility Target" },
+		{ NoGravFieldFX().getType(), "Zero Gravity Target" },
+		{ DoubleGravFieldFX().getType(), "Double Gravity Target" },
+		{ HalfGravFieldFX().getType(), "Half Gravity Target" }
 	};
 
 	return true;

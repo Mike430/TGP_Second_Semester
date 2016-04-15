@@ -1,16 +1,23 @@
 #include "TargetManager.h"
-
+#include "Game_Scene.h"
 
 TargetManager::TargetManager()
 {
+    auto common = CommonTarget::type;
+    auto rare = RareTarget::type;
+    auto doublePower = Double_Attack::type;
+    auto invincibility = Invincibility::type;
+    auto halfGrav = HalfGravFieldFX::type;
+    auto doublegrav = DoubleGravFieldFX::type;
+    auto noGrav = NoGravFieldFX::type;
 	_targetChance = unordered_map<int, float>{
-		{ CommonTarget::type, 70.0f },
-		{ RareTarget::type, 6.0f },
-		{ Double_Attack::type, 7.0f },
-		{ Invincibility::type, 3.0f },
-		{ HalfGravFieldFX::type, 4.0f },
-		{ DoubleGravFieldFX::type, 4.0f },
-		{ NoGravFieldFX::type, 6.0f }
+		{ common, 70.0f },
+		{ rare, 6.0f },
+		{ doublePower, 7.0f },
+		{ invincibility, 3.0f },
+		{ halfGrav, 4.0f },
+		{ doublegrav, 4.0f },
+		{ noGrav, 6.0f }
 	};
 	EnableTarget(CommonTarget::type);
 }
@@ -26,15 +33,22 @@ Target* TargetManager::CreateTarget()
 	static const auto createTargetFromType = [](int type)
 	{
 		Target* newBall = nullptr;
+        const auto common = CommonTarget::type;
+        const auto rare = RareTarget::type;
+        const auto doublePower = Double_Attack::type;
+        const auto invincibility = Invincibility::type;
+        const auto halfGrav = HalfGravFieldFX::type;
+        const auto doublegrav = DoubleGravFieldFX::type;
+        const auto noGrav = NoGravFieldFX::type;
 		switch (type)
 		{
-		case CommonTarget::type:		newBall = CommonTarget::create(); break;
-		case RareTarget::type:			newBall = RareTarget::create(); break;
-		case Double_Attack::type:		newBall = Double_Attack::create(); break;
-		case Invincibility::type:		newBall = Invincibility::create(); break;
-		case DoubleGravFieldFX::type:	newBall = DoubleGravFieldFX::create(); break;
-		case NoGravFieldFX::type:		newBall = NoGravFieldFX::create(); break;
-		case HalfGravFieldFX::type:		newBall = HalfGravFieldFX::create(); break;
+		case common:		newBall = CommonTarget::create(); break;
+		case rare:			newBall = RareTarget::create(); break;
+		case doublePower:		newBall = Double_Attack::create(); break;
+		case invincibility:		newBall = Invincibility::create(); break;
+		case halfGrav:	newBall = DoubleGravFieldFX::create(); break;
+		case doublegrav:		newBall = NoGravFieldFX::create(); break;
+		case noGrav:		newBall = HalfGravFieldFX::create(); break;
 		}
 		return newBall;
 	};

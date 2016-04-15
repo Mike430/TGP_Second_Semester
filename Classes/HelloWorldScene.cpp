@@ -2,6 +2,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Tutorial_Scene.h"
+#include "Game_Scene.h"
+
 
 USING_NS_CC;
 

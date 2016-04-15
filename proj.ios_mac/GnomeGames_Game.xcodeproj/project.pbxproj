@@ -49,6 +49,36 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		5B244DA9842C1069E87FEE0F /* res in Resources */ = {isa = PBXBuildFile; fileRef = CA454391938B4756A94320C3 /* res */; };
+		7FB124161CC125290011CCFF /* AnimationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123D91CC125290011CCFF /* AnimationHelper.cpp */; };
+		7FB124171CC125290011CCFF /* AudioHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123DB1CC125290011CCFF /* AudioHelper.cpp */; };
+		7FB124181CC125290011CCFF /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123DD1CC125290011CCFF /* Ball.cpp */; };
+		7FB124191CC125290011CCFF /* BallDispencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123DF1CC125290011CCFF /* BallDispencer.cpp */; };
+		7FB1241A1CC125290011CCFF /* BallManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123E11CC125290011CCFF /* BallManager.cpp */; };
+		7FB1241B1CC125290011CCFF /* BombBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123E31CC125290011CCFF /* BombBall.cpp */; };
+		7FB1241C1CC125290011CCFF /* BombOther.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123E51CC125290011CCFF /* BombOther.cpp */; };
+		7FB1241D1CC125290011CCFF /* CommonTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123E71CC125290011CCFF /* CommonTarget.cpp */; };
+		7FB1241E1CC125290011CCFF /* Double_Attack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123E91CC125290011CCFF /* Double_Attack.cpp */; };
+		7FB1241F1CC125290011CCFF /* DoubleGravFieldFX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123EB1CC125290011CCFF /* DoubleGravFieldFX.cpp */; };
+		7FB124201CC125290011CCFF /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123ED1CC125290011CCFF /* Explosion.cpp */; };
+		7FB124211CC125290011CCFF /* Game_Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123EF1CC125290011CCFF /* Game_Scene.cpp */; };
+		7FB124221CC125290011CCFF /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123F11CC125290011CCFF /* GameManager.cpp */; };
+		7FB124231CC125290011CCFF /* GameProgression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123F31CC125290011CCFF /* GameProgression.cpp */; };
+		7FB124241CC125290011CCFF /* HalfGravFieldFX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123F51CC125290011CCFF /* HalfGravFieldFX.cpp */; };
+		7FB124251CC125290011CCFF /* Invincibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123F71CC125290011CCFF /* Invincibility.cpp */; };
+		7FB124261CC125290011CCFF /* NoGravFieldFX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123F91CC125290011CCFF /* NoGravFieldFX.cpp */; };
+		7FB124271CC125290011CCFF /* OilBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123FB1CC125290011CCFF /* OilBall.cpp */; };
+		7FB124281CC125290011CCFF /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123FD1CC125290011CCFF /* Player.cpp */; };
+		7FB124291CC125290011CCFF /* PoundSign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB123FF1CC125290011CCFF /* PoundSign.cpp */; };
+		7FB1242A1CC125290011CCFF /* PowderBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124011CC125290011CCFF /* PowderBall.cpp */; };
+		7FB1242B1CC125290011CCFF /* RareTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124031CC125290011CCFF /* RareTarget.cpp */; };
+		7FB1242C1CC125290011CCFF /* RocketBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124051CC125290011CCFF /* RocketBall.cpp */; };
+		7FB1242D1CC125290011CCFF /* Score_Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124071CC125290011CCFF /* Score_Scene.cpp */; };
+		7FB1242E1CC125290011CCFF /* SubPowder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB1240A1CC125290011CCFF /* SubPowder.cpp */; };
+		7FB1242F1CC125290011CCFF /* Target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB1240C1CC125290011CCFF /* Target.cpp */; };
+		7FB124301CC125290011CCFF /* TargetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB1240E1CC125290011CCFF /* TargetManager.cpp */; };
+		7FB124311CC125290011CCFF /* Tutorial_Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124101CC125290011CCFF /* Tutorial_Scene.cpp */; };
+		7FB124321CC125290011CCFF /* WalletBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124121CC125290011CCFF /* WalletBall.cpp */; };
+		7FB124331CC125290011CCFF /* ZeroGravityBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB124141CC125290011CCFF /* ZeroGravityBall.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		8E8248579A3EC9EE224FEC3D /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE24DF3AE66EF049AEBC61B /* libcocos2d iOS.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -109,6 +139,67 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		6DE24DF3AE66EF049AEBC61B /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "/Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<absolute>"; };
+		7FB123D91CC125290011CCFF /* AnimationHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationHelper.cpp; sourceTree = "<group>"; };
+		7FB123DA1CC125290011CCFF /* AnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHelper.h; sourceTree = "<group>"; };
+		7FB123DB1CC125290011CCFF /* AudioHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioHelper.cpp; sourceTree = "<group>"; };
+		7FB123DC1CC125290011CCFF /* AudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelper.h; sourceTree = "<group>"; };
+		7FB123DD1CC125290011CCFF /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
+		7FB123DE1CC125290011CCFF /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		7FB123DF1CC125290011CCFF /* BallDispencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallDispencer.cpp; sourceTree = "<group>"; };
+		7FB123E01CC125290011CCFF /* BallDispencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallDispencer.h; sourceTree = "<group>"; };
+		7FB123E11CC125290011CCFF /* BallManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallManager.cpp; sourceTree = "<group>"; };
+		7FB123E21CC125290011CCFF /* BallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallManager.h; sourceTree = "<group>"; };
+		7FB123E31CC125290011CCFF /* BombBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BombBall.cpp; sourceTree = "<group>"; };
+		7FB123E41CC125290011CCFF /* BombBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombBall.h; sourceTree = "<group>"; };
+		7FB123E51CC125290011CCFF /* BombOther.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BombOther.cpp; sourceTree = "<group>"; };
+		7FB123E61CC125290011CCFF /* BombOther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombOther.h; sourceTree = "<group>"; };
+		7FB123E71CC125290011CCFF /* CommonTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonTarget.cpp; sourceTree = "<group>"; };
+		7FB123E81CC125290011CCFF /* CommonTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTarget.h; sourceTree = "<group>"; };
+		7FB123E91CC125290011CCFF /* Double_Attack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Double_Attack.cpp; sourceTree = "<group>"; };
+		7FB123EA1CC125290011CCFF /* Double_Attack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Double_Attack.h; sourceTree = "<group>"; };
+		7FB123EB1CC125290011CCFF /* DoubleGravFieldFX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleGravFieldFX.cpp; sourceTree = "<group>"; };
+		7FB123EC1CC125290011CCFF /* DoubleGravFieldFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleGravFieldFX.h; sourceTree = "<group>"; };
+		7FB123ED1CC125290011CCFF /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Explosion.cpp; sourceTree = "<group>"; };
+		7FB123EE1CC125290011CCFF /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
+		7FB123EF1CC125290011CCFF /* Game_Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game_Scene.cpp; sourceTree = "<group>"; };
+		7FB123F01CC125290011CCFF /* Game_Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game_Scene.h; sourceTree = "<group>"; };
+		7FB123F11CC125290011CCFF /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		7FB123F21CC125290011CCFF /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		7FB123F31CC125290011CCFF /* GameProgression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameProgression.cpp; sourceTree = "<group>"; };
+		7FB123F41CC125290011CCFF /* GameProgression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameProgression.h; sourceTree = "<group>"; };
+		7FB123F51CC125290011CCFF /* HalfGravFieldFX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HalfGravFieldFX.cpp; sourceTree = "<group>"; };
+		7FB123F61CC125290011CCFF /* HalfGravFieldFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HalfGravFieldFX.h; sourceTree = "<group>"; };
+		7FB123F71CC125290011CCFF /* Invincibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Invincibility.cpp; sourceTree = "<group>"; };
+		7FB123F81CC125290011CCFF /* Invincibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invincibility.h; sourceTree = "<group>"; };
+		7FB123F91CC125290011CCFF /* NoGravFieldFX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoGravFieldFX.cpp; sourceTree = "<group>"; };
+		7FB123FA1CC125290011CCFF /* NoGravFieldFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoGravFieldFX.h; sourceTree = "<group>"; };
+		7FB123FB1CC125290011CCFF /* OilBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OilBall.cpp; sourceTree = "<group>"; };
+		7FB123FC1CC125290011CCFF /* OilBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilBall.h; sourceTree = "<group>"; };
+		7FB123FD1CC125290011CCFF /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		7FB123FE1CC125290011CCFF /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		7FB123FF1CC125290011CCFF /* PoundSign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PoundSign.cpp; sourceTree = "<group>"; };
+		7FB124001CC125290011CCFF /* PoundSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoundSign.h; sourceTree = "<group>"; };
+		7FB124011CC125290011CCFF /* PowderBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PowderBall.cpp; sourceTree = "<group>"; };
+		7FB124021CC125290011CCFF /* PowderBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowderBall.h; sourceTree = "<group>"; };
+		7FB124031CC125290011CCFF /* RareTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RareTarget.cpp; sourceTree = "<group>"; };
+		7FB124041CC125290011CCFF /* RareTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RareTarget.h; sourceTree = "<group>"; };
+		7FB124051CC125290011CCFF /* RocketBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RocketBall.cpp; sourceTree = "<group>"; };
+		7FB124061CC125290011CCFF /* RocketBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketBall.h; sourceTree = "<group>"; };
+		7FB124071CC125290011CCFF /* Score_Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Score_Scene.cpp; sourceTree = "<group>"; };
+		7FB124081CC125290011CCFF /* Score_Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score_Scene.h; sourceTree = "<group>"; };
+		7FB124091CC125290011CCFF /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		7FB1240A1CC125290011CCFF /* SubPowder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubPowder.cpp; sourceTree = "<group>"; };
+		7FB1240B1CC125290011CCFF /* SubPowder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubPowder.h; sourceTree = "<group>"; };
+		7FB1240C1CC125290011CCFF /* Target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Target.cpp; sourceTree = "<group>"; };
+		7FB1240D1CC125290011CCFF /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
+		7FB1240E1CC125290011CCFF /* TargetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TargetManager.cpp; sourceTree = "<group>"; };
+		7FB1240F1CC125290011CCFF /* TargetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetManager.h; sourceTree = "<group>"; };
+		7FB124101CC125290011CCFF /* Tutorial_Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial_Scene.cpp; sourceTree = "<group>"; };
+		7FB124111CC125290011CCFF /* Tutorial_Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial_Scene.h; sourceTree = "<group>"; };
+		7FB124121CC125290011CCFF /* WalletBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WalletBall.cpp; sourceTree = "<group>"; };
+		7FB124131CC125290011CCFF /* WalletBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletBall.h; sourceTree = "<group>"; };
+		7FB124141CC125290011CCFF /* ZeroGravityBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZeroGravityBall.cpp; sourceTree = "<group>"; };
+		7FB124151CC125290011CCFF /* ZeroGravityBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZeroGravityBall.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -243,6 +334,67 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7FB123D91CC125290011CCFF /* AnimationHelper.cpp */,
+				7FB123DA1CC125290011CCFF /* AnimationHelper.h */,
+				7FB123DB1CC125290011CCFF /* AudioHelper.cpp */,
+				7FB123DC1CC125290011CCFF /* AudioHelper.h */,
+				7FB123DD1CC125290011CCFF /* Ball.cpp */,
+				7FB123DE1CC125290011CCFF /* Ball.h */,
+				7FB123DF1CC125290011CCFF /* BallDispencer.cpp */,
+				7FB123E01CC125290011CCFF /* BallDispencer.h */,
+				7FB123E11CC125290011CCFF /* BallManager.cpp */,
+				7FB123E21CC125290011CCFF /* BallManager.h */,
+				7FB123E31CC125290011CCFF /* BombBall.cpp */,
+				7FB123E41CC125290011CCFF /* BombBall.h */,
+				7FB123E51CC125290011CCFF /* BombOther.cpp */,
+				7FB123E61CC125290011CCFF /* BombOther.h */,
+				7FB123E71CC125290011CCFF /* CommonTarget.cpp */,
+				7FB123E81CC125290011CCFF /* CommonTarget.h */,
+				7FB123E91CC125290011CCFF /* Double_Attack.cpp */,
+				7FB123EA1CC125290011CCFF /* Double_Attack.h */,
+				7FB123EB1CC125290011CCFF /* DoubleGravFieldFX.cpp */,
+				7FB123EC1CC125290011CCFF /* DoubleGravFieldFX.h */,
+				7FB123ED1CC125290011CCFF /* Explosion.cpp */,
+				7FB123EE1CC125290011CCFF /* Explosion.h */,
+				7FB123EF1CC125290011CCFF /* Game_Scene.cpp */,
+				7FB123F01CC125290011CCFF /* Game_Scene.h */,
+				7FB123F11CC125290011CCFF /* GameManager.cpp */,
+				7FB123F21CC125290011CCFF /* GameManager.h */,
+				7FB123F31CC125290011CCFF /* GameProgression.cpp */,
+				7FB123F41CC125290011CCFF /* GameProgression.h */,
+				7FB123F51CC125290011CCFF /* HalfGravFieldFX.cpp */,
+				7FB123F61CC125290011CCFF /* HalfGravFieldFX.h */,
+				7FB123F71CC125290011CCFF /* Invincibility.cpp */,
+				7FB123F81CC125290011CCFF /* Invincibility.h */,
+				7FB123F91CC125290011CCFF /* NoGravFieldFX.cpp */,
+				7FB123FA1CC125290011CCFF /* NoGravFieldFX.h */,
+				7FB123FB1CC125290011CCFF /* OilBall.cpp */,
+				7FB123FC1CC125290011CCFF /* OilBall.h */,
+				7FB123FD1CC125290011CCFF /* Player.cpp */,
+				7FB123FE1CC125290011CCFF /* Player.h */,
+				7FB123FF1CC125290011CCFF /* PoundSign.cpp */,
+				7FB124001CC125290011CCFF /* PoundSign.h */,
+				7FB124011CC125290011CCFF /* PowderBall.cpp */,
+				7FB124021CC125290011CCFF /* PowderBall.h */,
+				7FB124031CC125290011CCFF /* RareTarget.cpp */,
+				7FB124041CC125290011CCFF /* RareTarget.h */,
+				7FB124051CC125290011CCFF /* RocketBall.cpp */,
+				7FB124061CC125290011CCFF /* RocketBall.h */,
+				7FB124071CC125290011CCFF /* Score_Scene.cpp */,
+				7FB124081CC125290011CCFF /* Score_Scene.h */,
+				7FB124091CC125290011CCFF /* Settings.h */,
+				7FB1240A1CC125290011CCFF /* SubPowder.cpp */,
+				7FB1240B1CC125290011CCFF /* SubPowder.h */,
+				7FB1240C1CC125290011CCFF /* Target.cpp */,
+				7FB1240D1CC125290011CCFF /* Target.h */,
+				7FB1240E1CC125290011CCFF /* TargetManager.cpp */,
+				7FB1240F1CC125290011CCFF /* TargetManager.h */,
+				7FB124101CC125290011CCFF /* Tutorial_Scene.cpp */,
+				7FB124111CC125290011CCFF /* Tutorial_Scene.h */,
+				7FB124121CC125290011CCFF /* WalletBall.cpp */,
+				7FB124131CC125290011CCFF /* WalletBall.h */,
+				7FB124141CC125290011CCFF /* ZeroGravityBall.cpp */,
+				7FB124151CC125290011CCFF /* ZeroGravityBall.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
@@ -423,11 +575,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB1241E1CC125290011CCFF /* Double_Attack.cpp in Sources */,
+				7FB124241CC125290011CCFF /* HalfGravFieldFX.cpp in Sources */,
+				7FB124311CC125290011CCFF /* Tutorial_Scene.cpp in Sources */,
+				7FB1242C1CC125290011CCFF /* RocketBall.cpp in Sources */,
+				7FB1242B1CC125290011CCFF /* RareTarget.cpp in Sources */,
+				7FB124301CC125290011CCFF /* TargetManager.cpp in Sources */,
+				7FB1241C1CC125290011CCFF /* BombOther.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				7FB124171CC125290011CCFF /* AudioHelper.cpp in Sources */,
+				7FB124321CC125290011CCFF /* WalletBall.cpp in Sources */,
+				7FB124261CC125290011CCFF /* NoGravFieldFX.cpp in Sources */,
+				7FB124331CC125290011CCFF /* ZeroGravityBall.cpp in Sources */,
+				7FB124231CC125290011CCFF /* GameProgression.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				7FB124281CC125290011CCFF /* Player.cpp in Sources */,
+				7FB124161CC125290011CCFF /* AnimationHelper.cpp in Sources */,
+				7FB124211CC125290011CCFF /* Game_Scene.cpp in Sources */,
+				7FB1241B1CC125290011CCFF /* BombBall.cpp in Sources */,
+				7FB124181CC125290011CCFF /* Ball.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				7FB1241D1CC125290011CCFF /* CommonTarget.cpp in Sources */,
+				7FB1242E1CC125290011CCFF /* SubPowder.cpp in Sources */,
+				7FB1242F1CC125290011CCFF /* Target.cpp in Sources */,
+				7FB124291CC125290011CCFF /* PoundSign.cpp in Sources */,
+				7FB124251CC125290011CCFF /* Invincibility.cpp in Sources */,
+				7FB1241A1CC125290011CCFF /* BallManager.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				7FB124221CC125290011CCFF /* GameManager.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				7FB1241F1CC125290011CCFF /* DoubleGravFieldFX.cpp in Sources */,
+				7FB124191CC125290011CCFF /* BallDispencer.cpp in Sources */,
+				7FB1242A1CC125290011CCFF /* PowderBall.cpp in Sources */,
+				7FB1242D1CC125290011CCFF /* Score_Scene.cpp in Sources */,
+				7FB124271CC125290011CCFF /* OilBall.cpp in Sources */,
+				7FB124201CC125290011CCFF /* Explosion.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,10 +651,7 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/ios",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/ios";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
@@ -507,10 +686,7 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/ios",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/ios";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
@@ -546,10 +722,7 @@
 					"/Applications/Cocos/frameworks/cocos2d-x-3.9/external/glfw3/include/mac",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/mac",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/mac";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
@@ -580,10 +753,7 @@
 					"/Applications/Cocos/frameworks/cocos2d-x-3.9/external/glfw3/include/mac",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/mac",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/frameworks/cocos2d-x-3.9/prebuilt/mac";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
