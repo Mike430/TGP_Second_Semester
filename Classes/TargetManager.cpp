@@ -53,7 +53,7 @@ Target* TargetManager::CreateTarget()
 		return newBall;
 	};
 	//random enabled target based on chances
-	int targetType = 0;
+	int targetType = CommonTarget::type;
 	float rnd = RandomHelper::random_real(0.0f, _totalChance);
 	for (const auto enabledType : _enabledTargets)
 	{
