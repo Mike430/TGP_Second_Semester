@@ -17,6 +17,17 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="tutorial_sprite" ActionTag="545688736" Tag="9" IconVisible="False" LeftMargin="611.5505" RightMargin="618.4495" TopMargin="302.9731" BottomMargin="447.0269" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="50.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="636.5505" Y="472.0269" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.4973" Y="0.5900" />
+            <PreSize X="0.0391" Y="0.0625" />
+            <FileData Type="Normal" Path="OilBall.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

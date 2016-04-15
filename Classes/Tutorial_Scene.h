@@ -9,6 +9,16 @@
 using namespace std;
 using namespace cocos2d;
 
+struct TutorialMessage
+{
+	string message;
+	string spriteFile;
+	explicit TutorialMessage(string message)
+		: TutorialMessage(message, "res/Sprites/1Ball.png") {}
+	TutorialMessage(string message, string spriteFile)
+		: message(message), spriteFile(spriteFile)  {}
+};
+
 class Tutorial_Scene : public Layer
 {
 private:
@@ -16,14 +26,15 @@ private:
 	Node* _rootNode;
 	bool _wasPaused;
 	Text* _text;
-	unordered_map<int, string> _newBallMessages;
-	unordered_map<int, string> _newTargetMessages;
+	Sprite* _messageSprite;
+	unordered_map<int, TutorialMessage> _newBallMessages;
+	unordered_map<int, TutorialMessage> _newTargetMessages;
 public:
 	CREATE_FUNC(Tutorial_Scene);
 	static cocos2d::Scene* createScene();
 	virtual bool init();
 	virtual void update(float deltaTime) override;
-	void Display(string message);
+	void Display(TutorialMessage message);
 	void OnResumeGame();
 };
 

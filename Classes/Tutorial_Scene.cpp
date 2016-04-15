@@ -23,26 +23,28 @@ bool Tutorial_Scene::init()
 
 	_text = _rootNode->getChildByName<Text*>("tutorial_text");
 	_text->setVisible(false);
+	_messageSprite = _rootNode->getChildByName<Sprite*>("tutorial_sprite");
+	_messageSprite->setVisible(false);
 
 	_wasPaused = false;
 
 	this->scheduleUpdate();
 
-	_newBallMessages = unordered_map<int, string>{
-		{ RocketBall::type, "Rocket Ball"},
-		{ OilBall::type, "Oil Ball" },
-		{ BombBall::type, "Bomb Ball" },
-		{ BombOther::type, "Bomb Other Ball" },
-		{ WalletBall::type, "Wallet Ball" },
-		{ PowderBall::type, "Powder Ball" }
+	_newBallMessages = unordered_map<int, TutorialMessage>{
+		{ RocketBall::type, TutorialMessage("Rocket Ball", "res/Sprites/RocketBall.png") },
+		{ OilBall::type, TutorialMessage("Oil Ball", "res/OilBall.png") },
+		{ BombBall::type, TutorialMessage("Bomb Ball", "res/Sprites/bombBall.png") },
+		{ BombOther::type, TutorialMessage("Bomb Other Ball", "res/otherBombBall.png") },
+		{ WalletBall::type, TutorialMessage("Wallet Ball", "res/Wallet.png") },
+		{ PowderBall::type, TutorialMessage("Powder Ball", "res/PowderBall.png") }
 	};
-	_newTargetMessages = unordered_map<int, string>{
-		{ RareTarget::type, "Rare Target" },
-		{ Double_Attack::type, "Double Attack Target" },
-		{ Invincibility::type, "Invincibility Target" },
-		{ NoGravFieldFX::type, "Zero Gravity Target" },
-		{ DoubleGravFieldFX::type, "Double Gravity Target" },
-		{ HalfGravFieldFX::type, "Half Gravity Target" }
+	_newTargetMessages = unordered_map<int, TutorialMessage>{
+		{ RareTarget::type, TutorialMessage("Rare Target", "res/Sprites/rare.png") },
+		{ Double_Attack::type, TutorialMessage("Double Attack Target", "res/Sprites/DoubleAttack.png") },
+		{ Invincibility::type, TutorialMessage("Invincibility Target", "res/Sprites/Invinsibility.png") },
+		{ NoGravFieldFX::type, TutorialMessage("Zero Gravity Target", "res/Sprites/ZeroGrav.png") },
+		{ DoubleGravFieldFX::type, TutorialMessage("Double Gravity Target", "res/Sprites/DoubleGrav.png") },
+		{ HalfGravFieldFX::type, TutorialMessage("Half Gravity Target", "res/Sprites/HalfGrav.png") }
 	};
 
 	return true;
@@ -93,14 +95,17 @@ void Tutorial_Scene::update(float deltaTime)
 	_wasPaused = _game->IsPaused();
 }
 
-void Tutorial_Scene::Display(string message)
+void Tutorial_Scene::Display(TutorialMessage message)
 {
 	_game->Pause();
-	_text->setText(message);
+	_text->setText(message.message);
 	_text->setVisible(true);
+	_messageSprite->setTexture(message.spriteFile);
+	_messageSprite->setVisible(true);
 }
 
 void Tutorial_Scene::OnResumeGame()
 {
 	_text->setVisible(false);
+	_messageSprite->setVisible(false);
 }
