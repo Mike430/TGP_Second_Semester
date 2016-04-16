@@ -329,6 +329,7 @@
           </Folder>
         </Folder>
         <Project Name="TutorialOverlay.csd" Type="Layer" />
+        <Image Name="TutorialMessageBackground.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

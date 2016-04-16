@@ -25,6 +25,8 @@ bool Tutorial_Scene::init()
 	_text->setVisible(false);
 	_messageSprite = _rootNode->getChildByName<Sprite*>("tutorial_sprite");
 	_messageSprite->setVisible(false);
+	_messageBackground = _rootNode->getChildByName<Sprite*>("MessageBackground");
+	_messageBackground->setVisible(false);
 
 	_wasPaused = false;
 
@@ -106,10 +108,12 @@ void Tutorial_Scene::Display(TutorialMessage message)
 	_text->setVisible(true);
 	_messageSprite->setTexture(message.spriteFile);
 	_messageSprite->setVisible(true);
+	_messageBackground->setVisible(true);
 }
 
 void Tutorial_Scene::OnResumeGame()
 {
 	_text->setVisible(false);
 	_messageSprite->setVisible(false);
+	_messageBackground->setVisible(false);
 }

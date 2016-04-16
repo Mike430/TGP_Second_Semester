@@ -27,6 +27,7 @@ private:
 	bool _wasPaused;
 	Text* _text;
 	Sprite* _messageSprite;
+	Sprite* _messageBackground;
 	unordered_map<int, TutorialMessage> _newBallMessages;
 	unordered_map<int, TutorialMessage> _newTargetMessages;
 public:
