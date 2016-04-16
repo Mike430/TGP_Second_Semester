@@ -56,6 +56,14 @@ void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 	if (_gameScene == nullptr)
 	{
 		Sprite* test = _rootNode->getChildByName<Sprite*>("Background");
+		
+		Vec2 ButtonTarget = Vec2 (640, -70);
+		auto MoveButtonsOut = MoveTo::create(2, ButtonTarget);
+		auto MoveButtonsOut2 = MoveTo::create(2, ButtonTarget);
+		_beginButton->runAction(MoveButtonsOut2);
+		_tutorialButton->runAction(MoveButtonsOut);
+		//_beginButton->setOpacity(0);
+		//_tutorialButton->setOpacity(0);
 		AnimationHelper::Animate(test, "Intro");
 		runAction(Sequence::create(DelayTime::create(7.08f), CallFunc::create(CC_CALLBACK_0(HelloWorld::LoadGame, this)), nullptr));
 
