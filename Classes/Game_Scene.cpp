@@ -43,7 +43,7 @@ bool Game_Scene::init()
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
 	_leftDispencer->Setup(false, 320, 950, _ballManager);
-    auto MoveDispencerLEFT = MoveTo::create(4, Vec2(320, 710));
+    auto MoveDispencerLEFT = MoveTo::create(4, Vec2(320, 720));
     _leftDispencer->runAction(MoveDispencerLEFT);
 	_rootNode->addChild(_leftDispencer);
 	_leftDispencer->setLocalZOrder(1);
@@ -51,7 +51,7 @@ bool Game_Scene::init()
 
 	_rightDispencer = BallDispencer::create();
 	_rightDispencer->Setup(true, 960, 950, _ballManager);
-    auto MoveDispencerRIGHT = MoveTo::create(4, Vec2(960, 710));
+    auto MoveDispencerRIGHT = MoveTo::create(4, Vec2(960, 720));
     _rightDispencer->runAction(MoveDispencerRIGHT);
 	_rootNode->addChild(_rightDispencer);
 	_rightDispencer->setLocalZOrder(1);
@@ -107,6 +107,9 @@ bool Game_Scene::init()
 		}
 	});
 	_unPauseButton->setVisible(false);
+	AnimationHelper::PreLoadAnimation("animatedBackground", 45, 1280, 800, 24, "Frame - ", ".jpg");
+
+	AnimationHelper::Animate(_rootNode->getChildByName<Sprite*>("BackGround"), "animatedBackground", true);
 
 	_targets.reserve(10);
 	_targetSpawnTimer = Settings::targetMinSpawnDelay;

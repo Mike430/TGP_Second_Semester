@@ -24,6 +24,7 @@
           <Image Name="outside.png" />
           <Image Name="Sky.png" />
           <Image Name="BackGround.png" />
+          <Image Name="BackGroundGameScene.jpg" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -500,6 +501,53 @@
             <Image Name="Frame - 0168.jpg" />
             <Image Name="Frame - 0169.jpg" />
             <Image Name="Frame - 0170.jpg" />
+          </Folder>
+          <Folder Name="animatedBackground">
+            <Image Name="Frame - 0001.jpg" />
+            <Image Name="Frame - 0002.jpg" />
+            <Image Name="Frame - 0003.jpg" />
+            <Image Name="Frame - 0004.jpg" />
+            <Image Name="Frame - 0005.jpg" />
+            <Image Name="Frame - 0006.jpg" />
+            <Image Name="Frame - 0007.jpg" />
+            <Image Name="Frame - 0008.jpg" />
+            <Image Name="Frame - 0009.jpg" />
+            <Image Name="Frame - 0010.jpg" />
+            <Image Name="Frame - 0011.jpg" />
+            <Image Name="Frame - 0012.jpg" />
+            <Image Name="Frame - 0013.jpg" />
+            <Image Name="Frame - 0014.jpg" />
+            <Image Name="Frame - 0015.jpg" />
+            <Image Name="Frame - 0016.jpg" />
+            <Image Name="Frame - 0017.jpg" />
+            <Image Name="Frame - 0018.jpg" />
+            <Image Name="Frame - 0019.jpg" />
+            <Image Name="Frame - 0020.jpg" />
+            <Image Name="Frame - 0021.jpg" />
+            <Image Name="Frame - 0022.jpg" />
+            <Image Name="Frame - 0023.jpg" />
+            <Image Name="Frame - 0024.jpg" />
+            <Image Name="Frame - 0025.jpg" />
+            <Image Name="Frame - 0026.jpg" />
+            <Image Name="Frame - 0027.jpg" />
+            <Image Name="Frame - 0028.jpg" />
+            <Image Name="Frame - 0029.jpg" />
+            <Image Name="Frame - 0030.jpg" />
+            <Image Name="Frame - 0031.jpg" />
+            <Image Name="Frame - 0032.jpg" />
+            <Image Name="Frame - 0033.jpg" />
+            <Image Name="Frame - 0034.jpg" />
+            <Image Name="Frame - 0035.jpg" />
+            <Image Name="Frame - 0036.jpg" />
+            <Image Name="Frame - 0037.jpg" />
+            <Image Name="Frame - 0038.jpg" />
+            <Image Name="Frame - 0039.jpg" />
+            <Image Name="Frame - 0040.jpg" />
+            <Image Name="Frame - 0041.jpg" />
+            <Image Name="Frame - 0042.jpg" />
+            <Image Name="Frame - 0043.jpg" />
+            <Image Name="Frame - 0044.jpg" />
+            <Image Name="Frame - 0045.jpg" />
           </Folder>
         </Folder>
         <Project Name="TutorialOverlay.csd" Type="Layer" />
