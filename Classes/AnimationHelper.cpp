@@ -2,11 +2,11 @@
 
 unordered_map<string, AnimationHelper::AnimData> AnimationHelper::animations;
 
-void AnimationHelper::PreLoadAnimation(string name, int numFrames, float framerate)
+void AnimationHelper::PreLoadAnimation(string name, int numFrames, float framerate, string namePrefix, string fileType)
 {
 	if (animations.find(name) == animations.end())
 	{
-		LoadAnimation(name, numFrames, framerate);
+		LoadAnimation(name, numFrames, framerate, namePrefix, fileType);
 	}
 }
 
@@ -21,7 +21,7 @@ bool AnimationHelper::AnimationFinished(Sprite* sprite)
 	return sprite->getNumberOfRunningActions() == 0;
 }
 
-void AnimationHelper::LoadAnimation(string name, int numFrames, float framerate)
+void AnimationHelper::LoadAnimation(string name, int numFrames, float framerate, string namePrefix, string fileType)
 {
 	AnimData animation;
 	Vector<SpriteFrame*>& frames = animation.frames;
@@ -34,9 +34,8 @@ void AnimationHelper::LoadAnimation(string name, int numFrames, float framerate)
 		//pad with '0' to length of 4
 		string pad = string(4 - index.length(), '0');
 		string path = "res/Animations/" + name + "/";
-		string fileType = ".png";
-		string file = path + pad + index + fileType;
-		frames.pushBack(SpriteFrame::create(file, Rect(0, 0, 300, 225)));
+		string file = path + namePrefix + pad + index + fileType;
+		frames.pushBack(SpriteFrame::create(file, Rect(0, 0, 1280, 800)));
 	}
 	animation.frameRate = framerate;
 	animations[name] = animation;

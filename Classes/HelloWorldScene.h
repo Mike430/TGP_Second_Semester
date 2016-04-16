@@ -8,6 +8,7 @@
 #include "ui/CocosGUI.h"
 #include <string.h>
 #include "SimpleAudioEngine.h"
+#include "AnimationHelper.h"
 
 using namespace std;
 

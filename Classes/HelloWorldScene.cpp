@@ -43,6 +43,7 @@ bool HelloWorld::init()
 	_beginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BeginButtonPressed, this));
 	_tutorialButton = _rootNode->getChildByName<cocos2d::ui::Button*>("Tutorial_Button");
 	_tutorialButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::TutorialButtonPressed, this));
+	AnimationHelper::PreLoadAnimation("Intro", 170, 60, "Frame - ", ".jpg");
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/Menusong.mp3", true);
 
@@ -51,11 +52,19 @@ bool HelloWorld::init()
 
 void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
+
 	if (_gameScene == nullptr)
 	{
+		Sprite* test = _rootNode->getChildByName<Sprite*>("Background");
+		AnimationHelper::Animate(test, "Intro");
 		_gameScene = Game_Scene::createScene();
-		//CCDirector::getInstance()->replaceScene(_gameScene);
-        CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
+
+		//if (AnimationHelper::AnimationFinished())
+		//{
+		//	CCDirector::getInstance()->replaceScene(_gameScene);
+		//}
+
+       // CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
         
 	}
 }
