@@ -8,6 +8,46 @@ void AudioHelper::PreLoad(string soundEffectName)
 	SimpleAudioEngine::getInstance()->preloadEffect(getFileName(soundEffectName).c_str());
 }
 
+void AudioHelper::PreLoad(string soundEffectName, int numEffects)
+{
+	for (int i = 1; i <= numEffects; i++)
+	{
+		stringstream fileName;
+		fileName << soundEffectName;
+		fileName << i;
+		PreLoad(fileName.str());
+	}
+}
+
+void AudioHelper::PreLoadAll()
+{
+	for (string& sound : vector<string> {
+		"airhorn",
+		"bombball",
+		"endgrav",
+		"mainsong",
+		"Menusong",
+		"missilehit",
+		"missilelaunch2",
+		"moneyball",
+		"normalball",
+		"oilball",
+		"powderball2",
+		"selfexplode",
+		"startgrav"
+	})
+	{
+		PreLoad(sound);
+	}
+	for (pair<string, int>& soundWithVariations : vector<pair<string, int>>{
+		{ "AU", 8 },
+		{ "bathitting", 4 }
+	})
+	{
+		PreLoad(soundWithVariations.first, soundWithVariations.second);
+	}
+}
+
 void AudioHelper::Play(string soundEffectName, float pitch, float gain)
 {
 	SimpleAudioEngine::getInstance()->playEffect(getFileName(soundEffectName).c_str(), false, pitch, 0.0f, gain);

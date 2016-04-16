@@ -40,6 +40,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     FileUtils::getInstance()->addSearchPath("res");
+
+	AudioHelper::PreLoadAll();
 	
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();
