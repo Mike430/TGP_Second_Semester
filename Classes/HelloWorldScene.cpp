@@ -2,6 +2,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "Tutorial_Scene.h"
+#include "Game_Scene.h"
+
 
 USING_NS_CC;
 
@@ -52,7 +54,9 @@ void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 	if (_gameScene == nullptr)
 	{
 		_gameScene = Game_Scene::createScene();
-		CCDirector::getInstance()->replaceScene(_gameScene);
+		//CCDirector::getInstance()->replaceScene(_gameScene);
+        CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
+        
 	}
 }
 

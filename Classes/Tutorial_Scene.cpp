@@ -64,6 +64,8 @@ void Tutorial_Scene::update(float deltaTime)
 		}
 	}
 	// stop the players winning/losing
+    if(_game->_countDown <=0)
+    {
 	for (auto& player : _game->_players)
 	{
 		const float buffer = 50.0f;
@@ -76,6 +78,8 @@ void Tutorial_Scene::update(float deltaTime)
 			player->setPositionY(Settings::playerMaxY - buffer);
 		}
 	}
+    }
+
 	// watch for new target type
 	for (const auto& target : _game->_targets)
 	{

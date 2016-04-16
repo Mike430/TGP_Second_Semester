@@ -73,11 +73,13 @@ void Score_Scene::update(float deltaTime)
 void Score_Scene::PlayAgainButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::Scene* newGame = Game_Scene::createScene();
-	cocos2d::CCDirector::getInstance()->replaceScene(newGame);
+	//cocos2d::CCDirector::getInstance()->replaceScene(newGame);
+    CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, newGame));
 }
 
 void Score_Scene::MainMenuButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	cocos2d::Scene* mainMenu = HelloWorld::createScene();
-	cocos2d::CCDirector::getInstance()->replaceScene(mainMenu);
+	//cocos2d::CCDirector::getInstance()->replaceScene(mainMenu);
+    CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, mainMenu));
 }

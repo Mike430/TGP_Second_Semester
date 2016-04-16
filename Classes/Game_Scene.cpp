@@ -42,13 +42,17 @@ bool Game_Scene::init()
 
 	//BallDispencers
 	_leftDispencer = BallDispencer::create();
-	_leftDispencer->Setup(false, 320, 725, _ballManager);
+	_leftDispencer->Setup(false, 320, 950, _ballManager);
+    auto MoveDispencerLEFT = MoveTo::create(4, Vec2(320, 710));
+    _leftDispencer->runAction(MoveDispencerLEFT);
 	_rootNode->addChild(_leftDispencer);
 	_leftDispencer->setLocalZOrder(1);
 	_ballDispencers.push_back(_leftDispencer);
 
 	_rightDispencer = BallDispencer::create();
-	_rightDispencer->Setup(true, 960, 725, _ballManager);
+	_rightDispencer->Setup(true, 960, 950, _ballManager);
+    auto MoveDispencerRIGHT = MoveTo::create(4, Vec2(960, 710));
+    _rightDispencer->runAction(MoveDispencerRIGHT);
 	_rootNode->addChild(_rightDispencer);
 	_rightDispencer->setLocalZOrder(1);
 	_ballDispencers.push_back(_rightDispencer);
@@ -59,22 +63,28 @@ bool Game_Scene::init()
 		_rightDispencer->AddBall();
 	}
 
-	// For all Players
-	const string path = "res/";
-	const float centerX = Director::getInstance()->getVisibleSize().width / 2;
-	Vec2 playerStartPos = Vec2(centerX, Settings::playerStartY);
-
-	// Left Player
-	_leftPlayer = Player::create(false, _ballManager, _leftDispencer);
-	_leftPlayer->setPosition(playerStartPos - Vec2(Settings::playerRelativeStartX, 0));
-	_rootNode->addChild(_leftPlayer);
-	_players.push_back(_leftPlayer);
-
-	// Right Player
-	_rightPlayer = Player::create(true, _ballManager, _rightDispencer);
-	_rightPlayer->setPosition(playerStartPos + Vec2(Settings::playerRelativeStartX, 0));
-	_rootNode->addChild(_rightPlayer);
-	_players.push_back(_rightPlayer);
+    // For all Players
+    const string path = "res/";
+    const float centerX = Director::getInstance()->getVisibleSize().width / 2;
+    Vec2 playerStartPos = Vec2(centerX, Settings::playerStartY);
+    Vec2 playerStartingBelow = Vec2(centerX, -50);
+    // Left Player
+    _leftPlayer = Player::create(false, _ballManager, _leftDispencer);
+    _leftPlayer->setPosition(playerStartingBelow - Vec2(Settings::playerRelativeStartX, 0));
+    auto MoveToStartPosLEFT = MoveTo::create(4, playerStartPos - Vec2(Settings::playerRelativeStartX, 0));
+    _leftPlayer->runAction(MoveToStartPosLEFT);
+    //_leftPlayer->setPosition(playerStartPos - Vec2(Settings::playerRelativeStartX, 0));
+    _rootNode->addChild(_leftPlayer);
+    _players.push_back(_leftPlayer);
+    
+    // Right Player
+    _rightPlayer = Player::create(true, _ballManager, _rightDispencer);
+    _rightPlayer->setPosition(playerStartingBelow + Vec2(Settings::playerRelativeStartX, 0));
+    auto MoveToStartPosRIGHT = MoveTo::create(4, playerStartPos + Vec2(Settings::playerRelativeStartX, 0));
+    _rightPlayer->runAction(MoveToStartPosRIGHT);
+    //_rightPlayer->setPosition(playerStartPos + Vec2(Settings::playerRelativeStartX, 0));
+    _rootNode->addChild(_rightPlayer);
+    _players.push_back(_rightPlayer);
 
 
 	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
@@ -87,7 +97,7 @@ bool Game_Scene::init()
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	_countDown = 3.0f;
+	_countDown = 7.0f;
 	_paused = false;
 	_unPauseButton = _rootNode->getChildByName<Button*>("btn_unpause");
 	_unPauseButton->addTouchEventListener([&](Ref* sender, Widget::TouchEventType type){

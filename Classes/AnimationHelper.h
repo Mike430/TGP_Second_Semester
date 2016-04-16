@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <sstream>
 #include "cocos2d.h"
-#include "cocostudio\CocoStudio.h"
+#include "cocostudio/CocoStudio.h"
 using namespace std;
 using namespace cocos2d;
 

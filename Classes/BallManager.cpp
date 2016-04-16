@@ -2,14 +2,21 @@
 
 BallManager::BallManager()
 {
+    auto normal = Ball::type;
+    auto wallet = WalletBall::type;
+    auto bomb = BombBall::type;
+    auto powder = PowderBall::type;
+    auto oil = OilBall::type;
+    auto rocket = RocketBall::type;
+    auto bombOther = BombOther::type;
 	_ballChance = unordered_map<int, float>{
-		{ Ball::type, 60.0f },
-		{ WalletBall::type, 5.0f },
-		{ BombBall::type, 5.0f },
-		{ PowderBall::type, 1.0f },
-		{ OilBall::type, 9.0f },
-		{ RocketBall::type, 10.0f },
-		{ BombOther::type, 10.0f }
+		{ normal, 60.0f },
+		{ wallet, 5.0f },
+		{ bomb, 5.0f },
+		{ powder, 1.0f },
+		{ oil, 9.0f },
+		{ rocket, 10.0f },
+		{ bombOther, 10.0f }
 	};
 	//enable basic ball to start with
 	EnableBall(Ball::type);
