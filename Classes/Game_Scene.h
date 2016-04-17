@@ -16,6 +16,7 @@
 #include "BallManager.h"
 #include "TargetManager.h"
 #include "GameProgression.h"
+#include "AnimationHelper.h"
 
 using namespace std;
 using namespace cocos2d;

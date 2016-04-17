@@ -8,6 +8,7 @@
 #include "ui/CocosGUI.h"
 #include <string.h>
 #include "SimpleAudioEngine.h"
+#include "AnimationHelper.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ private:
 	cocos2d::ui::Button* _beginButton;
 	cocos2d::ui::Button* _tutorialButton;
 	cocos2d::Scene* _gameScene;
+	void LoadGame();
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();

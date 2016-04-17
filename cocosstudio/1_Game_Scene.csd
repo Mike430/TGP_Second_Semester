@@ -6,27 +6,16 @@
       <ObjectData Name="Scene" ctype="GameNodeObjectData">
         <Size X="1280.0000" Y="800.0000" />
         <Children>
-          <AbstractNodeData Name="Back_Drop" ActionTag="953446860" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ctype="SpriteObjectData">
+          <AbstractNodeData Name="BackGround" ActionTag="1869969899" Tag="12" IconVisible="False" ctype="SpriteObjectData">
             <Size X="1280.0000" Y="800.0000" />
-            <AnchorPoint />
-            <Position />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="640.0000" Y="400.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
+            <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="Sprites/Sky.png" Plist="" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Mid_Ground" ActionTag="-1358452445" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ctype="SpriteObjectData">
-            <Size X="1280.0000" Y="800.0000" />
-            <AnchorPoint />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="Sprites/Inside.png" Plist="" />
-            <BlendFunc Src="1" Dst="771" />
+            <FileData Type="Normal" Path="Sprites/BackGroundGameScene.jpg" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Text_Element_0" ActionTag="583558799" Tag="10" IconVisible="False" LeftMargin="10.0000" RightMargin="1050.0000" TopMargin="9.5000" BottomMargin="749.5000" FontSize="36" LabelText="Game_Scene" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="220.0000" Y="41.0000" />
