@@ -48,6 +48,10 @@ bool Tutorial_Scene::init()
 		{ DoubleGravFieldFX::type, TutorialMessage("Double Gravity Target", "res/Sprites/DoubleGrav.png") },
 		{ HalfGravFieldFX::type, TutorialMessage("Half Gravity Target", "res/Sprites/HalfGrav.png") }
 	};
+	_winLoseMessages = unordered_map < int, TutorialMessage > {
+		{ -1, TutorialMessage("U would lose here") },
+		{ 1, TutorialMessage("U would win here") }
+	};
 
 	return true;
 }
@@ -74,14 +78,26 @@ void Tutorial_Scene::update(float deltaTime)
     {
 	for (auto& player : _game->_players)
 	{
+		int displayWinLoseMessage = 0;
 		const float buffer = 50.0f;
 		if (player->getPositionY() < Settings::playerMinY + buffer)
 		{
 			player->setPositionY(Settings::playerMinY + buffer);
+			displayWinLoseMessage = -1;
 		}
 		else if (player->getPositionY() > Settings::playerMaxY - buffer)
 		{
 			player->setPositionY(Settings::playerMaxY - buffer);
+			displayWinLoseMessage = 1;
+		}
+		if (displayWinLoseMessage != 0)
+		{
+			auto it = _winLoseMessages.find(displayWinLoseMessage);
+			if (it != _winLoseMessages.end())
+			{
+				Display(it->second);
+				_winLoseMessages.erase(it);
+			}
 		}
 	}
     }
@@ -109,8 +125,15 @@ void Tutorial_Scene::Display(TutorialMessage message)
 {
 	_game->Pause();
 	_text->setText(message.message);
-	_messageSprite->setTexture(message.spriteFile);
 	SetOverlayVisible(true);
+	if (message.spriteFile == "")
+	{
+		_messageSprite->setVisible(false);
+	}
+	else
+	{
+		_messageSprite->setTexture(message.spriteFile);
+	}
 }
 
 void Tutorial_Scene::OnResumeGame()

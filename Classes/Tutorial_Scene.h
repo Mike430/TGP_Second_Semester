@@ -14,7 +14,7 @@ struct TutorialMessage
 	string message;
 	string spriteFile;
 	explicit TutorialMessage(string message)
-		: TutorialMessage(message, "res/Sprites/1Ball.png") {}
+		: TutorialMessage(message, "") {}
 	TutorialMessage(string message, string spriteFile)
 		: message(message), spriteFile(spriteFile)  {}
 };
@@ -31,6 +31,7 @@ private:
 	Button* _resumeButton;
 	unordered_map<int, TutorialMessage> _newBallMessages;
 	unordered_map<int, TutorialMessage> _newTargetMessages;
+	unordered_map<int, TutorialMessage> _winLoseMessages;
 	void Display(TutorialMessage message);
 	void OnResumeGame();
 	void SetOverlayVisible(bool visible);
