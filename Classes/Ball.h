@@ -10,6 +10,8 @@ using namespace cocos2d;
 
 class Ball : public Node
 {
+	//let tutorial access waypointIndex to find if the ball is visible
+	friend class Tutorial_Scene;
 private:
 	//Variables for ball dispencer
 	int _wayPointIndex;

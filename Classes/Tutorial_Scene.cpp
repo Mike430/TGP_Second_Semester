@@ -22,13 +22,13 @@ bool Tutorial_Scene::init()
 	addChild(_rootNode);
 
 	_text = _rootNode->getChildByName<Text*>("tutorial_text");
-	_text->setVisible(false);
 	_messageSprite = _rootNode->getChildByName<Sprite*>("tutorial_sprite");
-	_messageSprite->setVisible(false);
 	_messageBackground = _rootNode->getChildByName<Sprite*>("MessageBackground");
-	_messageBackground->setVisible(false);
+	_resumeButton = _rootNode->getChildByName<Button*>("resume_button");
+	_resumeButton->addClickEventListener(CC_CALLBACK_0(Tutorial_Scene::UnPauseGame, this));
 
 	_wasPaused = false;
+	SetOverlayVisible(false);
 
 	this->scheduleUpdate();
 
@@ -43,7 +43,7 @@ bool Tutorial_Scene::init()
 	_newTargetMessages = unordered_map<int, TutorialMessage>{
 		{ RareTarget::type, TutorialMessage("Rare Target", "res/Sprites/rare.png") },
 		{ Double_Attack::type, TutorialMessage("Double Attack Target", "res/Sprites/DoubleAttack.png") },
-		{ Invincibility::type, TutorialMessage("Invincibility Target", "res/Sprites/Invinsibility.png") },
+		{ Invincibility::type, TutorialMessage("Invincibility Target", "res/Sprites/Invincibility.png") },
 		{ NoGravFieldFX::type, TutorialMessage("Zero Gravity Target", "res/Sprites/ZeroGrav.png") },
 		{ DoubleGravFieldFX::type, TutorialMessage("Double Gravity Target", "res/Sprites/DoubleGrav.png") },
 		{ HalfGravFieldFX::type, TutorialMessage("Half Gravity Target", "res/Sprites/HalfGrav.png") }
@@ -57,12 +57,16 @@ void Tutorial_Scene::update(float deltaTime)
 	// watch for new ball type
 	for (int i = 0; i < _game->_ballManager->GetNumberOfBalls(); i++)
 	{
-		int ballType = _game->_ballManager->GetBallAtIndex(i)->getType();
-		auto it = _newBallMessages.find(ballType);
-		if (it != _newBallMessages.end())
+		Ball* ball = _game->_ballManager->GetBallAtIndex(i);
+		if (ball->_wayPointIndex >= 2)//visible on screen
 		{
-			Display(it->second);
-			_newBallMessages.erase(it);
+			int ballType = ball->getType();
+			auto it = _newBallMessages.find(ballType);
+			if (it != _newBallMessages.end())
+			{
+				Display(it->second);
+				_newBallMessages.erase(it);
+			}
 		}
 	}
 	// stop the players winning/losing
@@ -105,15 +109,24 @@ void Tutorial_Scene::Display(TutorialMessage message)
 {
 	_game->Pause();
 	_text->setText(message.message);
-	_text->setVisible(true);
 	_messageSprite->setTexture(message.spriteFile);
-	_messageSprite->setVisible(true);
-	_messageBackground->setVisible(true);
+	SetOverlayVisible(true);
 }
 
 void Tutorial_Scene::OnResumeGame()
 {
-	_text->setVisible(false);
-	_messageSprite->setVisible(false);
-	_messageBackground->setVisible(false);
+	SetOverlayVisible(false);
+}
+
+void Tutorial_Scene::UnPauseGame()
+{
+	_game->UnPause();
+}
+
+void Tutorial_Scene::SetOverlayVisible(bool visible)
+{
+	for (auto& child : getChildren())
+	{
+		child->setVisible(visible);
+	}
 }
