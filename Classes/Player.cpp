@@ -86,7 +86,7 @@ void Player::update(float deltaTime)
 
 	if (IsDazed())
 	{
-		float recoveryTime = Settings::playerDazeRecoveryTime * (_veryDazed ? 3 : 1);
+		float recoveryTime = _veryDazed ? Settings::playerLongDazeRecoveryTime : Settings::playerDazeRecoveryTime;
 		if (_timeSinceHit >= recoveryTime)
 		{
 			EndDaze();
