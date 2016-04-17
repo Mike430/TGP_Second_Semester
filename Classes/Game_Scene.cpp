@@ -31,6 +31,8 @@ bool Game_Scene::init()
 	srand(time(NULL));
 	// Scene Setter
 	_rootNode = cocos2d::CSLoader::createNode("1_Game_Scene.csb");
+	_rootNode->getChildByName("Text_Element_1")->setOpacity(0.0f);
+	_rootNode->getChildByName("Text_Element_0")->setOpacity(0.0f);
 	this->addChild(_rootNode);
 	_windowSize = CCDirector::getInstance()->getVisibleSize();
 	// Get Scene Elelments

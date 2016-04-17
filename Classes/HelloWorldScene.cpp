@@ -40,9 +40,11 @@ bool HelloWorld::init()
 	_gameScene = nullptr;
 
 	_beginButton = (cocos2d::ui::Button*)_rootNode->getChildByName("Begin_Button");
+	_rootNode->getChildByName("Text_Element")->setOpacity(0.0f);
 	_beginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BeginButtonPressed, this));
 	_tutorialButton = _rootNode->getChildByName<cocos2d::ui::Button*>("Tutorial_Button");
 	_tutorialButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::TutorialButtonPressed, this));
+
 	AnimationHelper::PreLoadAnimation("Intro", 170, 1280, 800, 24, "Frame - ", ".jpg");
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/Menusong.mp3", true);
@@ -58,19 +60,16 @@ void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 		Sprite* test = _rootNode->getChildByName<Sprite*>("Background");
 		
 		Vec2 ButtonTarget = Vec2 (640, -70);
-		auto MoveButtonsOut = MoveTo::create(2, ButtonTarget);
+		auto MoveButtonsOut = MoveTo::create(0.5f, Vec2(640, 30));
 		auto MoveButtonsOut2 = MoveTo::create(2, ButtonTarget);
 		_beginButton->runAction(MoveButtonsOut2);
 		_tutorialButton->runAction(MoveButtonsOut);
-		//_beginButton->setOpacity(0);
-		//_tutorialButton->setOpacity(0);
 		AnimationHelper::Animate(test, "Intro");
 		runAction(Sequence::create(DelayTime::create(7.08f), CallFunc::create(CC_CALLBACK_0(HelloWorld::LoadGame, this)), nullptr));
-
-		
-
        // CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
-        
+		_tutorialButton->setTitleText("Skip Intro");
+		_tutorialButton->addTouchEventListener(CC_CALLBACK_0(HelloWorld::LoadGame, this));
+		_tutorialButton->setScale(0.5f);
 	}
 }
 
@@ -80,7 +79,7 @@ void HelloWorld::TutorialButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEv
 	if (_gameScene == nullptr)
 	{
 		_gameScene = Tutorial_Scene::createScene();
-		CCDirector::getInstance()->replaceScene(_gameScene);
+		CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
 	}
 }
 
