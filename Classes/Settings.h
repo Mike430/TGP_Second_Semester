@@ -17,7 +17,7 @@ namespace Settings
 	const float playerRelativeStartX = 530;//distance from centre of screen
 	const float playerSeeSawMoveDistance = 9;
 	const float playerDazeRecoveryTime = 0.5f;
-	const float playerDazeInvincibilityTime = 3.0f;//within this time player cannot be dazed, but can move down
+	const float playerDazeInvincibilityTime = 0.5f;//within this time player cannot be dazed, but can move down
 	const float playerSwingDuration = 0.4f;
 	const float playerSwingHitDelay = 0.15f;
 	//Field Effects
