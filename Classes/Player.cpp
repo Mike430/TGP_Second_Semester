@@ -199,11 +199,12 @@ void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 		if (_stunLockTimer >= Settings::playerDazeInvincibilityTime)
 		{
 			_stunLockTimer = 0;
-			if (ball->getType() == OilBall::type || ball->getType() == BombOther::type)
+			if (ball->getType() == OilBall::type)
 			{
+				_sprite->setColor(_oilColour);
 				Daze(true);
 			}
-			else if (ball->getType() == BombBall::type)
+			else if (ball->getType() == BombBall::type || ball->getType() == BombOther::type)
 			{
 				Daze(true);
 			}
@@ -283,6 +284,7 @@ void Player::EndDaze()
 	_dazedState = _veryDazed = false;
 	//_swingButton->setVisible(true);
 	AnimationHelper::Animate(_sprite, "Idle");
+	_sprite->setColor(Color3B::WHITE);//remove oil
 }
 
 void Player::addScore(int points)

@@ -27,6 +27,8 @@ private:
 	BallManager* _ballManager;
 	BallDispencer* _ballDispencer;
 
+	Color3B _oilColour = Color3B(100, 100, 100);
+
 	int _score;
 
 	bool _dazedState;
