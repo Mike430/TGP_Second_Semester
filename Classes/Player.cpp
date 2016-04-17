@@ -37,12 +37,12 @@ bool Player::init(bool onRight, BallManager* ballManager, BallDispencer* ballDis
 	_sprite = _rootNode->getChildByName<Sprite*>("Sprite");
 	_collisionSprite = _rootNode->getChildByName<Sprite*>("CollisionSprite");
 	_collisionSprite->setVisible(false);
-	AnimationHelper::PreLoadAnimation("Idle", 120);
-	AnimationHelper::PreLoadAnimation("Dazed", 120);
+	AnimationHelper::PreLoadAnimation("Idle", 120, 300, 225);
+	AnimationHelper::PreLoadAnimation("Dazed", 120, 300, 225);
 	//make swing animation last exactly Settings::playerSwingDuration
 	int swingFrames = 30;
 	float swingFPS = (float)swingFrames / Settings::playerSwingDuration;
-	AnimationHelper::PreLoadAnimation("Swing", swingFrames, swingFPS);
+	AnimationHelper::PreLoadAnimation("Swing", swingFrames, 300, 225, swingFPS);
 
 	//_swingButton->addTouchEventListener(CC_CALLBACK_2(Player::SwingButtonPressed, this));
 

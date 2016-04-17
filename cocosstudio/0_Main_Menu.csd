@@ -6,26 +6,15 @@
       <ObjectData Name="Scene" ctype="GameNodeObjectData">
         <Size X="1280.0000" Y="800.0000" />
         <Children>
-          <AbstractNodeData Name="Back_Drop" ActionTag="953446860" Tag="5" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Background" ActionTag="82980033" Tag="28" IconVisible="False" PositionPercentXEnabled="True" ctype="SpriteObjectData">
             <Size X="1280.0000" Y="800.0000" />
-            <AnchorPoint />
-            <Position />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="640.0000" Y="400.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
+            <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="Sprites/Sky.png" Plist="" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Building" ActionTag="312040554" Tag="10" IconVisible="False" ctype="SpriteObjectData">
-            <Size X="1280.0000" Y="800.0000" />
-            <AnchorPoint />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="Sprites/outside.png" Plist="" />
+            <FileData Type="Normal" Path="Sprites/BackGround.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="Begin_Button" ActionTag="342092180" Tag="9" IconVisible="False" LeftMargin="410.0000" RightMargin="410.0000" TopMargin="650.0000" BottomMargin="90.0000" TouchEnable="True" FontSize="36" ButtonText="Begin New Game (2Player)" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">

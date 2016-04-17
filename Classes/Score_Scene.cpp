@@ -29,6 +29,7 @@ bool Score_Scene::init()
 	}
 
 	_rootNode = cocos2d::CSLoader::createNode("2_Score_Scene.csb");
+	_rootNode->getChildByName("Text_Element_0")->setOpacity(0.0f);
 	addChild(_rootNode);
 
 	_playAgainButton = (cocos2d::ui::Button*)_rootNode->getChildByName("Play_Again");
