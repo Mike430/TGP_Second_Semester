@@ -55,36 +55,59 @@ bool HelloWorld::init()
 void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 
-	if (_gameScene == nullptr)
+	if (type == Widget::TouchEventType::ENDED)
 	{
-		Sprite* test = _rootNode->getChildByName<Sprite*>("Background");
-		
-		Vec2 ButtonTarget = Vec2 (640, -70);
-		auto MoveButtonsOut = MoveTo::create(0.5f, Vec2(640, 30));
-		auto MoveButtonsOut2 = MoveTo::create(2, ButtonTarget);
-		_beginButton->runAction(MoveButtonsOut2);
-		_tutorialButton->runAction(MoveButtonsOut);
-		AnimationHelper::Animate(test, "Intro");
-		runAction(Sequence::create(DelayTime::create(7.08f), CallFunc::create(CC_CALLBACK_0(HelloWorld::LoadGame, this)), nullptr));
-       // CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
-		_tutorialButton->setTitleText("Skip Intro");
-		_tutorialButton->addTouchEventListener(CC_CALLBACK_0(HelloWorld::LoadGame, this));
-		_tutorialButton->setScale(0.5f);
+		if (_gameScene == nullptr)
+		{
+			Sprite* test = _rootNode->getChildByName<Sprite*>("Background");
+
+			Vec2 ButtonTarget = Vec2(640, -70);
+			auto MoveButtonsOut = MoveTo::create(0.5f, Vec2(640, 30));
+			auto MoveButtonsOut2 = MoveTo::create(2, ButtonTarget);
+			_beginButton->runAction(MoveButtonsOut2);
+			_tutorialButton->runAction(MoveButtonsOut);
+			AnimationHelper::Animate(test, "Intro");
+			runAction(Sequence::create(DelayTime::create(7.08f), CallFunc::create(CC_CALLBACK_0(HelloWorld::LoadGame, this)), nullptr));
+			// CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
+			_tutorialButton->setTitleText("Skip Intro");
+			_tutorialButton->addTouchEventListener(CC_CALLBACK_0(HelloWorld::LoadGame, this));
+			_tutorialButton->setScale(0.5f);
+		}
 	}
 }
 
 
 void HelloWorld::TutorialButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	if (_gameScene == nullptr)
+	if (type == Widget::TouchEventType::ENDED)
 	{
-		_gameScene = Tutorial_Scene::createScene();
-		CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
+		if (_gameScene == nullptr)
+		{
+			Sprite* test = _rootNode->getChildByName<Sprite*>("Background");
+
+			Vec2 ButtonTarget = Vec2(640, -70);
+			auto MoveButtonsOut = MoveTo::create(0.5f, Vec2(640, 30));
+			auto MoveButtonsOut2 = MoveTo::create(2, ButtonTarget);
+			_beginButton->runAction(MoveButtonsOut2);
+			_tutorialButton->runAction(MoveButtonsOut);
+			AnimationHelper::Animate(test, "Intro");
+			runAction(Sequence::create(DelayTime::create(7.08f), CallFunc::create(CC_CALLBACK_0(HelloWorld::LoadTutorial, this)), nullptr));
+			// CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, _gameScene));
+			_tutorialButton->setTitleText("Skip Intro");
+			_tutorialButton->addTouchEventListener(CC_CALLBACK_0(HelloWorld::LoadTutorial, this));
+			_tutorialButton->setScale(0.5f);
+		}
 	}
 }
 
 void HelloWorld::LoadGame()
 {
 	_gameScene = Game_Scene::createScene();
+	CCDirector::getInstance()->replaceScene(_gameScene);
+}
+
+void HelloWorld::LoadTutorial()
+{
+	_gameScene = Tutorial_Scene::createScene();
 	CCDirector::getInstance()->replaceScene(_gameScene);
 }
