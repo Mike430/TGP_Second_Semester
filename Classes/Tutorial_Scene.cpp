@@ -49,8 +49,8 @@ bool Tutorial_Scene::init()
 		{ HalfGravFieldFX::type, TutorialMessage("Half Gravity Target", "res/Sprites/HalfGrav.png") }
 	};
 	_winLoseMessages = unordered_map < int, TutorialMessage > {
-		{ -1, TutorialMessage("U would lose here") },
-		{ 1, TutorialMessage("U would win here") }
+		{ -1, TutorialMessage("You would lose at this point because your player is at the bottom") },
+		{ 1, TutorialMessage("You would win at this point because your player is at the top") }
 	};
 
 	return true;
