@@ -26,6 +26,7 @@
           <Image Name="BackGround.png" />
           <Image Name="BackGroundGameScene.jpg" />
           <Image Name="podium.png" />
+          <Image Name="RocketBallLaunched.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />

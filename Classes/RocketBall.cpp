@@ -34,5 +34,10 @@ void RocketBall::Hit(Vec2 velocity)
 	Ball::Hit(velocity);
 	_gravity = 0;
 	_velocity = Vec2((_velocity.x > 0 ? 1 : -1) * Settings::horizontalSpeed, 0);
+	_rootNode->getChildByName<Sprite*>("Sprite_1")->setTexture("res/Sprites/RocketBallLaunched.png");
+	if (_velocity.x > 0)
+	{
+		_rootNode->getChildByName<Sprite*>("Sprite_1")->setFlippedX(true);
+	}
 	AudioHelper::Play("missilelaunch2");
 }
