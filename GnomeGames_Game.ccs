@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="GnomeGames_Game" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="GNOMEG~1" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -23,6 +23,7 @@
           <Image Name="Inside.png" />
           <Image Name="outside.png" />
           <Image Name="Sky.png" />
+          <Image Name="White.png" />
           <Image Name="BackGround.png" />
           <Image Name="BackGroundGameScene.jpg" />
         </Folder>
@@ -552,6 +553,7 @@
         </Folder>
         <Project Name="TutorialOverlay.csd" Type="Layer" />
         <Image Name="TutorialMessageBackground.png" />
+        <Project Name="Rules.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>
