@@ -32,7 +32,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Sprite" ActionTag="754927599" Tag="12" IconVisible="False" LeftMargin="-112.8777" RightMargin="-187.1223" TopMargin="-146.6371" BottomMargin="-78.3629" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite" ActionTag="754927599" Tag="12" IconVisible="False" LeftMargin="-112.8776" RightMargin="-187.1224" TopMargin="-146.6264" BottomMargin="-78.3736" ctype="SpriteObjectData">
             <Size X="300.0000" Y="225.0000" />
             <AnchorPoint ScaleX="0.3750" ScaleY="0.2523" />
             <Position X="-0.3776" Y="-21.6061" />
@@ -41,6 +41,17 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="Animations/Idle/0001.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="podium" ActionTag="-839017432" Tag="19" IconVisible="False" LeftMargin="-150.0000" RightMargin="-150.0000" TopMargin="87.0000" BottomMargin="-587.0000" ctype="SpriteObjectData">
+            <Size X="300.0000" Y="500.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position Y="-337.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="Sprites/podium.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
