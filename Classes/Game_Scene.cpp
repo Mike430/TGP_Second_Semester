@@ -128,6 +128,10 @@ bool Game_Scene::init()
 //==============================================================================
 void Game_Scene::update(float deltaTime)
 {
+	if (deltaTime > 0.1)
+	{
+		deltaTime = 0.1;
+	}
 	if (_paused)
 	{
 		return;

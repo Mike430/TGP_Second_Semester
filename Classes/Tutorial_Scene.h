@@ -29,6 +29,7 @@ private:
 	Sprite* _messageSprite;
 	Sprite* _messageBackground;
 	Button* _resumeButton;
+	list<TutorialMessage> _introMessages;
 	unordered_map<int, TutorialMessage> _newBallMessages;
 	unordered_map<int, TutorialMessage> _newTargetMessages;
 	unordered_map<int, TutorialMessage> _winLoseMessages;

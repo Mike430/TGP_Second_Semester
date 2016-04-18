@@ -32,7 +32,15 @@ bool Tutorial_Scene::init()
 
 	this->scheduleUpdate();
 
+	_introMessages = list<TutorialMessage>{
+		TutorialMessage("welcome 2 tha game"),
+		TutorialMessage("tap the screen to swing your bat"),
+		TutorialMessage("hit balls at the other player to knock them down"),
+		TutorialMessage("hit targets to move up and gain powerups")
+	};
+
 	_newBallMessages = unordered_map<int, TutorialMessage>{
+		
 		{ RocketBall::type, TutorialMessage("Rocket Ball", "res/Sprites/RocketBall.png") },
 		{ OilBall::type, TutorialMessage("Oil Ball", "res/OilBall.png") },
 		{ BombBall::type, TutorialMessage("Bomb Ball", "res/Sprites/bombBall.png") },
@@ -58,6 +66,21 @@ bool Tutorial_Scene::init()
 
 void Tutorial_Scene::update(float deltaTime)
 {
+	// watch for unpause button press
+	if (_wasPaused && !_game->IsPaused())
+	{
+		OnResumeGame();
+	}
+	_wasPaused = _game->IsPaused();
+	if (_game->IsPaused() || _game->_countDown > 4)
+	{
+		return;
+	}
+	if (!_introMessages.empty())
+	{
+		Display(_introMessages.front());
+		_introMessages.pop_front();
+	}
 	// watch for new ball type
 	for (int i = 0; i < _game->_ballManager->GetNumberOfBalls(); i++)
 	{
@@ -70,6 +93,7 @@ void Tutorial_Scene::update(float deltaTime)
 			{
 				Display(it->second);
 				_newBallMessages.erase(it);
+				break;
 			}
 		}
 	}
@@ -113,12 +137,6 @@ void Tutorial_Scene::update(float deltaTime)
 			_newTargetMessages.erase(it);
 		}
 	}
-	// watch for unpause button press
-	if (_wasPaused && !_game->IsPaused())
-	{
-		OnResumeGame();
-	}
-	_wasPaused = _game->IsPaused();
 }
 
 void Tutorial_Scene::Display(TutorialMessage message)
