@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="GNOMEG~1" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="GnomeGames_Game" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -23,9 +23,9 @@
           <Image Name="Inside.png" />
           <Image Name="outside.png" />
           <Image Name="Sky.png" />
-          <Image Name="White.png" />
           <Image Name="BackGround.png" />
           <Image Name="BackGroundGameScene.jpg" />
+          <Image Name="podium.png" />
         </Folder>
         <Project Name="2_Score_Scene.csd" Type="Scene" />
         <Project Name="1_Game_Scene.csd" Type="Scene" />
@@ -504,6 +504,51 @@
             <Image Name="Frame - 0170.jpg" />
           </Folder>
           <Folder Name="animatedBackground">
+            <Image Name="Frame - 0171.jpg" />
+            <Image Name="Frame - 0172.jpg" />
+            <Image Name="Frame - 0173.jpg" />
+            <Image Name="Frame - 0174.jpg" />
+            <Image Name="Frame - 0175.jpg" />
+            <Image Name="Frame - 0176.jpg" />
+            <Image Name="Frame - 0177.jpg" />
+            <Image Name="Frame - 0178.jpg" />
+            <Image Name="Frame - 0179.jpg" />
+            <Image Name="Frame - 0180.jpg" />
+            <Image Name="Frame - 0181.jpg" />
+            <Image Name="Frame - 0182.jpg" />
+            <Image Name="Frame - 0183.jpg" />
+            <Image Name="Frame - 0184.jpg" />
+            <Image Name="Frame - 0185.jpg" />
+            <Image Name="Frame - 0186.jpg" />
+            <Image Name="Frame - 0187.jpg" />
+            <Image Name="Frame - 0188.jpg" />
+            <Image Name="Frame - 0189.jpg" />
+            <Image Name="Frame - 0190.jpg" />
+            <Image Name="Frame - 0191.jpg" />
+            <Image Name="Frame - 0192.jpg" />
+            <Image Name="Frame - 0193.jpg" />
+            <Image Name="Frame - 0194.jpg" />
+            <Image Name="Frame - 0195.jpg" />
+            <Image Name="Frame - 0196.jpg" />
+            <Image Name="Frame - 0197.jpg" />
+            <Image Name="Frame - 0198.jpg" />
+            <Image Name="Frame - 0199.jpg" />
+            <Image Name="Frame - 0200.jpg" />
+            <Image Name="Frame - 0201.jpg" />
+            <Image Name="Frame - 0202.jpg" />
+            <Image Name="Frame - 0203.jpg" />
+            <Image Name="Frame - 0204.jpg" />
+            <Image Name="Frame - 0205.jpg" />
+            <Image Name="Frame - 0206.jpg" />
+            <Image Name="Frame - 0207.jpg" />
+            <Image Name="Frame - 0208.jpg" />
+            <Image Name="Frame - 0209.jpg" />
+            <Image Name="Frame - 0210.jpg" />
+            <Image Name="Frame - 0211.jpg" />
+            <Image Name="Frame - 0212.jpg" />
+            <Image Name="Frame - 0213.jpg" />
+            <Image Name="Frame - 0214.jpg" />
+            <Image Name="Frame - 0215.jpg" />
             <Image Name="Frame - 0001.jpg" />
             <Image Name="Frame - 0002.jpg" />
             <Image Name="Frame - 0003.jpg" />
@@ -553,7 +598,6 @@
         </Folder>
         <Project Name="TutorialOverlay.csd" Type="Layer" />
         <Image Name="TutorialMessageBackground.png" />
-        <Project Name="Rules.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

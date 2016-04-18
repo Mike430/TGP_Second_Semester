@@ -1,6 +1,7 @@
 #include "AnimationHelper.h"
 
 unordered_map<string, AnimationHelper::AnimData> AnimationHelper::animations;
+unordered_map<string, AnimLoadData> AnimationHelper::animationLoadData;
 
 void AnimationHelper::PreLoadAnimation(string name, int numFrames, int FrameX, int FrameY, float framerate, string namePrefix, string fileType)
 {
@@ -8,6 +9,19 @@ void AnimationHelper::PreLoadAnimation(string name, int numFrames, int FrameX, i
 	{
 		LoadAnimation(name, numFrames, FrameX, FrameY, framerate, namePrefix, fileType);
 	}
+	AnimLoadData loadData;
+	loadData.frames = numFrames;
+	loadData.width = FrameX;
+	loadData.height = FrameY;
+	loadData.frameRate = framerate;
+	loadData.namePrefix = namePrefix;
+	loadData.fileType = fileType;
+	animationLoadData[name] = loadData;
+}
+
+void AnimationHelper::UnLoadAnimation(string animationName)
+{
+	animations.erase(animationName);
 }
 
 void AnimationHelper::Animate(Sprite* sprite, string animationName, bool loop)
@@ -43,6 +57,22 @@ void AnimationHelper::LoadAnimation(string name, int numFrames, int FrameX, int 
 
 cocos2d::Animate* AnimationHelper::CreateAnimate(string animationName, bool loop)
 {
+	auto it = animations.find(animationName);
+	if (it == animations.end())
+	{
+		//animation not found, maybe unloaded
+		auto loadDataIt = animationLoadData.find(animationName);
+		if (loadDataIt != animationLoadData.end())
+		{
+			AnimLoadData& d = loadDataIt->second;
+			LoadAnimation(animationName, d.frames, d.width, d.height, d.frameRate, d.namePrefix, d.fileType);
+			it = animations.find(animationName);
+		}
+	}
+	if (it == animations.end())
+	{
+		throw runtime_error("animation not found");
+	}
 	AnimData* animData = &animations[animationName];
 	float delay = 1.0f / animData->frameRate;
 	unsigned int loops = loop ? numeric_limits<unsigned int>::max() : 1;

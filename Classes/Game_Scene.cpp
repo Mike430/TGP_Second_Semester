@@ -109,9 +109,9 @@ bool Game_Scene::init()
 		}
 	});
 	_unPauseButton->setVisible(false);
-	AnimationHelper::PreLoadAnimation("animatedBackground", 45, 1280, 800, 24, "Frame - ", ".jpg");
-
-	AnimationHelper::Animate(_rootNode->getChildByName<Sprite*>("BackGround"), "animatedBackground", true);
+	AnimationHelper::UnLoadAnimation("Intro");
+	//AnimationHelper::PreLoadAnimation("animatedBackground", 45, 1280, 800, 24, "Frame - ", ".jpg");
+	//AnimationHelper::Animate(_rootNode->getChildByName<Sprite*>("BackGround"), "animatedBackground", true);
 
 	_targets.reserve(10);
 	_targetSpawnTimer = Settings::targetMinSpawnDelay;
