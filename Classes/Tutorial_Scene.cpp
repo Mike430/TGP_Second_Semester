@@ -33,28 +33,28 @@ bool Tutorial_Scene::init()
 	this->scheduleUpdate();
 
 	_introMessages = list<TutorialMessage>{
-		TutorialMessage("welcome 2 tha game"),
-		TutorialMessage("tap the screen to swing your bat"),
+		TutorialMessage("Welcome to gladiator heights"),
+		TutorialMessage("tap your half of screen to swing your bat"),
 		TutorialMessage("hit balls at the other player to knock them down"),
 		TutorialMessage("hit targets to move up and gain powerups")
 	};
 
 	_newBallMessages = unordered_map<int, TutorialMessage>{
 		
-		{ RocketBall::type, TutorialMessage("Rocket Ball", "res/Sprites/RocketBall.png") },
-		{ OilBall::type, TutorialMessage("Oil Ball", "res/OilBall.png") },
-		{ BombBall::type, TutorialMessage("Bomb Ball", "res/Sprites/bombBall.png") },
-		{ BombOther::type, TutorialMessage("Bomb Other Ball", "res/otherBombBall.png") },
-		{ WalletBall::type, TutorialMessage("Wallet Ball", "res/Wallet.png") },
-		{ PowderBall::type, TutorialMessage("Powder Ball", "res/PowderBall.png") }
+		{ RocketBall::type, TutorialMessage("Rocket Ball, travels in straight direction", "res/Sprites/RocketBall.png") },
+		{ OilBall::type, TutorialMessage("Oil Ball, stuns enemy for longer", "res/OilBall.png") },
+		{ BombBall::type, TutorialMessage("Bomb Ball, explodes when hit", "res/Sprites/bombBall.png") },
+		{ BombOther::type, TutorialMessage("Bomb Other Ball, explodes when hits other player", "res/otherBombBall.png") },
+		{ WalletBall::type, TutorialMessage("Wallet Ball, moves you up a lot", "res/Wallet.png") },
+		{ PowderBall::type, TutorialMessage("Powder Ball, fractures into smaller pieces when hits something", "res/PowderBall.png") }
 	};
 	_newTargetMessages = unordered_map<int, TutorialMessage>{
-		{ RareTarget::type, TutorialMessage("Rare Target", "res/Sprites/rare.png") },
-		{ Double_Attack::type, TutorialMessage("Double Attack Target", "res/Sprites/DoubleAttack.png") },
-		{ Invincibility::type, TutorialMessage("Invincibility Target", "res/Sprites/Invincibility.png") },
-		{ NoGravFieldFX::type, TutorialMessage("Zero Gravity Target", "res/Sprites/ZeroGrav.png") },
-		{ DoubleGravFieldFX::type, TutorialMessage("Double Gravity Target", "res/Sprites/DoubleGrav.png") },
-		{ HalfGravFieldFX::type, TutorialMessage("Half Gravity Target", "res/Sprites/HalfGrav.png") }
+		{ RareTarget::type, TutorialMessage("Rare Target, moves you up higher", "res/Sprites/rare.png") },
+		{ Double_Attack::type, TutorialMessage("Double Attack Target, doubles your damage for short time", "res/Sprites/DoubleAttack.png") },
+		{ Invincibility::type, TutorialMessage("Invincibility Target, makes you immune to damage for short time", "res/Sprites/Invincibility.png") },
+		{ NoGravFieldFX::type, TutorialMessage("Zero Gravity Target, removes gravity from arena for short time", "res/Sprites/ZeroGrav.png") },
+		{ DoubleGravFieldFX::type, TutorialMessage("Double Gravity Target, doubles the gravity on the arena for a short time", "res/Sprites/DoubleGrav.png") },
+		{ HalfGravFieldFX::type, TutorialMessage("Half Gravity Target, halves the gravity on the arena for a short time", "res/Sprites/HalfGrav.png") }
 	};
 	_winLoseMessages = unordered_map < int, TutorialMessage > {
 		{ -1, TutorialMessage("You would lose at this point because your player is at the bottom") },

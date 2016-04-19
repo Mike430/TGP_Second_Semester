@@ -43,6 +43,7 @@ private:
 	BallDispencer* _leftDispencer;
 	BallDispencer* _rightDispencer;
 	vector<Target*> _targets;
+	cocos2d::ui::Button* _mainMenu;
 	float _targetSpawnTimer;
 
 	BallManager* _ballManager;
@@ -101,6 +102,7 @@ public:
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event);
+	void MainMenuButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 
 	void Pause();
 	void UnPause();
