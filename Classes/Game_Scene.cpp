@@ -37,6 +37,8 @@ bool Game_Scene::init()
 	_windowSize = CCDirector::getInstance()->getVisibleSize();
 	// Get Scene Elelments
 	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Text_Element_1");
+	_mainMenu = (cocos2d::ui::Button*)_rootNode->getChildByName("Exit_Tut");
+	_mainMenu->addTouchEventListener(CC_CALLBACK_2(Game_Scene::MainMenuButtonPressed, this));
 
 	_ballManager = new BallManager();
 	_targetManager = new TargetManager();
@@ -525,4 +527,10 @@ void Game_Scene::UnPause()
 bool Game_Scene::IsPaused()
 {
 	return _paused;
+}
+void Game_Scene::MainMenuButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
+{
+	cocos2d::Scene* mainMenu = HelloWorld::createScene();
+	//cocos2d::CCDirector::getInstance()->replaceScene(mainMenu);
+	CCDirector::getInstance()->replaceScene(TransitionFadeBL::create(2.0f, mainMenu));
 }
