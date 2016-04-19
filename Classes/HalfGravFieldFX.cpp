@@ -31,7 +31,7 @@ void HalfGravFieldFX::Hit(Game_Scene* game, Ball* ball)
 		balls->GetBallAtIndex(i)->DoubleGravityField = false;
 	}
 
-	AudioHelper::Play("startgrav");
+	//AudioHelper::Play("gravity10");
 }
 
 int HalfGravFieldFX::GetScoreValue() const

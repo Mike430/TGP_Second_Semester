@@ -25,7 +25,7 @@ bool Game_Scene::init()
 	}
 
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/mainsong.mp3", true);
-	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.0f);
+	//CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.0f);
 
 	// Random Generator
 	srand(time(NULL));
@@ -136,11 +136,11 @@ void Game_Scene::update(float deltaTime)
 	{
 		return;
 	}
-	float backgroundVolume = CocosDenshion::SimpleAudioEngine::getInstance()->getBackgroundMusicVolume();
+	/*float backgroundVolume = CocosDenshion::SimpleAudioEngine::getInstance()->getBackgroundMusicVolume();
 	if (backgroundVolume < 1.0f)
 	{
 		CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(min(1.0f, backgroundVolume + 0.3f * deltaTime));
-	}
+	}*/
 	//string textDisplay = "Score: " + to_string((int)(1337));
 	//_scoreLabel->setText(textDisplay);
 	// add targets outside start countdown check
@@ -230,7 +230,7 @@ void Game_Scene::update(float deltaTime)
 		_countDown -= deltaTime;
 
 		static bool playedAirhorns = false;
-		if (_countDown <= 7 && !playedAirhorns)
+		if (_countDown <= 5 && !playedAirhorns)
 		{
 			AudioHelper::Play("airhorn");
 			playedAirhorns = true;
@@ -255,7 +255,6 @@ void Game_Scene::update(float deltaTime)
 
 			}
 			_NoGravTimer = Settings::ZeroGravityFieldDuration;
-			AudioHelper::Play("endgrav");
 		}
 	}
 
@@ -270,7 +269,6 @@ void Game_Scene::update(float deltaTime)
 				_ballManager->GetBallAtIndex(i)->HalfGravityField = false;
 			}
 			_HalfGravTimer = Settings::HalfGravityFieldDuration;
-			AudioHelper::Play("endgrav");
 		}
 	}
 
@@ -286,7 +284,6 @@ void Game_Scene::update(float deltaTime)
 				_ballManager->GetBallAtIndex(i)->DoubleGravityField = false;
 			}
 			_DoubleGravTimer = Settings::DoubleGravityFieldDuration;
-			AudioHelper::Play("endgrav");
 		}
 	}
 }
@@ -348,6 +345,10 @@ bool Game_Scene::TestCollisionWithTarget(Ball* ball, Target* target)
 		else if (ball->getType() == RocketBall::type)
 		{
 			AudioHelper::Play("missilehit");
+		}
+		else
+		{
+			AudioHelper::Play("normalball");
 		}
 		DestroyAndDropBall(ball);
 

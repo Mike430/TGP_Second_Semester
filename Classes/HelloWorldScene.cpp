@@ -47,7 +47,7 @@ bool HelloWorld::init()
 
 	AnimationHelper::PreLoadAnimation("Intro", 170, 1280, 800, 24, "Frame - ", ".jpg");
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/Menusong.mp3", true);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("res/Audio/menusong.mp3", true);
 
     return true;
 }
@@ -72,6 +72,8 @@ void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 			_tutorialButton->setTitleText("Skip Intro");
 			_tutorialButton->addTouchEventListener(CC_CALLBACK_0(HelloWorld::LoadGame, this));
 			_tutorialButton->setScale(0.5f);
+
+			AudioHelper::PlayRandom("Button", 3);
 		}
 	}
 }
@@ -96,6 +98,8 @@ void HelloWorld::TutorialButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEv
 			_tutorialButton->setTitleText("Skip Intro");
 			_tutorialButton->addTouchEventListener(CC_CALLBACK_0(HelloWorld::LoadTutorial, this));
 			_tutorialButton->setScale(0.5f);
+
+			AudioHelper::PlayRandom("Button", 3);
 		}
 	}
 }

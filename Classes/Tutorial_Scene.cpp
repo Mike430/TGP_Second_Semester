@@ -161,6 +161,7 @@ void Tutorial_Scene::OnResumeGame()
 
 void Tutorial_Scene::UnPauseGame()
 {
+	AudioHelper::PlayRandom("Button", 3);
 	_game->UnPause();
 }
 

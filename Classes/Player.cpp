@@ -164,14 +164,13 @@ void Player::HitBall()
 						ball.Hit(emptySpace);
 						PlayerHitByBall(nullptr, &ball);
 						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, -4);
-						AudioHelper::Play("selfexplode");
 					}
 					else if (ball.getType() == WalletBall::type)
 					{
 						Vec2 emptySpace; //Basically a placeholder because this will only be used in case of bomb balls, but hit requires a vec2 even if one is not used.
 						ball.Hit(emptySpace);
 						((Game_Scene*)(this->getParent()->getParent()))->SeeSaw(this, 4);
-						AudioHelper::Play("moneyball");
+						AudioHelper::PlayRandom("Moneyball", 2);
 					}
 					else
 					{ 
@@ -183,7 +182,7 @@ void Player::HitBall()
 						Vec2 hitDir = ccpLerp(Vec2(Settings::horizontalSpeed, -250), Vec2(Settings::horizontalSpeed, 550), dy); // lerp between mim/max hit strength
 						ball.Hit(hitDir);
 					}
-					AudioHelper::PlayRandom("bathitting", 4, 0.75 + rand_0_1() * 0.5);
+					AudioHelper::PlayRandom("bathitting", 3, 0.75 + rand_0_1() * 0.5);
 				}
 			}
 		}
@@ -230,15 +229,20 @@ void Player::PlayerHitByBall(Game_Scene* game, Ball* ball)
 
 			AudioHelper::Play("bombball");
 		}
+		else if (ball->getType() == BombBall::type)
+		{
+
+			AudioHelper::Play("selfexplode");
+		}
 		else if (ball->getType() == OilBall::type)
 		{
-			AudioHelper::Play("oilball");
+			AudioHelper::PlayRandom("Oilball", 3);
 		}
 		else if (ball->getType() == RocketBall::type)
 		{
 			AudioHelper::Play("missilehit");
 		}
-		AudioHelper::PlayRandom("Au", 8, (0.5 + rand_0_1() * 1.5));
+		AudioHelper::PlayRandom("Au", 4, (0.5 + rand_0_1() * 1.5));
 	}
 }
 
